@@ -28,7 +28,11 @@ export default defineConfig({
   },
   vite: {
     // Using Tailwind CSS v4 with @tailwindcss/vite
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    preview: {
+      // Allow Railway (and any *.up.railway.app preview domain) through Vite's host allow-list
+      allowedHosts: ['.up.railway.app']
+    }
   },
   integrations: [
     mdx(),
