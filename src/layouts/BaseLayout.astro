@@ -16,17 +16,17 @@ interface Props {
 
 const { 
   title, 
-  description = "A minimalist blog template focusing on clean typography and distraction-free reading experience.", 
+  description = "Blog posts about how you can start using AI today.",
   image = "/og-image.png",
   type = "website",
   publishedDate,
   modifiedDate,
-  author = "Brook Team"
+  author = "Alfred Nutile"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = image.startsWith('/') ? new URL(image, Astro.site) : image;
-const siteName = "Brook Blog";
+const siteName = "DailyAi - Alfred Nutile";
 
 // Strukturierte Daten (JSON-LD) für bessere SEO
 const jsonLDWebsite = {
@@ -68,7 +68,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | Brook</title>
+    <title>{title} | DailyAi - Alfred Nutile</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
@@ -126,7 +126,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <div class="bg-white dark:bg-black transition-colors duration-300">
       <header class="mx-auto max-w-4xl py-8">
         <div class="flex items-center justify-between">
-          <a href="/" class="text-2xl font-semibold" transition:animate="fade">Brook2</a>
+          <a href="/" class="text-2xl font-semibold" transition:animate="fade">DailyAi</a>
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center gap-6">

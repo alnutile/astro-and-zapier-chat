@@ -17,16 +17,15 @@ const posts = sortedPosts.slice(0, 5).map(post => ({
 }));
 ---
 
-<BaseLayout title="Welcome">
+<BaseLayout title="Home">
   <div class="max-w-4xl mx-auto">
     <section class="text-center py-[8vh]" transition:animate="fade">
-      <h1 class="text-7xl mb-8 font-bold">Welcome to Brook 2.0</h1>
+      <h1 class="text-7xl mb-8 font-bold">Welcome to DailyAi</h1>
       <p class="text-2xl text-muted-foreground max-w-3xl mx-auto mb-14">
-        A minimalist blog template for developers and writers focusing on clean typography and distraction-free
-        reading experience.
+        Blog posts about how you can start using AI today.
       </p>
-      <a href="https://github.com/holger1411/astro-brook" target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg tracking-wide no-underline hover:no-underline transform transition-all duration-300 hover:scale-105 hover:shadow-[0_3.5rem_5rem_rgba(21,21,21,0.3)] shadow-[0_3rem_4rem_rgba(21,21,21,0.25)] dark:bg-white dark:text-black dark:hover:bg-gray-100">
-        View on GitHub
+      <a href="/journal" class="btn-primary btn-lg tracking-wide no-underline hover:no-underline transform transition-all duration-300 hover:scale-105 hover:shadow-[0_3.5rem_5rem_rgba(21,21,21,0.3)] shadow-[0_3rem_4rem_rgba(21,21,21,0.25)] dark:bg-white dark:text-black dark:hover:bg-gray-100">
+        Read latest posts
       </a>
     </section>
 

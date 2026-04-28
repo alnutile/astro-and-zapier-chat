@@ -2,52 +2,79 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About">
+<BaseLayout title="About" description="About Alfred Nutile — 20+ years in software, now focused on AI for non-developers.">
   <div class="max-w-3xl mx-auto">
     <header class="mb-12 text-center" transition:animate="fade">
       <h1 class="text-5xl mb-4">About</h1>
       <p class="text-xl text-muted-foreground">
-        Learn more about Brook, a minimalist blog template
+        20+ years in software. Now I'm focused on AI for everyone else.
       </p>
     </header>
-    
+
+    <div class="flex justify-center mb-12" transition:animate="fade">
+      <img
+        src="/images/alfred.jpg"
+        alt="Alfred Nutile"
+        width="320"
+        height="320"
+        class="rounded-2xl shadow-lg"
+      />
+    </div>
+
     <div class="prose prose-lg dark:prose-invert max-w-none" transition:animate="fade">
       <p>
-        Brook is a minimalist blog template designed for developers and writers who value clean typography 
-        and a distraction-free reading experience. Built with modern web technologies, Brook offers a 
-        perfect balance of simplicity and functionality.
+        Hi, I'm Alfred. I've been building software for more than 20 years — started with fixing PCs,
+        moved into Laravel and full-stack development, and ended up at companies like Pfizer building
+        security tooling. Pretty standard career arc, until the last couple of years.
       </p>
-      
-      <h2>Features</h2>
-      
+
+      <p>
+        Then AI changed the rules. And I don't mean "added a chatbot." I mean the people closest to
+        the problem can now actually solve it themselves — without waiting on a developer ticket.
+        That's the shift I'm spending my time on now.
+      </p>
+
+      <h2>What this site is</h2>
+
+      <p>
+        DailyAi is where I write about what's actually working — for me, for clients, for people
+        who've never opened a terminal. No hype. No 10x productivity claims. Just real workflows
+        with tools like Claude, n8n, Supabase, Lovable, and a growing list of others, plus the
+        lessons I'm picking up along the way.
+      </p>
+
+      <p>
+        If you're a small business owner, an office manager, a non-profit coordinator — anyone who
+        has a task you're tired of doing manually — there's a good chance you can hand it off to AI
+        right now. You don't need a CS degree. You need ten minutes and one task. That's the whole
+        thing.
+      </p>
+
+      <h2>Where else to find me</h2>
+
       <ul>
-        <li>Clean, minimalist design that puts your content first</li>
-        <li>Full dark mode support</li>
-        <li>Responsive layout for all devices</li>
-        <li>Content collections for easy content management</li>
-        <li>Markdown and MDX support for rich content</li>
-        <li>Code syntax highlighting for developers</li>
-        <li>Tags and categorization</li>
-        <li>SEO optimized</li>
-        <li>Fast performance with minimal JavaScript</li>
-        <li>Smooth page transitions</li>
+        <li>
+          <a href="https://www.youtube.com/@AlfredNutile" target="_blank" rel="noopener noreferrer">
+            YouTube — @AlfredNutile
+          </a> — videos walking through real builds and tools
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/alfrednutile/" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="https://x.com/AlfredNutile" target="_blank" rel="noopener noreferrer">
+            X / Twitter — @AlfredNutile
+          </a>
+        </li>
       </ul>
-      
-      <h2>Technology</h2>
-      
+
+      <h2>Want to work together?</h2>
+
       <p>
-        Brook is built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>, 
-        a modern static site generator that delivers lightning-fast performance with a great developer 
-        experience. Combined with <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind CSS</a> 
-        for styling, Brook provides a solid foundation for your content.
-      </p>
-      
-      <h2>Get Started</h2>
-      
-      <p>
-        Whether you're a developer looking to share code snippets, a writer seeking a clean platform for your 
-        stories, or anyone in between, Brook provides the perfect starting point for your content. Check out the 
-        <a href="/journal">Journal</a> to see it in action.
+        I work with teams and individuals who want to build with AI without rebuilding their
+        whole stack. If that sounds like you, reach out on any of the links above and let's talk.
       </p>
     </div>
   </div>
