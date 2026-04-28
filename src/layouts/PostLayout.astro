@@ -1,0 +1,77 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PostNavigation from '../components/PostNavigation.astro';
+import { formatDate } from '../utils/date';
+import { optimizeImagePath } from '../utils/optimizeImagePath';
+
+const { frontmatter, headings, prevPost, nextPost } = Astro.props;
+const { title, date, tags, image, excerpt } = frontmatter;
+const slug = Astro.url.pathname.split('/').filter(Boolean).pop();
+
+// Ensure image path is optimized
+const optimizedImagePath = image ? optimizeImagePath(image) : null;
+
+// Estimated reading time
+const WORDS_PER_MINUTE = 225;
+const content = await Astro.slots.render('default');
+const contentText = content.replace(/<\/?[^>]+(>|$)/g, ' ');
+const wordCount = contentText.split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+
+// Structured data for SEO
+const publishDate = new Date(date);
+---
+
+<BaseLayout
+  title={title}
+  description={excerpt}
+  image={optimizedImagePath || image}
+  type="article"
+  publishedDate={publishDate}
+>
+  <article id="main-content">
+    <header class="max-w-3xl mx-auto mb-10">
+      <div class="text-gray-500 text-sm mb-2">
+        <time datetime={publishDate.toISOString()}>{formatDate(date)}</time> • <span aria-label={`${readingTime} minute read`}>{readingTime} min read</span>
+      </div>
+      <h1 class="text-5xl mb-6" transition:name={`title-${slug}`}>{title}</h1>
+      {excerpt && <p class="text-xl text-gray-500">{excerpt}</p>}
+
+      {tags && tags.length > 0 && (
+        <div class="mt-4 mb-4 flex flex-wrap gap-2" aria-label="Tags">
+          {tags.map((tag) => (
+            <a
+              href={`/tags/${tag}`}
+              class="tag"
+              aria-label={`View all posts tagged ${tag}`}
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    {optimizedImagePath && (
+      <div class="max-w-4xl mx-auto mt-2 mb-10 feature-image" transition:name={`image-${slug}`}>
+        <img
+          src={optimizedImagePath}
+          alt={`Featured image for "${title}"`}
+          class="w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          width="1200"
+          height="675"
+        />
+      </div>
+    )}
+
+    <div class="max-w-3xl mx-auto prose prose-xl">
+      <slot />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+    </div>
+  </article>
+</BaseLayout>

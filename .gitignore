@@ -1,7 +1,6 @@
 # build output
 dist/
-
-# generated types
+.output/
 .astro/
 
 # dependencies
@@ -20,5 +19,11 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# editor directories and files
+.vscode/
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -2,16 +2,33 @@
   "name": "astro-and-zapier-chat",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "engines": {
     "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
+    "start": "astro preview --host 0.0.0.0 --port ${PORT:-4321}",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.10"
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "@vercel/analytics": "^1.6.1",
+    "astro": "^6.1.7",
+    "date-fns": "^4.1.0",
+    "hast-util-raw": "^9.1.0",
+    "zwitch": "^2.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/vite": "^4.2.2",
+    "autoprefixer": "^10.4.21",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.3.3"
   }
 }
