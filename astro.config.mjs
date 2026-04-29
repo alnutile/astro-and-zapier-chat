@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   output: 'static', // Explicitly specify static output (which is also the default)
-  site: 'https://astro-and-zapier-chat-production.up.railway.app',
+  site: 'https://chat.dailyai.studio',
   // Enable built-in image optimization with specific settings
   image: {
     service: {
