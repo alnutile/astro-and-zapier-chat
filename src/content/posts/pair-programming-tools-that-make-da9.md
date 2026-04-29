@@ -38,10 +38,3 @@ http://www.amazon.com/Agile-Estimating-Planning-Mike-Cohn/dp/0131479415
 
 Screenhero and Slack = Remote Team Perfection
 no loud chewing, noisy office mates bugging you but all of the instant screen sharing, audio needed to pair, ask questions, get help etc even more than 2 people at a time.
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

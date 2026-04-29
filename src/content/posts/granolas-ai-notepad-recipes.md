@@ -128,6 +128,3 @@ I hope you can see how easy Granola has made it to use AI without the intimidati
 👉 Support more articles like this [https://go.granola.ai/alfred-nutile](https://go.granola.ai/alfred-nutile)
 
 👀 See a Granola blog post here [https://www.granola.ai/blog/say-hello-to-recipes](https://www.granola.ai/blog/say-hello-to-recipes)
-
----POSTBREAK---
-

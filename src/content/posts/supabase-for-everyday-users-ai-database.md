@@ -336,6 +336,3 @@ A yellow highlighted callout at the bottom reads: "ACTION: QA process needs imme
 
 Flat lay photography, natural overhead lighting, slight page curl at edges, realistic paper texture. A pen and coffee cup are visible at the edge of frame.
 ```
-
----POSTBREAK---
-

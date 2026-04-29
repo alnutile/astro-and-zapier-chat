@@ -21,12 +21,3 @@ How tools like Bolt.new, Cursor.ai, and FlutterFlow have become essential parts 
 Discover how I've embraced new superpowers, reducing overhead, maintenance, and making projects more efficient. 🦸‍♂️
 
 Read the full article here: [https://alnutile.medium.com/what-if-i-was-to-build-it-now-1af988c57f22](https://alnutile.medium.com/what-if-i-was-to-build-it-now-1af988c57f22)
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

@@ -259,6 +259,3 @@ And that’s it — start to finish, we’ve got a full digital signature automa
 ## **Full Workflow**
 
 You can grab the workflow [here](https://gist.github.com/alnutile/815a50c5b113799b9b5cd860e12a47e9)
-
----POSTBREAK---
-

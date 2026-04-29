@@ -64,6 +64,3 @@ Then there was the moment I realized I could make a game—something I had wante
 ](https://substackcdn.com/image/fetch/$s_!oDtY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F845a52c6-d5d3-41eb-9e2a-2ae69a384ab6_500x1086.gif)
 
 So overall I was impressed. For not a lot of money monthly (👉 and no, this is not an ad), I can have my 20 miscellaneous applications there and waiting for me to use day after day. I’m sure too that I could make an MCP to connect to the databases if needed. So if like me you tried vibe-coding a year ago and it fell flat, I would say try again—try opinionated systems like Replit or if you know other opinionated platforms, share them below!
-
----POSTBREAK---
-

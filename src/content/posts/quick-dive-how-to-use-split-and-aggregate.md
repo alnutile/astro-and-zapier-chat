@@ -61,6 +61,3 @@ This Substack outline is meant as a supplement. To really see these nodes in act
 Don’t sleep on Split and Aggregate — they’re foundational building blocks for making your workflows **smarter, cleaner, and scalable**. Once you know how to use them, you’ll start noticing places where they can save you time and simplify your automation.
 
 🔥 Then your Substack readers can click through to workflows, and when people watch your YouTube video you can comment, “Hey, I broke this down in an article + linked the workflows here 👉 [here](https://gist.github.com/alnutile/0847b02bb72f006a8ad4b9280e3ec5ff)
-
----POSTBREAK---
-

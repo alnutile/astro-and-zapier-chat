@@ -24,6 +24,3 @@ The template is below:
 N8N Workflow Gist
 
 [https://gist.github.com/alnutile/9f4464357557a93234d20e84b0b24cf2](https://gist.github.com/alnutile/9f4464357557a93234d20e84b0b24cf2)
-
----POSTBREAK---
-

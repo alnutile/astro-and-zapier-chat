@@ -36,10 +36,3 @@ Latest Chapter is The Commit Stage
 ## ThoughtWorks Technology Radar Nov, 15
 
 https://www.thoughtworks.com/radar
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

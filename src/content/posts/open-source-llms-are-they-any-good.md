@@ -24,6 +24,3 @@ vision.json - this one mixes stirling PDF and a model for Vision to RAG
 spreadsheet workflow - a simple email to spreadsheet workflow for misc automation like saving bookmarks and more
 
 [Here](https://gist.github.com/alnutile/f23c0311e7e2aad40747ccf21ad4732d) is the Gist with the
-
----POSTBREAK---
-

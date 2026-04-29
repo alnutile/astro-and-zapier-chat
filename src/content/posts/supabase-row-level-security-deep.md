@@ -20,6 +20,3 @@ This is the video to help explain the process it will be done rendering shortly
 You can get the code below
 
 https://drive.google.com/file/d/1Js0I1zHOgPA8Up0rBDgNShRilINPOTgp/view?usp=drive_link
-
----POSTBREAK---
-

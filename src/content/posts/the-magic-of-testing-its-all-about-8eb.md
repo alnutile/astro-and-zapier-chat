@@ -65,10 +65,3 @@ TDD video
 Rails Conf 2013 The Magic Tricks of Testing by Sandi Metz
 https://t.co/EfXWBgLOLz
 Recommended by Adam Wathan
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

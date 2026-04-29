@@ -21,12 +21,3 @@ These episodes are created using [https://notebooklm.google.com/](https://notebo
 # Tools Overview Enhancing LLM Capabilities - Chapter 7
 
 This is one of the most critical chapters in the book. If you understand the concept of tools and tool chaining, you will see significant changes in how you build applications. It is almost like "Event Driven Design" but "Tool Driven Design" (TDD 🤔).
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

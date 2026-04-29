@@ -150,6 +150,3 @@ One more note — “Shortcuts.” Here you can save and have it record actions 
 That’s it. Claude Desktop. It’s really worth digging into. Take your time, get over the learning curve, play around, look at the page they have with examples. Start taking a moment to throw your ideas in here versus a web browser tab. And with the Chrome extension for Claude, you can actually just have it do things for you. You get to this place where it’s doing things for you — because it’s a Friday and you told it every Friday to get you some news stories.
 
 Hope you enjoyed this. I hope you can see some advantage here to Claude Desktop in your day-to-day work. Good luck with this stuff.
-
----POSTBREAK---
-

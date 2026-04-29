@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [http://www.lornajane.net/posts/2015/git-pull-causes-a-merge](http://www.lornajane.net/posts/2015/git-pull-causes-a-merge)
 
 If you type git pull and expect a fast-forward update, but get a merge instead, don't panic! This usually happens when we're collaborating on a branch with other people, and we've made changes on our local version of a branch, and someone else (or the other you, if you use git to sync between multiple dev platforms) has made changes to the remote version of a branch in the meantime. It also happens really frequently in teams where all commits are to the master branch ... yet another reason to have a decent branching strategy.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

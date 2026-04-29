@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [https://alfrednutile.info/posts/175](https://alfrednutile.info/posts/175)
 
 We are working on using FeatureFlags or Toggles in our applications. For one we are aiming to do all our work on mainline branch at all times so this would be a key coding discipline to use FeatureFlags so we can hide a feature in progress knowing it will not interfere with the application. For example if a hotfix or another feature is ready to go to production we can push that with no worries of the in progress feature.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

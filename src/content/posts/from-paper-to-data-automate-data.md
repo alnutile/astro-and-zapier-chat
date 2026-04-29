@@ -53,8 +53,3 @@ This approach makes powerful automation accessible to any business, without the 
 I hope this series sparks some ideas for how you can streamline your own operations. 
 
 Links:
-
-👉🏻 Consulting & Building: https://dailyai.studio
-
----POSTBREAK---
-

@@ -128,6 +128,3 @@ Let’s set aside the many Saas products we experience in the Laravel community;
 # **Where does this leave me?**
 
 Years ago, I had a moment when I saw Drupal and PHP no longer being the right choice for me. I started using Ruby on Rails and did well there. Then, seeing Laravel and missing PHP, I returned to that and all the batteries it had that day, including composer, cloud drivers, etc. So, once again, looking at the technology road in front of me and a new fork in the road, I think that it might be another time for me to consider how to change with the times. In this case, it is not all or nothing but just a lot less of the “Build” and more of the “Measure and Learning” that these no-code, low-code AI and LLM-empowered tools are bringing to my toolbox.
-
----POSTBREAK---
-

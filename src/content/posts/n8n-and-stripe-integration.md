@@ -585,6 +585,3 @@ here is the JSON for N8N
   }
 }
 ```
-
----POSTBREAK---
-

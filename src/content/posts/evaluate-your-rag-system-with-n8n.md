@@ -106,6 +106,3 @@ For my paid subscribers, I’m sharing the exact n8n workflows I used to build t
 Here is the [Gist](https://gist.github.com/alnutile/bcf945b224d7814e673d6c7b655065f4)
 
 Here is the [spreadsheet](https://docs.google.com/spreadsheets/d/1fPgVQZGIgLLc_eNy1Mfmv_pfHGW1yYGpWSJCmFHbR1A/edit?usp=sharing)
-
----POSTBREAK---
-

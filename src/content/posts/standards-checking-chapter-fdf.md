@@ -8,18 +8,3 @@ tags: []
 ---
 
 From the "PHP and LLMs" book, “Standards Checking” that Notebook LM will talk about. This is a deceiving title since this pattern can be use for so many other workflows like Grant Writing, RFP Proposals, Marketing Voice, Related Content Checking an more!
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" [https://bit.ly/php_llms](https://bit.ly/php_llms)
-
-👉🏻 Ai Automation Consulting [https://dailyai.studio](https://dailyai.studio)
-
-👉🏻 Join the NewsLetter [https://sundance-solutions.mailcoach.app/php-and-llms](https://sundance-solutions.mailcoach.app/php-and-llms)
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

@@ -91,10 +91,3 @@ PR Before you start Coding?
 http://www.fullstackradio.com/23
 
 https://github.com/blog/1124-how-we-use-pull-requests-to-build-github
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

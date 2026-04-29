@@ -119,6 +119,3 @@ Let me know if you'd like links to examples or videos of this stack in action. I
 
 Thanks for reading,
 Alfred
-
----POSTBREAK---
-

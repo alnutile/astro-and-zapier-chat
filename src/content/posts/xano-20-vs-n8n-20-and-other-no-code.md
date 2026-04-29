@@ -25,6 +25,3 @@ This week we cover:
 • GitHub Trending as the best signal for no-code/automation momentum
 
 If you build with no-code, automation, internal tools, or private AI, staying ahead of these shifts matters.
-
----POSTBREAK---
-

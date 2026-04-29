@@ -92,10 +92,3 @@ GroqCasters is an open-source Python application that uses AI to generate podcas
 A deep dive into structuring and formatting scraped HTML content into usable data. This example shows how scraped news articles can be organized efficiently for further analysis or display.
 
 Feel free to modify or adjust the format according to your specific newsletter layout or audience! Let me know if you'd like further customization.
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

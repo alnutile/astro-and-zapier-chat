@@ -102,6 +102,3 @@ Remember a lot of this comes down to prompting. You can easily make it yours for
 ](https://substackcdn.com/image/fetch/$s_!TaNc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F89730f1e-9ab9-4b8f-ae7b-782e6173b6ca_1557x1132.png)
 
 👉The workflow is [here](https://gist.github.com/alnutile/c7fabaad3b2924549cfb83a573f73d47).
-
----POSTBREAK---
-

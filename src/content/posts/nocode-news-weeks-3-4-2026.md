@@ -148,6 +148,3 @@ I mean again Opal really set the page for many applications. I think it was a ma
 **A2UI: The Protocol That Makes AI Design Functional UIs** Covers Google’s A2UI protocol enabling AI agents to generate interactive user interfaces via JSON without coding. Includes live demos of AI-generated components (maps, clocks, restaurant interfaces).
 
 **What is Convex & Why Should You Care?** Analyzes Convex as a backend platform - TypeScript-safe queries, mutations, real-time syncing, serverless functions for modern web apps.
-
----POSTBREAK---
-

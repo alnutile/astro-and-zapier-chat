@@ -120,10 +120,3 @@ https://www.phparch.com/books/functional-programming-in-php/
 The term DHH coined “Software Writer”
 
 https://www.youtube.com/watch?v=9LfmrkyP81M
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

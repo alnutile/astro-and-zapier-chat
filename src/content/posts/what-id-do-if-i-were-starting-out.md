@@ -233,6 +233,3 @@ Coolify.io to get going on running n8n and other tools affordably.
 
 ## 
 📺 Worth Watching
-
----POSTBREAK---
-

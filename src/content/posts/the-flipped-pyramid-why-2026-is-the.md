@@ -215,6 +215,3 @@ These aren’t abstract ideas. They’re the practical, day-to-day skills that t
 I’ll be sharing all of it here, on [YouTube](https://www.youtube.com/@AlfredNutile), and on [SubStack](https://substack.com/@dailyaistudio). If you’re a business owner, a team lead, or someone who just knows there’s a better way to get your work done — this is for you. Follow along, try the tools, and bring your questions. The best ideas are going to come from you actually doing it.
 
 The pyramid has flipped. The wide part is where you are. Let’s put it to work.
-
----POSTBREAK---
-

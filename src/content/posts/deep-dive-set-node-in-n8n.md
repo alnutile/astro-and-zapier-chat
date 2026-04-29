@@ -40,6 +40,3 @@ If you’re building advanced workflows, small details like centralizing variabl
 ### Closing line:
 
 If you found this breakdown valuable, subscribe for more automation tips — I’ll be covering more individual nodes and advanced patterns in the coming weeks!
-
----POSTBREAK---
-

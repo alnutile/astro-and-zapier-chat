@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [https://alfrednutile.info/posts/172](https://alfrednutile.info/posts/172)
 
 This will cover two things. One, how helpful it can be to make a clickable Proof of Concepts (POC), not just with images, or tools the spit out html but instead just enough javascript and base theme to help "sell" the idea, or more importantly to help Product Owners see the possibilities that are not too far out of reach. And the second, and maybe more important thing I will cover is that the developer has a lot to gain in taking on this seemingly non-coding path.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

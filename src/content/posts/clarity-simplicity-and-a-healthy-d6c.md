@@ -47,10 +47,3 @@ Crazy math to figure out your project buffer!
 https://www.youtube.com/watch?v=mDotS5BDqRM
 
 Care, Simplicity and more he learned from working with Laravel.
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

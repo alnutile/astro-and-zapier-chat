@@ -166,6 +166,3 @@ This week brought some of the biggest announcements in no-code and AI automation
 **Subscribe to this newsletter** to get weekly no-code news delivered to your inbox, and **subscribe to the YouTube channel** for video breakdowns every week.
 
 #NoCode #LowCode #AI #Automation #MCP #Softr #Zapier #Bubble #GitHub #OpenSource
-
----POSTBREAK---
-

@@ -150,10 +150,3 @@ Testinfra aims to be a Serverspec equivalent in Python and is written as a plugi
 
 - 
 Yarn
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

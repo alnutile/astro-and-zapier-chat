@@ -16,6 +16,3 @@ Then there’s the ability to take on projects I couldn’t have done before. On
 👉 https://sql-art-gallery.replit.app/
 
 The catch to all of this is that I now find myself doing too much. By the end of the day I’m juggling ten things, and even though AI is handling the bulk of them, I lose the satisfaction that comes from working on one thing and actually finishing it. I’m not sure there’s a clean answer to that. Part of it is just that there are so many exciting things to do. But the other part is, if I can get my work done in less time, is it possible to just walk away sooner and do something else?
-
----POSTBREAK---
-

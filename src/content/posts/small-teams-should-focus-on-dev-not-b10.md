@@ -10,12 +10,3 @@ tags: []
 You can read the article here https://alnutile.medium.com/small-teams-should-focus-on-dev-not-ops-63d7938a314a
 
 Enjoy!
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

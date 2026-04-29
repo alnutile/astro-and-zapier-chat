@@ -55,10 +55,3 @@ Some quick points though from it.
 but not it is mixed NoSQL, MySQL, Redis etc and that is the biggest take away so far for me
 
 Archiving is a common use for NoSQL
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

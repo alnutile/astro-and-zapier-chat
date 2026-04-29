@@ -39,6 +39,3 @@ Whether you’re building something simple or scaling a multi-device AI pipeline
 🎁 **Paid Subscribers** get access to the downloadable n8n JSON workflow to drop right into your own instance. See below
 
 The Workflow is [here](https://gist.github.com/alnutile/39d07a3765b5f13dab790f5ebb5f405e).
-
----POSTBREAK---
-

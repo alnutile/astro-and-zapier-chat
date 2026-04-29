@@ -104,10 +104,3 @@ Change user passwords
 
 - 
 Configure servers eg Supervisord, cron etc
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

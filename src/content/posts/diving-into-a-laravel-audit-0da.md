@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [http://zaengle.com/blog/diving-in-to-a-laravel-audit](http://zaengle.com/blog/diving-in-to-a-laravel-audit)
 
 Recently the Zaengle team was asked to look over an existing Laravel application and give a review of the overall state of the code. We were to act as an independent third party, between a new studio who had inherited the codebase, and the client, who was anticipating launching the product.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

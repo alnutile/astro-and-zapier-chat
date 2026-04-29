@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [https://alfrednutile.info/posts/171](https://alfrednutile.info/posts/171)
 
  Some reasons why putting all library files into version control might be a good idea. You can read about it here as well https://alfrednutile.info/posts/171
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

@@ -213,6 +213,3 @@ File processing doesn't have to involve custom development anymore. N8N's extrac
 These workflows show how no-code tools can replace significant development effort with simple, visual configurations.
 
 👉[The Workflow](https://gist.github.com/alnutile/207b8344d3d428b62edf567fda26c339)
-
----POSTBREAK---
-

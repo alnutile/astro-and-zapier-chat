@@ -48,6 +48,3 @@ A quick look at why the HTTP node is a versatile and essential tool for integrat
 **Configuration:** Setting a specific delay and defining the number of retries for failed requests [00:04:30].
 
 👉 Get it [here](https://gist.github.com/alnutile/a91d0e3bb5b8e8d448204dc1a31b8d23)
-
----POSTBREAK---
-

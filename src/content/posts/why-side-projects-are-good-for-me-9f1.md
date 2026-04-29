@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [http://alfrednutile.info/posts/170](http://alfrednutile.info/posts/170)
 
 First let me define what a “Side Project” is. In this case a “Side Project” is something you are not being paid for and something that you have complete control over....
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

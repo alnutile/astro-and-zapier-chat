@@ -40,10 +40,3 @@ https://alfrednutile.info/posts/175
 
 Etsy and others
 https://www.youtube.com/watch?v=JR-ccCTmMKY
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

@@ -16,6 +16,3 @@ Set it up on your local machine that is running ollama or llmstudio
 Then set it up on the machine running your N8N in the cloud and point the OpenAi Node IP to the Tailscale IP and you are set!
 
 Ask questions here to get more info about this.
-
----POSTBREAK---
-

@@ -49,10 +49,3 @@ Al is doing an Intro to Laravel session at NYC Camp
 http://nyccamp.org/session/intro-laravel-symfony-component-based-framework
 
 Rate us on iTunes https://itunes.apple.com/us/podcast/developershangout/id1001951280
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

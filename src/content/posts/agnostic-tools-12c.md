@@ -21,12 +21,3 @@ By the end of this chapter, you will understand how hard it is to switch between
 👉🏻 Join the NewsLetter [https://sundance-solutions.mailcoach.app/php-and-llms](https://sundance-solutions.mailcoach.app/php-and-llms)
 
 📰 Join the news letter [https://sundance-solutions.mailcoach.app/php-and-llms](https://sundance-solutions.mailcoach.app/php-and-llms)
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

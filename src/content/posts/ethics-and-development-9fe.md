@@ -47,10 +47,3 @@ https://onemonth.com/courses/web-security
 ## Not Just Code Monkeys
 
 https://www.youtube.com/watch?v=Z8aECe4lp44
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

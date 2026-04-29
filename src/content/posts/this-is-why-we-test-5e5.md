@@ -62,10 +62,3 @@ Being proud of 100% test coverage is like being proud of reading every word in t
 ### How to get started as a new to testing developer
 
 ### Contract Test Notes
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

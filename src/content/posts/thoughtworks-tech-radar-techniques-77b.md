@@ -37,10 +37,3 @@ We begin to talk about 1 of the 4 topics, Techniques, in these radar releases. T
 
 [Link to PDF - though the website data has more details](https://assets.thoughtworks.com/assets/technology-radar-nov-2016-en.pdf)
 ## We will cover Techniques (Section 1 of 4)
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

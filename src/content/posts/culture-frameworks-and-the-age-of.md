@@ -95,6 +95,3 @@ Lovable, Supabase, n8n, Xano, Softr
 
 - 
 *Continuous Delivery* by Jez Humble and David Farley
-
----POSTBREAK---
-

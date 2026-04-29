@@ -31,10 +31,3 @@ Detailed Chat here [https://docs.google.com/document/d/1f2fgrofX620Wt9rbVO0Xax0g
 
 And a YouTube Video
 [https://youtu.be/uOwscCxU5H4](https://youtu.be/uOwscCxU5H4)
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

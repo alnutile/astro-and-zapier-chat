@@ -38,10 +38,3 @@ https://www.amazon.com/gp/product/0804139296
 # Deep Dive
 
 Slowing down to Speed Up
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

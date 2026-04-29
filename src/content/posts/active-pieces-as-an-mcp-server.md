@@ -374,6 +374,3 @@ The files are below
 ```
 
 CSV for the table https://docs.google.com/spreadsheets/d/1fP7mmPrkMPzh8mjHoYjmGnnr0JUTPvG6VNjHE29iMxg/edit?usp=drive_link
-
----POSTBREAK---
-

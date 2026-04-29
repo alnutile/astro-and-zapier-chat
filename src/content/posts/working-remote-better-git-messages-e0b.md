@@ -58,10 +58,3 @@ What is the ultimate goal?
 
 - 
 For me a related question is: how do I be myself (a bit of a realist) without seeming like a debbie downer all the time.
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

@@ -21,6 +21,3 @@ tool-seo.json - will show you a tool for seo workflow
 You can get to the Gist below
 
 [The Gist](https://gist.github.com/alnutile/dfcfc42e4150cd9da5d374d67170ae57)!
-
----POSTBREAK---
-

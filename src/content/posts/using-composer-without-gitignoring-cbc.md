@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [http://www.lornajane.net/posts/2014/using-composer-without-gitignoring](http://www.lornajane.net/posts/2014/using-composer-without-gitignoring)
 
 Recent additions to the joind.in API have introduced some new dependencies so we decided we'd start using Composer to manage these - but we don't want to run composer unsupervised. I'm sure this will bring the rain of "just run composer install, it's probably mostly almost safe" criticism, but actually it's quite tricky to run Composer without excluding vendor/ from source control so I thought I'd share how we did it so that anyone who wants to do so can learn from my experience!
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

@@ -137,11 +137,4 @@ Claude Code’s Chrome Extension:
 A2UI Protocol: 
 
 - 
-What is Convex: 
-
-👉🏻 Support me on YouTube https://www.youtube.com/channel/UCZa3QWzy1z1G9FIw02pytdA/join
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-
+What is Convex:

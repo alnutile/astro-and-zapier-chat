@@ -16,6 +16,3 @@ tags: []
 ](https://theaifix.show/94-anthropic-discovers-what-really-scares-people-about-ai/)
 
 Just wanted to share that here for anyone who wants to discover an AI focused news show that is a fun to listen to with a mix of guests.
-
----POSTBREAK---
-

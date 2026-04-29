@@ -76,10 +76,3 @@ And just a good article on isomorphic design and local content/couchDB
 
 Camp Link
 http://nyccamp.org/session/intro-laravel-symfony-component-based-framework
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

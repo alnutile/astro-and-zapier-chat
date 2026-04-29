@@ -61,9 +61,3 @@ https://www.youtube.com/watch?v=qI_g07C_Q5I
 ![examples](https://doc-04-0o-docs.googleusercontent.com/docs/securesc/brp18qufkc5olindlam4a4n07475emdv/4gkp6o8d6octdi9h2hgad4t2djssa05t/1448805600000/06055756841749461105/06055756841749461105/0ByIQiVME92jwTmYyeUVxeXpOWU0?e=view&nonce=ou02hl1bkd2te&user=06055756841749461105&hash=itddhgmcuhvn4rrr3h2aj092c18hi8qn)
 
 ](https://doc-04-0o-docs.googleusercontent.com/docs/securesc/brp18qufkc5olindlam4a4n07475emdv/4gkp6o8d6octdi9h2hgad4t2djssa05t/1448805600000/06055756841749461105/06055756841749461105/0ByIQiVME92jwTmYyeUVxeXpOWU0?e=view&nonce=ou02hl1bkd2te&user=06055756841749461105&hash=itddhgmcuhvn4rrr3h2aj092c18hi8qn)
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

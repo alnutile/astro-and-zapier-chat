@@ -12,12 +12,3 @@ As a freelance developer, my relationship with clients extends far beyond coding
 While I may get paid to code, my ultimate goal is to build the right features. And this is rarely if ever exactly what the Product owner expected.
 
 Read more https://alnutile.medium.com/a-developer-must-help-their-client-learn-to-be-a-product-owner-e178435899d1
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

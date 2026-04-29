@@ -17,16 +17,3 @@ We'll unpack how LLMs, combined with cleverly designed tools, can intelligently 
 The original article is [https://alnutile.medium.com/php-and-llms-web-scraping-and-building-an-events-database-f2f8fe1b3f5d](https://alnutile.medium.com/php-and-llms-web-scraping-and-building-an-events-database-f2f8fe1b3f5d)
 
 Enjoy!
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" [https://bit.ly/php_llms](https://bit.ly/php_llms)
-
-👉🏻 Join the NewsLetter [https://sundance-solutions.mailcoach.app/php-and-llms](https://sundance-solutions.mailcoach.app/php-and-llms)
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

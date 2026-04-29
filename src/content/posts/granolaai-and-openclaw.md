@@ -164,6 +164,3 @@ Alright I am going to go shoot the video for this but just wanted to share here 
 This is not sponsored but this link will support my work!
 
 Feel free to ask questions or reach out.
-
----POSTBREAK---
-

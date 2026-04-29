@@ -139,6 +139,3 @@ Watch YouTube. Learn from people who don’t code at all. Watch how they solve p
 Let go of your attachment to the keyboard.
 
 **Build. Ship. Repeat.**
-
----POSTBREAK---
-

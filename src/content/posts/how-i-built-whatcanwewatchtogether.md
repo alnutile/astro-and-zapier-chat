@@ -165,6 +165,3 @@ And of course, polish the AI show suggestion system to feel even more personaliz
 This has been one of the most fun and functional hackathon builds I’ve done in a while. Between Bolt.new, Supabase, N8N, and some AI smarts, I’ve been able to build something I actually want to use — and can iterate on quickly.
 
 If you’re curious or want to suggest features, feel free to try it out at [WhatCanWeWatchTogether.com](https://whatcanwewatchtogether.com/). And if you’re working on similar tools or building with Bolt, let me know — I’d love to swap ideas.
-
----POSTBREAK---
-

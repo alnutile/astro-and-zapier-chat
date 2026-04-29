@@ -52,10 +52,3 @@ http://www.amazon.com/Ready-Anything-Productivity-Principles-Getting-ebook/dp/B0
 ## TDD the good parts
 
 http://adamwathan.me/2014/11/03/tdd-the-good-parts/
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

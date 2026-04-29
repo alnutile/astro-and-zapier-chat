@@ -35,6 +35,3 @@ This powerful setup isn't just about routing; it can incorporate advanced AI. An
 ## **Organized Conversations: AI Chats & Project Links**
 
 Finally, for every interaction, the AI agent can create a "chat" entry in your database. Crucially, this chat is directly associated with the specific project ID derived from the email slug. This means all AI responses and interactions are neatly organized and linked back to their relevant projects, providing a comprehensive and context-aware record. [Understand how AI chats are associated with projects at 04:26:00](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE&t=266s)
-
----POSTBREAK---
-

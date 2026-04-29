@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [https://signalvnoise.com/posts/2188-theres-no-room-for-the-idea-guy](https://signalvnoise.com/posts/2188-theres-no-room-for-the-idea-guy)
 
 Startups need people able and willing of doing the actual work. They need programmers, designers, and eventually folks to do marketing, support, and more. What they don’t need, though, is someone who’s just going to be The Idea Guy.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

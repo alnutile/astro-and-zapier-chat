@@ -43,7 +43,3 @@ How nice the new Artisan Console syntax is http://laravel.com/docs/master/artisa
 
 - 
 [Zend Certification Study Guide: Third Edition](http://www.amazon.com/gp/product/1940111102/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1940111102&linkCode=as2&tag=alfnutinc-20&linkId=JMI4JMJIXPNG23US)
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile

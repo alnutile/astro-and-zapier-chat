@@ -72,6 +72,3 @@ The decision to use loops in n8n depends on several factors:
 •System Complexity: Multi-step processes work better when broken into sub-workflows
 
 Understanding these patterns helps in designing workflows that are both efficient and reliable.
-
----POSTBREAK---
-

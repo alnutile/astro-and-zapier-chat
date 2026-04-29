@@ -42,6 +42,3 @@ The barrier to entry for creating powerful, custom software has been removed. Yo
 
 Workflows 
 [Main Workflow](https://gist.github.com/alnutile/7a7aa56143b2fc2fa94d8872f479c9d5)
-
----POSTBREAK---
-

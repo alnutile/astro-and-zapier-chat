@@ -31,10 +31,3 @@ No specific links mentioned in the video.
 [00:25:00] Linux Adventures and Virtual Machines
 [00:29:00] Using AI for Film and Music Creation
 [00:31:00] Conclusion and Future Outlook
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

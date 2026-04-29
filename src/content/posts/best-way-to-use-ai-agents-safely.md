@@ -227,6 +227,3 @@ Whats Next is How to set this all up
 Thanks to Zapier’s MCP and Table you get a sense of what is possible when it comes to using AI securely and pretty simply.
 
 👉 Visit **[https://bit.ly/4tnMirJ](https://bit.ly/4tnMirJ) **to support more articles like this and get started with Zapier!
-
----POSTBREAK---
-

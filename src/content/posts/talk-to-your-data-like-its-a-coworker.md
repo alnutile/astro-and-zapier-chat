@@ -179,6 +179,3 @@ Creating tables and importing data has never been easier
 Hopefully this gets you aware how easy **Supabase** is to use and what is possible and how it really can be an amazing foundation for your business in this era where AI and data mean so much to a company no matter their size.
 
 If you’ve been putting off “the database thing” because it felt too technical, this is your sign to try it this week. And if you are a business trying to decide what to build on for your AI foundation then again you see **Supabase** a clear win here as well.
-
----POSTBREAK---
-

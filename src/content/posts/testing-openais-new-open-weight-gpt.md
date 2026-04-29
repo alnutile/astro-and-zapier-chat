@@ -54,6 +54,3 @@ Strong performance in tool usage, structured output, and RAG. No gains in vision
 💡 If you want to see exactly how I set this up and the full test results, watch the complete video here → [Full video link]
 
 And if you’re into **AI, automation, and n8n workflows**, you can subscribe to my Substack for the latest tests, setups, and ready-to-use workflow templates.
-
----POSTBREAK---
-

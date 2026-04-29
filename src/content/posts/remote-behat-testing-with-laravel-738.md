@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [https://alfrednutile.info/posts/177](https://alfrednutile.info/posts/177)
 
  This document will cover how to use a Behat specific API to setup a site for testing. What this includes is setting up a Scenario so that it has the data you need to run a test. This makes it possible not to rely on Seed data for this. This will allow us to run behat tests from remote machines as well as run tests in parallel.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

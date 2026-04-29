@@ -335,6 +335,3 @@ The next lesson will dig deeper into writing better instructions, building speci
 Use my link below to support more lessons like this one:
 
 👉 Try Zapier here: **[https://bit.ly/4aVM99d](https://bit.ly/4aVM99d)**
-
----POSTBREAK---
-

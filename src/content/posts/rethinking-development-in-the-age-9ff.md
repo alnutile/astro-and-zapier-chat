@@ -6,9 +6,6 @@ image: "https://substack-post-media.s3.amazonaws.com/public/images/67261e41-e5ed
 tags: []
 # original_url: https://substack.com/home/post/p-166464851
 ---
-
-👉🏻 Training [https://bit.ly/n8n-training](https://bit.ly/n8n-training)
-👉🏻 Automation and Ai NewsList [https://bit.ly/dailyai-newsletter](https://bit.ly/dailyai-newsletter)
 ## Overview
 
 This podcast episode delves into a developer's 25-year journey, reflecting on how the rise of AI and low-code/no-code tools is reshaping software development. The discussion highlights a shift from traditional frameworks like Laravel to more flexible solutions incorporating tools like N8N, Bolt.new, and Cursor AI. The core idea is to prioritize efficiency and problem-solving over the act of coding itself.
@@ -26,10 +23,3 @@ Key points include:
 ●A shift in mindset: The developer is re-evaluating his tech choices and embraces a "build a little, learn a lot" approach, adapting to the changing tech landscape. This involves a move away from the "artisan" approach to coding and more of a focus on practical solutions that make or save clients money.
 ●PHP is not the default: The author also notes that many new AI tools are better with Python and Javascript than PHP which is something to consider when choosing a tech stack.
 The podcast episode is a reflection on how the developer is adapting to new technologies and a discussion about how these changes impact project builds, and what it means for software development going forward.
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

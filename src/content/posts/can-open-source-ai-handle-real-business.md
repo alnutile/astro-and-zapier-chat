@@ -66,6 +66,3 @@ I’ll keep updating as I add more models and more use cases. If you want to fol
 Questions, feedback, whatever—let me know.
 
 —Alfred
-
----POSTBREAK---
-

@@ -48,9 +48,3 @@ https://www.youtube.com/watch?v=rRoy6I4gKWU
 ![overview](https://drive.google.com/uc?id=0ByIQiVME92jwa3lVZ1RNMjhaR0k)
 
 ](https://drive.google.com/uc?id=0ByIQiVME92jwa3lVZ1RNMjhaR0k)
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

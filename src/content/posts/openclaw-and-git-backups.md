@@ -72,6 +72,3 @@ OpenClaw is doing a lot behind the scenes — updating configs, writing to its w
 It’s not a replacement for proper backups, but it’s a lightweight layer of protection that takes 30 seconds to set up.
 
 Have any questions? Share below!
-
----POSTBREAK---
-

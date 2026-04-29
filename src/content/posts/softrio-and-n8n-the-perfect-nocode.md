@@ -67,6 +67,3 @@ At first glance, Softr's pricing might seem high, but it's crucial to look at it
 I've put together a comprehensive video walking through every aspect of this framework, including live demos of building an app, integrating N8N, adding the chat widget, and a detailed breakdown of the pricing model.
 
 The Chat widget is here [https://github.com/alfred-nutile-inc/n8n-chat-standalone](https://github.com/alfred-nutile-inc/n8n-chat-standalone)
-
----POSTBREAK---
-

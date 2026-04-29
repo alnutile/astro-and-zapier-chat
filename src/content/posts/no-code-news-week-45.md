@@ -106,6 +106,3 @@ Thanks for listening — see you next week!
 07:40 – MCPs and focused AI tool design
 
 08:10 – Wrap-up and upcoming trainings
-
----POSTBREAK---
-

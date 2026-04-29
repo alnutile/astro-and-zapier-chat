@@ -26,10 +26,3 @@ Aha Moments and Insights from Using N8N
 Comparing N8N with AI Coding Tools
 26:03
 Future of Development: Embracing AI and No-Code Solutions
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

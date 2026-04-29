@@ -178,6 +178,3 @@ Give the capabilities to tools.
 And then... **watch it work.**
 
 Let me know what you're building, and if you want to chat: [Book a free consult](https://calendly.com/alfrednutile/15min)
-
----POSTBREAK---
-

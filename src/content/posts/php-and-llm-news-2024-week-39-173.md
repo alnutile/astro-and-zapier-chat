@@ -50,10 +50,3 @@ And even make a podcast! You can see here I release a few chapters and some PHP 
 ## OpenSource AiPodcast Generator
 
 [https://github.com/jgravelle/GroqCasters?tab=readme-ov-file](https://github.com/jgravelle/GroqCasters?tab=readme-ov-file)
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

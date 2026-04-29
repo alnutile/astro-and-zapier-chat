@@ -47,10 +47,3 @@ https://www.thoughtworks.com/radar/platforms
 https://www.thoughtworks.com/radar
 
 https://assets.thoughtworks.com/assets/technology-radar-nov-2016-en.pdf
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

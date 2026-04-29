@@ -98,6 +98,3 @@ Anthropic did release a free course on their Skill Jar platform. Take some time 
 I share a few links below. I have a few articles that talk about all this stuff in more depth, how to install Claude Desktop, how to get going with it. Otherwise support the channel, leave me comments and feedback, ask questions, suggest other topics to cover as I try to just bring news to day-to-day workers who are trying to figure out how to incorporate AI into their real workflows. Hope you enjoyed. Thank you.
 
 https://www.youtube.com/@AlfredNutile ←-subscribe to get more here
-
----POSTBREAK---
-

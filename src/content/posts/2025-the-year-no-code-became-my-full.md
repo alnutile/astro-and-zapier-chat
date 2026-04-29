@@ -67,5 +67,3 @@ The last one is “Users-customers, able to add their own updates”. This is, i
 
 So now what? 2026 is here and I already have 100% put away the need for code, but as I noted I still do not have a solid on-premise solution for UI. Will it be Budibase, ToolJet, AppSmith, or some other? And will n8n stand against Sim.ai for the more optimized on-premises solution for true agentic tooling? Lastly, where will tools like Xano, Noloco, and others fit into this toolbox that will allow me to continue to make total solutions for customers using no-code and AI to solve problems and build features that we could not have imagined in 2024 or 2025!
 
----POSTBREAK---
-

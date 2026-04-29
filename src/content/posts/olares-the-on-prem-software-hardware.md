@@ -24,6 +24,3 @@ NOTE: I do have a question in their discord that if they correct me I will updat
 I'm thinking of doing a video using my existing Coolify stack but using older laptop with the proper Nvidia card like they have and just do a comparison setup to this Olares.
 
 I will follow up and ask them more about the above to verify my thoughts.
-
----POSTBREAK---
-

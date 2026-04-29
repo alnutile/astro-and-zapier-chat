@@ -347,6 +347,3 @@ And the schemas if you want to run it are simply
 `  constraint import_rows_import_id_fkey foreign KEY (import_id) references imports (id)`
 
 `) TABLESPACE pg_default;`
-
----POSTBREAK---
-

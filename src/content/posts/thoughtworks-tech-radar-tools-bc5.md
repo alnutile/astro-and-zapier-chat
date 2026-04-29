@@ -81,10 +81,3 @@ Scikit-learn
 
 HOLD
 Jenkins as a deployment pipeline
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

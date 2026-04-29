@@ -23,12 +23,3 @@ tags: []
 Other links
 
 https://martinfowler.com/bliki/ShuHaRi.html
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

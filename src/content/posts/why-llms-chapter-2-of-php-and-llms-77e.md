@@ -25,12 +25,3 @@ Eight years ago, I did a Machine Learning and PHP video on [YouTube](https://www
 But then, as we all know, OpenAI released an API that we could use like any API and get results. No training unless I wanted to and no Machine Learning expertise —- just read the docs and throw your prompt at it. It was then that I realized that this could make my work more accessible and allow me to create things for myself and customers I could not even imagine doing before.
 
 About two years ago, I heard about [LangChain](https://github.com/langchain-ai/langchain), a Python framework that enabled developers to build LLM-centric workflows and automation. It honestly got me worried.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

@@ -14,6 +14,3 @@ We’ve worked together for years, so this one got real pretty fast.
 We cover developer identity, hype vs. reality, what’s actually working day-to-day, enterprise adoption (and why it’s more of a psychological problem than a technical one), the code vs. no-code debate, building SaaS products solo, career uncertainty, and the agent-on-a-machine paradigm that’s quietly changing how some of us work.
 
 No scripts. No product pitches. Just two people in the middle of it trying to figure out what’s actually happening.
-
----POSTBREAK---
-

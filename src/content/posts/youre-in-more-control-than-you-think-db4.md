@@ -30,10 +30,3 @@ https://mattstauffer.co/blog/multiple-authentication-guard-drivers-including-api
 
 Stop Hiring DevOps Experts and Start Growing Them by Jez Humble
 https://www.youtube.com/watch?v=6m9nCtyn6kE
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

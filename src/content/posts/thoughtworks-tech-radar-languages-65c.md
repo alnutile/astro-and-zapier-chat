@@ -35,10 +35,3 @@ Adam Watham link to Martin Fowler
 The 4th of 4 as we cover ThoughtWork's Technology Radar - Languages and Frameworks
 
 [https://www.thoughtworks.com/radar/languages-and-frameworks](https://www.thoughtworks.com/radar/languages-and-frameworks)
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

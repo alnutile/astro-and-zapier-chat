@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [http://stakeholderwhisperer.com/posts/2014/10/introducing-modelling-by-example](http://stakeholderwhisperer.com/posts/2014/10/introducing-modelling-by-example)
 
 "For the last year I have been experimenting with the new approach to a Behaviour-Driven Development, which could be summarised as "Ubiquitous Language is a thing again". The core premise of this approach is that if you take Ubiquitous Language seriously and push for it in your scenarios, you open the door to doing a Domain-Driven Design while you're doing Behaviour-Driven Development's red-green-refactor cycle. By embedding Ubiquitous Language in your scenarios, your scenarios naturally become your domain model, which you can use to develop the most important part of your application - a core domain."
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

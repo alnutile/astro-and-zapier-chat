@@ -115,10 +115,3 @@ etc
 
 https://laravel.com/docs/5.4/queues#supervisor-configuration
 link to sns
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

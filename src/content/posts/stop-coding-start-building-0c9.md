@@ -55,10 +55,3 @@ Subscribe for more thoughts on building smarter, not harder.
 👉 **[YouTube Channel](https://youtube.com/@yourchannel)**
 
 Thanks for listening!
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

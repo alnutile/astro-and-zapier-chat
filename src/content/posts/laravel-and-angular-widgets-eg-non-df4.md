@@ -16,12 +16,3 @@ tags: []
 **BETA: This is a Code Heavy Read :)**
 
 Not all apps need to be an SPA (Single Page Application). Sure they have their place but in most cases the task might benefit from just a Blade template and Angular widget. This saves you from having to write an angular route which can be a tedious duplication of work. Also Blade is fast and fun to work with.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

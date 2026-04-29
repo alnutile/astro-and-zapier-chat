@@ -70,6 +70,3 @@ Let me know in the comments if there are specific business tasks you’d want to
 ****Why three judges?**** The qwen RFP example shows why. Claude scored it 0.7, GPT-4o-mini gave 1.0. Same response, different interpretations. Using multiple judges surfaces these disagreements instead of hiding them.
 
 ****Dashboard updates:**** Added expandable model lists under each use case card so you can see exactly which models were tested where. Claude models show up in cyan to make the cloud baseline easy to spot.
-
----POSTBREAK---
-

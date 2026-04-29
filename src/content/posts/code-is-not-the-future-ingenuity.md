@@ -66,6 +66,3 @@ So what’s left when that happens?
 For me, and I think for a lot of people reading this, it’s a chance for your ingenuity to finally not be blocked by technical limitation. Whether it’s a business problem you’ve been working around for years or a creative idea you never had the tools to pull off, you can actually do something about it now. Or go way beyond it.
 
 Grab simple tools like Claude Desktop and try getting things done differently. Try image tools like Gemini and Nano-Banana **[https://gemini.google.com/app](https://gemini.google.com/app)** and just have fun. Go all the way and do film using tools like https://www.freepik.com/ and see what you can create.
-
----POSTBREAK---
-

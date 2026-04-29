@@ -148,6 +148,3 @@ Some stuff I saw on YouTube that’s worth a watch.
 [Dream SaaS 2026](https://www.youtube.com/watch?v=fnOQMT2EYbg&list=PLL8JVuiFkO9L3rUtSFIShWkf-EfT6qw2l&index=9)
 
 That is it for the news. Please follow, comment so I know what you want to hear, and I’ll see you next week or you’ll read next week in Substack. Thank you.
-
----POSTBREAK---
-

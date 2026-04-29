@@ -107,10 +107,3 @@ Oktober CMS and thoughts on when a CMS is appropriate
 http://maxoffsky.com/code-blog/list-cmss-built-laravel/
 
 Al - my hesitation is that I do not want to build a site/app around a cms but rather see a CMS as part of the project that I can plug in as needed.
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

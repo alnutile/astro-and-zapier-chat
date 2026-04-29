@@ -41,10 +41,3 @@ Scrum software
 Meetings meetings and some code after work :(
 
 [Pomodoro](https://itunes.apple.com/us/app/pomodoro-timer-focus-on-your/id703145045?mt=8) to help manage focus
-
-👉🏻 Join the NewsLetter https://bit.ly/dailyai-newsletter
-
-👉🏻 Subscribe to my YouTube https://www.youtube.com/@AlfredNutile
-
----POSTBREAK---
-

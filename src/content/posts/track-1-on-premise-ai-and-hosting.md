@@ -10,6 +10,3 @@ tags: []
 This is part of my series focused on real-life solutions. Right now, I’m testing AI models for practical business use cases. You can see those tests at localaibench.com, and you can also watch these tracks on my YouTube playlist (though they’re behind a paywall and come out a bit later). https://www.youtube.com/playlist?list=PLL8JVuiFkO9KZ39zoV1P4WrSU9QQ5jSLS
 
 You will see in these videos I get stuck here and there. I just want to show the entire process.
-
----POSTBREAK---
-

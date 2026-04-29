@@ -75,6 +75,3 @@ If someone else already built what you want, pull it in from a GitHub repo. One 
 It’s open source. Deploy it on Railway (or anywhere that runs Docker) and you’re up in minutes. One server, one SQLite database, all your apps.
 
 → [https://github.com/alnutile/intranet-platform](https://github.com/alnutile/intranet-platform)
-
----POSTBREAK---
-

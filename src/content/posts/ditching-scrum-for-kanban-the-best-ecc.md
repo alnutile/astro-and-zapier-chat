@@ -14,12 +14,3 @@ tags: []
 ### Original Source: [https://medium.com/cto-school/ditching-scrum-for-kanban-the-best-decision-we-ve-made-as-a-team-cd1167014a6f#.8hh5rddu0](https://medium.com/cto-school/ditching-scrum-for-kanban-the-best-decision-we-ve-made-as-a-team-cd1167014a6f#.8hh5rddu0)
 
 The following is a story about how we matured as an engineering team. We went from an ad-hoc process to Scrum, and used Scrum for a whole year. Scrum leveled us up as a team in terms of structure and process. But it caused major morale issues. Then we found Kanban. We implemented it and have never looked back.
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-

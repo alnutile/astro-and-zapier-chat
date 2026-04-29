@@ -60,6 +60,3 @@ The frontend (if using Supabase Realtime) updates instantly before the user’s 
 Rag Workflow 👉 [Cole Medin’s Channel](https://www.youtube.com/@ColeMedin)
 
 If you are building internal tools or AI backends, stop polling and start listening to events. It’s cleaner, faster, and scales with you.
-
----POSTBREAK---
-

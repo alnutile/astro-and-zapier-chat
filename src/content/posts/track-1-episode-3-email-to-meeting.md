@@ -58,6 +58,3 @@ Join the Community: This is part of a year-long track for 2026. Members get acce
 1:01:20 - Building the Skills Editor in BuddyBase
 1:06:30 - Ejecting Blocks & Customizing Long Form Fields
 1:09:50 - Final Thoughts: Sim AI vs. n8n for Knowledge Bases
-
----POSTBREAK---
-

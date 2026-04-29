@@ -114,6 +114,3 @@ Using LM Studio for local model inference
 
 - 
 Results viewable on the dashboard at [your link]
-
----POSTBREAK---
-

@@ -30,12 +30,3 @@ From mastering prompts to building reusable tools and working with various LLMs,
 Whether you’re looking to automate complex workflows, enhance content verification, or simply stay ahead in a changing industry, this book offers the insights and hands-on examples to get you there. This isn’t just another “Hello World” guide—it’s a deep dive into the future of PHP development, focusing on real solutions that drive real results.
 
 Transcription at [https://docs.google.com/document/d/1qCQsKcK0BaOJFyiep24A8rVfLiFSd5-SWwQpTLkVMwE/edit?usp=sharing](https://docs.google.com/document/d/1qCQsKcK0BaOJFyiep24A8rVfLiFSd5-SWwQpTLkVMwE/edit?usp=sharing)
-
-👉🏻 Ai Automation Consulting https://dailyai.studio
-
-👉🏻 Join the NewsLetter https://videos.dailyai.studio/
-
-👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
-
----POSTBREAK---
-
