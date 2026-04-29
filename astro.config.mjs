@@ -31,7 +31,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     preview: {
       // Allow Railway (and any *.up.railway.app preview domain) through Vite's host allow-list
-      allowedHosts: ['.up.railway.app']
+      allowedHosts: ['.dailyai.studio']
     }
   },
   integrations: [
