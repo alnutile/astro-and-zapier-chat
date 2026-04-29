@@ -19,6 +19,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# one-time bootstrap exports
+knowledge-source-bootstrap.csv
+
 # editor directories and files
 .vscode/
 .idea/
