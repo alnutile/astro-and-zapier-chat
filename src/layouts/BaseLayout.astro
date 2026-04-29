@@ -112,6 +112,9 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     
     <!-- Strukturierte Daten für SEO -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+
+    <!-- Zapier Chatbot web component (loads astro-ai-chat embed below) -->
+    <script async type="module" src="https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js"></script>
     
     <style is:inline>
       body {
@@ -261,5 +264,12 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
       });
     </script>
     <Analytics />
+
+    <!-- Zapier popup chatbot — persists across view transitions so the widget doesn't blink/reset on nav -->
+    <zapier-interfaces-chatbot-embed
+      is-popup="true"
+      chatbot-id="cmoj74awm0042hwpo0ey6l4ou"
+      transition:persist
+    ></zapier-interfaces-chatbot-embed>
   </body>
 </html>
