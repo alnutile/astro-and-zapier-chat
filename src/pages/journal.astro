@@ -18,16 +18,18 @@ const posts = sortedPosts.map(post => ({
 ---
 
 <BaseLayout title="Journal">
-  <div class="max-w-3xl mx-auto">
-    <header class="mb-12 text-center" transition:animate="fade">
-      <h1 class="text-5xl mb-4">Journal</h1>
-      <p class="text-xl text-muted-foreground">
-        Explore our latest thoughts, ideas, and stories
+  <div class="max-w-3xl mx-auto px-6">
+    <header class="mb-12 pt-6" transition:animate="fade">
+      <span class="tag tag--primary mb-4">// All Posts</span>
+      <h1 class="text-5xl md:text-6xl font-bold leading-tight mt-4 mb-4" style="letter-spacing: -0.02em;">Journal</h1>
+      <p class="text-xl" style="color: var(--color-on-surface-variant); font-family: 'Newsreader', serif;">
+        Practical writing on AI, no-code, and the workflows that actually save time.
       </p>
+      <hr class="mt-8" />
     </header>
 
     <div transition:animate="fade">
-      <PostListWithThumbnails posts={posts} showTags={true} title="All Posts" />
+      <PostListWithThumbnails posts={posts} showTags={true} />
     </div>
   </div>
 </BaseLayout>

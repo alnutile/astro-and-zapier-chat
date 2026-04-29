@@ -21,85 +21,62 @@ interface Props {
 const { post, showExcerpt = true, showTags = true } = Astro.props;
 const { title, date, excerpt, image, tags } = post.frontmatter;
 
-// Ensure image path is optimized
-const optimizedImagePath = image ? optimizeImagePath(image) : null;
+const PLACEHOLDER = '/images/post-default.svg';
+const resolvedImage = image ? optimizeImagePath(image) : PLACEHOLDER;
 ---
 
-<article class="border-t border-gray-200 dark:border-gray-800 py-[4vh] xl:py-8" transition:name={`post-${post.id}`}>
-  <div class="flex flex-col sm:flex-row items-center gap-8">
-    {optimizedImagePath && (
-      <a 
-        href={post.url} 
-        class="block sm:min-w-[120px] sm:w-[120px] h-[120px] overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        aria-label={`View ${title} article`}
-      >
-        <img
-          src={optimizedImagePath}
-          alt={`Preview image for ${title}`}
-          class="w-full h-full object-cover transition-transform hover:scale-105"
-          loading="lazy"
-          decoding="async"
-          width="120"
-          height="120"
-        />
-      </a>
-    )}
-    
-    <div class="space-y-2 flex-1">
-      <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
-        <h2 class="text-xl md:text-2xl">
-          <a href={post.url} class="hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded">
-            {title}
-          </a>
+<article
+  class="brutal-card mb-8 last:mb-0"
+  transition:name={`post-${post.id}`}
+  style="padding: 0;"
+>
+  <div class="flex flex-col sm:flex-row gap-0">
+    <a
+      href={post.url}
+      class="block sm:min-w-[180px] sm:w-[180px] aspect-square sm:aspect-auto sm:h-auto overflow-hidden no-underline shrink-0"
+      style="border-right: 3px solid var(--color-ink); background: var(--color-surface-container);"
+      aria-label={`View ${title} article`}
+    >
+      <img
+        src={resolvedImage}
+        alt={image ? `Preview image for ${title}` : 'DailyAi default cover'}
+        class="w-full h-full object-cover"
+        loading="lazy"
+        decoding="async"
+        width="180"
+        height="180"
+      />
+    </a>
+
+    <div class="flex-1 p-6">
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 mb-3">
+        <h2 class="text-xl md:text-2xl font-bold leading-tight m-0">
+          <a href={post.url} class="no-underline">{title}</a>
         </h2>
-        <time 
+        <time
           datetime={new Date(date).toISOString()}
-          class="text-gray-500 text-sm shrink-0 sm:ml-4 sm:text-right"
+          class="ui-sans text-xs uppercase tracking-widest shrink-0"
+          style="color: var(--color-on-surface-variant);"
         >
           {formatDate(date)}
         </time>
       </div>
-      
+
       {showTags && tags && tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mb-2" aria-label="Tags">
+        <div class="flex flex-wrap gap-2 mb-3" aria-label="Tags">
           {tags.map((tag) => (
-            <a
-              href={`/tags/${tag}`}
-              class="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              aria-label={`View all posts tagged ${tag}`}
-            >
-              {tag}
-            </a>
+            <a href={`/tags/${tag}`} class="tag">{tag}</a>
           ))}
         </div>
       )}
-      
-      {showExcerpt && (
-        <>
-          <p class="text-gray-500">{excerpt}</p>
-          <div>
-            <a 
-              href={post.url} 
-              class="text-sm font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded px-2 py-1 inline-block"
-              aria-label={`Read more about ${title}`}
-            >
-              Read more <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </>
+
+      {showExcerpt && excerpt && (
+        <p class="m-0 mb-3" style="color: var(--color-on-surface-variant);">{excerpt}</p>
       )}
+
+      <a href={post.url} class="ui-sans text-sm font-semibold uppercase tracking-wider no-underline" style="color: var(--color-primary);">
+        Read post →
+      </a>
     </div>
   </div>
 </article>
-
-<style>
-  /* Styles for tags */
-  article a[href^="/tags/"] {
-    background-color: #f3f4f6;
-    color: #333;
-  }
-  
-  article a[href^="/tags/"]:hover {
-    background-color: #e5e7eb;
-  }
-</style>

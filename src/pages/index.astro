@@ -18,25 +18,30 @@ const posts = sortedPosts.slice(0, 5).map(post => ({
 ---
 
 <BaseLayout title="Home">
-  <div class="max-w-4xl mx-auto">
-    <section class="text-center py-[8vh]" transition:animate="fade">
-      <h1 class="text-7xl mb-8 font-bold">Welcome to DailyAi</h1>
-      <p class="text-2xl text-muted-foreground max-w-3xl mx-auto mb-14">
-        Blog posts about how you can start using AI today.
+  <div class="max-w-4xl mx-auto px-6">
+    <section class="py-16 md:py-24" transition:animate="fade">
+      <span class="tag tag--primary mb-6">// AI &amp; No-Code</span>
+      <h1 class="text-5xl md:text-7xl font-bold leading-[1.05] mb-6 mt-4" style="letter-spacing: -0.03em;">
+        Welcome to <span style="color: var(--color-primary);">DailyAi.</span>
+      </h1>
+      <p class="text-xl md:text-2xl max-w-2xl mb-10" style="color: var(--color-on-surface-variant); font-family: 'Newsreader', serif;">
+        Blog posts about how you can start using AI today — practical workflows
+        for the rest of us.
       </p>
-      <a href="/journal" class="btn-primary btn-lg tracking-wide no-underline hover:no-underline transform transition-all duration-300 hover:scale-105 hover:shadow-[0_3.5rem_5rem_rgba(21,21,21,0.3)] shadow-[0_3rem_4rem_rgba(21,21,21,0.25)] dark:bg-white dark:text-black dark:hover:bg-gray-100">
-        Read latest posts
+      <a href="/journal" class="btn-primary btn-lg">
+        Read latest posts →
       </a>
     </section>
 
-    <section class="mx-auto" transition:animate="fade">
-      <PostList posts={posts} showImages={false} showExcerpt={false} showSeparators={true} showTags={false}/>
-
-      <div class="text-center mt-24">
-        <a href="/journal" class="text-lg font-medium text-black dark:text-white py-2 px-4 rounded-md inline-block focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:underline">
-          View All Posts <span aria-hidden="true">→</span>
+    <section class="mb-24" transition:animate="fade">
+      <div class="flex items-baseline justify-between mb-8 pb-4" style="border-bottom: 3px solid var(--color-ink);">
+        <h2 class="ui-sans text-2xl md:text-3xl font-bold uppercase tracking-tight m-0">Latest Entries</h2>
+        <a href="/journal" class="ui-sans text-sm font-semibold uppercase tracking-widest no-underline" style="color: var(--color-primary);">
+          View all →
         </a>
       </div>
+
+      <PostList posts={posts} showImages={true} showExcerpt={true} showTags={false}/>
     </section>
   </div>
 </BaseLayout>

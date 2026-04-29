@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" role="img" aria-label="DailyAi placeholder">
+  <rect width="800" height="450" fill="#aa3316"/>
+  <rect x="0" y="350" width="800" height="100" fill="#1c1b1b"/>
+  <rect x="40" y="40" width="720" height="280" fill="none" stroke="#fcf9f8" stroke-width="4"/>
+  <text x="64" y="200" font-family="Space Grotesk, system-ui, sans-serif" font-size="92" font-weight="700" fill="#fcf9f8" letter-spacing="-2">DAILYAI</text>
+  <text x="64" y="250" font-family="Space Grotesk, system-ui, sans-serif" font-size="22" font-weight="600" fill="#fea35e" letter-spacing="3">// AI &amp; NO-CODE — ALFRED NUTILE</text>
+  <text x="64" y="415" font-family="Space Grotesk, system-ui, sans-serif" font-size="20" font-weight="600" fill="#fcf9f8" letter-spacing="6">UNAPOLOGETICALLY PRACTICAL</text>
+</svg>
