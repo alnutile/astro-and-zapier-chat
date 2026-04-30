@@ -67,6 +67,24 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-TRGMEDWTJM"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TRGMEDWTJM');
+
+      // Astro view transitions don't reload the page, so fire a pageview
+      // on every soft navigation too — otherwise GA only sees the first hit.
+      document.addEventListener('astro:page-load', () => {
+        gtag('config', 'G-TRGMEDWTJM', {
+          page_path: window.location.pathname + window.location.search,
+        });
+      });
+    </script>
+
     <title>{title} | DailyAi - Alfred Nutile</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
