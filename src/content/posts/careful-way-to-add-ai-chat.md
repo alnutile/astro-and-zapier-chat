@@ -136,6 +136,19 @@ But also I set the AI to have a low creativity level:
 
 Three lines of system prompt, free, do it.
 
+The chatbot has a few more sections to cover.
+
+**Logic**
+
+Here you can add 'Logic' like Suggested Messages and more. 
+
+![Logic](/images/careful-way-to-add-ai-chat/logic-step.png)
+
+These "Suggested Messages", I think are key since you can help the user get started chatting with your data. Of course there is a lot more you can do like "Run Zaps" etc. But keep in mind these "tools" are one more way that people can "hack" your AI so less is best for right now.
+
+
+
+
 ## Step 4 — The data layer (Zapier Tables)
 
 I used markdown as my data. And I gathered some files from Substack to then post here. Then I made a Zapier Table called `astro-ai-chat - knowledge source` with five columns:
