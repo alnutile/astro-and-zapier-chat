@@ -16,6 +16,14 @@ pnpm-debug.log*
 .env
 .env.production
 
+# cloudflare worker secrets + local state
+worker/.dev.vars
+.wrangler/
+
+# promptfoo eval cache + fetched fixtures
+.promptfoo/
+evals/index.fixture.json
+
 # macOS-specific files
 .DS_Store
 

@@ -1,0 +1,382 @@
+---
+// Self-hosted chat widget. Replaces the Zapier embed. Posts to the Cloudflare
+// Worker, which holds the OpenAI key and enforces abuse protections.
+//
+// After deploying the Worker, set WORKER_URL + TURNSTILE_SITE_KEY below.
+// The placeholders use Cloudflare's "always passes" Turnstile TEST key so the
+// widget works locally before you wire up the real one.
+---
+
+<div id="dai-chat" class="dai-chat">
+  <!-- Launcher -->
+  <button id="dai-chat-launcher" type="button" aria-label="Open chat" aria-expanded="false">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+    <span>Ask AI</span>
+  </button>
+
+  <!-- Panel -->
+  <section id="dai-chat-panel" class="dai-panel" role="dialog" aria-label="DailyAi assistant" hidden>
+    <header class="dai-panel-head">
+      <strong>DailyAi Assistant</strong>
+      <button id="dai-chat-close" type="button" aria-label="Close chat">&times;</button>
+    </header>
+    <div id="dai-chat-log" class="dai-log" aria-live="polite"></div>
+    <form id="dai-chat-form" class="dai-form">
+      <textarea id="dai-chat-input" rows="1" placeholder="Ask about a post or topic…" maxlength="2000" autocomplete="off"></textarea>
+      <button type="submit" id="dai-chat-send" aria-label="Send">Send</button>
+    </form>
+    <div id="dai-turnstile" class="dai-turnstile"></div>
+  </section>
+</div>
+
+<script>
+  // ---- Config (set after deploying the Worker) --------------------------
+  const WORKER_URL = 'https://dailyai-chat.dailyaistudio.workers.dev';
+  // Cloudflare Turnstile site key. Default is the public TEST key (always passes).
+  const TURNSTILE_SITE_KEY = '1x00000000000000000000AA';
+
+  const GREETING =
+    "Hi! I can help you find and understand posts on DailyAi. Ask me something like “What has Alfred written about automation?”";
+
+  function initDailyaiChat() {
+    // Widget is transition:persist'd, so bind exactly once.
+    if (window.__daiChatInit) return;
+    const root = document.getElementById('dai-chat');
+    if (!root) return;
+    window.__daiChatInit = true;
+
+    const launcher = document.getElementById('dai-chat-launcher');
+    const panel = document.getElementById('dai-chat-panel');
+    const closeBtn = document.getElementById('dai-chat-close');
+    const log = document.getElementById('dai-chat-log');
+    const form = document.getElementById('dai-chat-form');
+    const input = document.getElementById('dai-chat-input');
+    const sendBtn = document.getElementById('dai-chat-send');
+
+    let messages = loadHistory();
+    let turnstileId = null;
+    let busy = false;
+
+    renderAll();
+
+    function loadHistory() {
+      try {
+        return JSON.parse(sessionStorage.getItem('dai-chat') || '[]');
+      } catch {
+        return [];
+      }
+    }
+    function saveHistory() {
+      try {
+        sessionStorage.setItem('dai-chat', JSON.stringify(messages.slice(-20)));
+      } catch {}
+    }
+
+    function open() {
+      panel.hidden = false;
+      launcher.setAttribute('aria-expanded', 'true');
+      ensureTurnstile();
+      input.focus();
+      log.scrollTop = log.scrollHeight;
+    }
+    function close() {
+      panel.hidden = true;
+      launcher.setAttribute('aria-expanded', 'false');
+    }
+
+    launcher.addEventListener('click', () => (panel.hidden ? open() : close()));
+    closeBtn.addEventListener('click', close);
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        form.requestSubmit();
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text || busy) return;
+
+      messages.push({ role: 'user', content: text });
+      input.value = '';
+      renderAll();
+      saveHistory();
+
+      setBusy(true);
+      const typing = addTyping();
+      try {
+        const token = await getTurnstileToken();
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            messages: messages.slice(-10),
+            turnstileToken: token,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        typing.remove();
+        if (!res.ok) {
+          addBubble('assistant', data.error || 'Something went wrong. Please try again.');
+        } else {
+          messages.push({ role: 'assistant', content: data.reply || '' });
+          renderAll();
+          saveHistory();
+        }
+      } catch (err) {
+        typing.remove();
+        addBubble('assistant', 'Network error. Please try again.');
+      } finally {
+        setBusy(false);
+        input.focus();
+      }
+    });
+
+    function setBusy(state) {
+      busy = state;
+      sendBtn.disabled = state;
+      input.disabled = state;
+    }
+
+    // ---- Rendering ------------------------------------------------------
+    function renderAll() {
+      log.innerHTML = '';
+      if (messages.length === 0) {
+        addBubble('assistant', GREETING, true);
+      } else {
+        messages.forEach((m) => addBubble(m.role, m.content, true));
+      }
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function addBubble(role, content, skipScroll) {
+      const el = document.createElement('div');
+      el.className = 'dai-msg dai-msg-' + role;
+      el.innerHTML = formatContent(content);
+      log.appendChild(el);
+      if (!skipScroll) log.scrollTop = log.scrollHeight;
+      return el;
+    }
+
+    function addTyping() {
+      const el = document.createElement('div');
+      el.className = 'dai-msg dai-msg-assistant dai-typing';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+      return el;
+    }
+
+    // Escape, then linkify markdown links + bare URLs. Escaping first keeps
+    // model output from injecting HTML.
+    function formatContent(text) {
+      let s = String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_, label, url) => link(url, label));
+      s = s.replace(/(^|[^"=>])(https?:\/\/[^\s<]+)/g, (_, pre, url) => pre + link(url, url));
+      return s.replace(/\n/g, '<br>');
+    }
+    function link(url, label) {
+      return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>';
+    }
+
+    // ---- Turnstile ------------------------------------------------------
+    function ensureTurnstile() {
+      if (turnstileId !== null) return;
+      const render = () => {
+        if (!window.turnstile) return;
+        turnstileId = window.turnstile.render('#dai-turnstile', {
+          sitekey: TURNSTILE_SITE_KEY,
+          size: 'flexible',
+          execution: 'execute',
+          appearance: 'interaction-only',
+        });
+      };
+      if (window.turnstile) {
+        render();
+      } else {
+        loadTurnstileScript(render);
+      }
+    }
+
+    function getTurnstileToken() {
+      return new Promise((resolve, reject) => {
+        if (!window.turnstile || turnstileId === null) {
+          ensureTurnstile();
+          // give the script a beat to load on the very first message
+          setTimeout(() => attempt(resolve, reject, 0), 400);
+          return;
+        }
+        attempt(resolve, reject, 0);
+      });
+    }
+    function attempt(resolve, reject, tries) {
+      if (!window.turnstile || turnstileId === null) {
+        if (tries > 10) return reject(new Error('Turnstile not ready'));
+        return setTimeout(() => attempt(resolve, reject, tries + 1), 300);
+      }
+      try {
+        window.turnstile.reset(turnstileId);
+        window.turnstile.execute(turnstileId, {
+          callback: (token) => resolve(token),
+          'error-callback': () => reject(new Error('Turnstile error')),
+        });
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function loadTurnstileScript(cb) {
+      if (document.getElementById('dai-turnstile-script')) return;
+      const s = document.createElement('script');
+      s.id = 'dai-turnstile-script';
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      s.async = true;
+      s.defer = true;
+      s.onload = cb;
+      document.head.appendChild(s);
+    }
+  }
+
+  initDailyaiChat();
+  // ClientRouter soft-nav: the widget is persisted, but re-run the guarded init
+  // in case the very first load fired before this module evaluated.
+  document.addEventListener('astro:page-load', initDailyaiChat);
+</script>
+
+<style>
+  .dai-chat { position: fixed; bottom: 20px; right: 20px; z-index: 9999; }
+
+  #dai-chat-launcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-sm);
+    border-radius: 0;
+    cursor: pointer;
+    transition: transform 80ms ease-out, box-shadow 80ms ease-out;
+  }
+  #dai-chat-launcher:hover {
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-pressed);
+  }
+
+  .dai-panel {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: min(380px, calc(100vw - 32px));
+    height: min(560px, calc(100vh - 120px));
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-lg);
+    border-radius: 0;
+  }
+
+  .dai-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: var(--border-thick);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background: var(--color-surface-container);
+  }
+  .dai-panel-head strong { font-size: 15px; letter-spacing: 0.02em; }
+  #dai-chat-close {
+    background: transparent;
+    border: 0;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-on-surface);
+    padding: 0 4px;
+  }
+
+  .dai-log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dai-msg {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 14.5px;
+    line-height: 1.5;
+    padding: 10px 12px;
+    border: var(--border-thin);
+    max-width: 88%;
+    word-wrap: break-word;
+  }
+  .dai-msg-assistant {
+    align-self: flex-start;
+    background: var(--color-surface-container-low);
+    box-shadow: var(--shadow-pressed);
+  }
+  .dai-msg-user {
+    align-self: flex-end;
+    background: var(--color-secondary-container);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-pressed);
+  }
+  .dai-msg a { font-weight: 600; }
+
+  .dai-typing { display: inline-flex; gap: 4px; align-items: center; }
+  .dai-typing span {
+    width: 7px; height: 7px; background: var(--color-outline);
+    display: inline-block; animation: dai-bounce 1s infinite ease-in-out;
+  }
+  .dai-typing span:nth-child(2) { animation-delay: 0.15s; }
+  .dai-typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes dai-bounce { 0%, 80%, 100% { opacity: 0.3; } 40% { opacity: 1; } }
+
+  .dai-form {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: var(--border-thick);
+  }
+  #dai-chat-input {
+    flex: 1;
+    resize: none;
+    font-size: 14px;
+    max-height: 120px;
+    box-shadow: none;
+  }
+  #dai-chat-send {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 0 16px;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: var(--border-thin);
+    box-shadow: var(--shadow-pressed);
+    cursor: pointer;
+  }
+  #dai-chat-send:disabled { opacity: 0.5; cursor: default; }
+
+  .dai-turnstile { padding: 0 12px; }
+  .dai-turnstile:empty { display: none; }
+</style>

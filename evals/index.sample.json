@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Getting started with AI automation",
+    "excerpt": "A practical first project: automate a repetitive task end to end without writing much code.",
+    "url": "/posts/getting-started-with-ai-automation/",
+    "date": "2026-01-15",
+    "tags": ["automation", "no-code"]
+  },
+  {
+    "title": "Using ChatGPT to draft your weekly newsletter",
+    "excerpt": "A repeatable workflow for turning rough notes into a polished newsletter.",
+    "url": "/posts/chatgpt-weekly-newsletter/",
+    "date": "2025-11-02",
+    "tags": ["writing", "chatgpt"]
+  }
+]

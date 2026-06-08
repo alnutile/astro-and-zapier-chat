@@ -1,0 +1,9 @@
+# Copy to `worker/.dev.vars` for local `wrangler dev`. Real .dev.vars is gitignored.
+# In production these are set with `wrangler secret put <NAME>` instead.
+
+OPENAI_API_KEY="sk-..."
+
+# Turnstile secret key from the Cloudflare Turnstile dashboard.
+# For LOCAL testing you can use Cloudflare's always-passes test secret:
+#   1x0000000000000000000000000000000AA
+TURNSTILE_SECRET="1x0000000000000000000000000000000AA"

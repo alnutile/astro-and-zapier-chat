@@ -1,5 +1,11 @@
 # Zap: GitHub push → knowledge-source table
 
+> **RETIRED (cost).** This Zap and its Zapier Table are no longer live — they
+> cost too much to keep running. The chatbot now reads a no-RAG build-time index
+> ([`src/pages/chat-index.json.ts`](../src/pages/chat-index.json.ts)) served by
+> the static site; see [`docs/chatbot.md`](chatbot.md). This file is kept for
+> historical reference only.
+
 Syncs `src/content/posts/*.md` files into the Zapier Table
 **`astro-ai-chat - knowledge source`** (table id `01KQB3DZWRTN6SRRCEKN9TCYYT`)
 on every push to `main`.

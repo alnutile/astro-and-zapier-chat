@@ -1,0 +1,26 @@
+name = "dailyai-chat"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# KV namespace for rate-limit counters + the daily budget cap.
+# Create it once:  wrangler kv namespace create RATELIMIT
+# then paste the returned id below.
+[[kv_namespaces]]
+binding = "RATELIMIT"
+id = "5f368e2811b844aca3ecc6926495211e"
+
+[vars]
+# Comma-separated. "*.dailyai.studio" matches any subdomain; add localhost for
+# local end-to-end testing of the widget.
+ALLOWED_ORIGINS = "https://chat.dailyai.studio,*.dailyai.studio,http://localhost:4321"
+INDEX_URL = "https://chat.dailyai.studio/chat-index.json"
+SITE_URL = "https://chat.dailyai.studio"
+MODEL = "gpt-4o-mini"
+MAX_TOKENS = "500"
+PER_MIN = "10"
+PER_HOUR = "60"
+DAILY_CAP = "1000"
+
+# Secrets (do NOT put here — set via CLI):
+#   wrangler secret put OPENAI_API_KEY
+#   wrangler secret put TURNSTILE_SECRET
