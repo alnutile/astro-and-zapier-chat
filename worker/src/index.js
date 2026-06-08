@@ -86,15 +86,10 @@ async function handle(request, env, ctx, origin, cors) {
     const index = await getIndex(env, ctx);
     const system = buildSystemPrompt(index, env.SITE_URL || 'https://chat.dailyai.studio');
 
-    // --- Call OpenAI ------------------------------------------------------
-    let reply;
-    try {
-      reply = await callOpenAI(system, history, env);
-    } catch (err) {
-      return json({ error: 'Upstream error' }, 502, cors);
-    }
-
-    return json({ reply }, 200, cors);
+    // --- Stream the reply from OpenAI ------------------------------------
+    // Errors (non-2xx) still come back as JSON before any streaming begins,
+    // so the widget can branch on res.ok.
+    return streamOpenAI(system, history, env, ctx, cors);
 }
 
 // ---------------------------------------------------------------------------
@@ -194,8 +189,11 @@ async function getIndex(env, ctx) {
   }
 }
 
-async function callOpenAI(system, history, env) {
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+// Streams OpenAI's response as plain text. We read OpenAI's SSE, pull out each
+// delta, and write just the text through a TransformStream — so the widget can
+// read the body with a plain reader instead of parsing SSE itself.
+function streamOpenAI(system, history, env, ctx, cors) {
+  return fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -205,12 +203,55 @@ async function callOpenAI(system, history, env) {
       model: env.MODEL || 'gpt-4o-mini',
       max_tokens: Number(env.MAX_TOKENS || 500),
       temperature: 0.3,
+      stream: true,
       messages: [{ role: 'system', content: system }, ...history],
     }),
+  }).then((upstream) => {
+    if (!upstream.ok || !upstream.body) {
+      return json({ error: 'Upstream error' }, 502, cors);
+    }
+    const { readable, writable } = new TransformStream();
+    // Pump runs in the background; waitUntil keeps the worker alive for it.
+    ctx.waitUntil(pumpDeltas(upstream.body, writable));
+    return new Response(readable, {
+      headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store', ...cors },
+    });
   });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}`);
-  const data = await res.json();
-  return data.choices?.[0]?.message?.content?.trim() || '';
+}
+
+async function pumpDeltas(body, writable) {
+  const writer = writable.getWriter();
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  const encoder = new TextEncoder();
+  let buf = '';
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const lines = buf.split('\n');
+      buf = lines.pop(); // keep the last, possibly-incomplete line
+      for (const line of lines) {
+        const t = line.trim();
+        if (!t.startsWith('data:')) continue;
+        const data = t.slice(5).trim();
+        if (data === '[DONE]') {
+          await writer.close();
+          return;
+        }
+        try {
+          const delta = JSON.parse(data).choices?.[0]?.delta?.content;
+          if (delta) await writer.write(encoder.encode(delta));
+        } catch {}
+      }
+    }
+    await writer.close();
+  } catch (e) {
+    try {
+      await writer.abort(e);
+    } catch {}
+  }
 }
 
 function json(obj, status, headers) {

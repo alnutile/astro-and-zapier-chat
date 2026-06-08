@@ -38,7 +38,14 @@
   const TURNSTILE_SITE_KEY = '1x00000000000000000000AA';
 
   const GREETING =
-    "Hi! I can help you find and understand posts on DailyAi. Ask me something like “What has Alfred written about automation?”";
+    "Hi! I can help you find and understand posts on DailyAi. Pick one to start, or ask your own:";
+
+  // Suggested questions shown as chips when the chat is empty.
+  const STARTERS = [
+    'How do I get started in automations?',
+    "What's the ROI on AI?",
+    'No-code vs vibe-coding — which should I use?',
+  ];
 
   function initDailyaiChat() {
     // Widget is transition:persist'd, so bind exactly once.
@@ -96,18 +103,24 @@
       }
     });
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const text = input.value.trim();
+      sendMessage(input.value);
+    });
+
+    async function sendMessage(raw) {
+      const text = (raw || '').trim();
       if (!text || busy) return;
 
       messages.push({ role: 'user', content: text });
       input.value = '';
-      renderAll();
+      renderAll(); // clears the starter chips once a conversation begins
       saveHistory();
 
       setBusy(true);
-      const typing = addTyping();
+      const typing = addTyping(); // pending dots until the first token lands
+      let bubble = null;
+      let full = '';
       try {
         const token = await getTurnstileToken();
         const res = await fetch(WORKER_URL, {
@@ -118,23 +131,42 @@
             turnstileToken: token,
           }),
         });
-        const data = await res.json().catch(() => ({}));
-        typing.remove();
-        if (!res.ok) {
+
+        if (!res.ok || !res.body) {
+          const data = await res.json().catch(() => ({}));
+          typing.remove();
           addBubble('assistant', data.error || 'Something went wrong. Please try again.');
-        } else {
-          messages.push({ role: 'assistant', content: data.reply || '' });
-          renderAll();
-          saveHistory();
+          return;
         }
+
+        // Stream the plain-text body, appending to one bubble as it arrives.
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          full += decoder.decode(value, { stream: true });
+          if (!bubble) {
+            typing.remove();
+            bubble = addBubble('assistant', '');
+          }
+          bubble.innerHTML = formatContent(full);
+          log.scrollTop = log.scrollHeight;
+        }
+        if (!bubble) {
+          typing.remove();
+          bubble = addBubble('assistant', full || '…');
+        }
+        messages.push({ role: 'assistant', content: full });
+        saveHistory();
       } catch (err) {
         typing.remove();
-        addBubble('assistant', 'Network error. Please try again.');
+        if (!bubble) addBubble('assistant', 'Network error. Please try again.');
       } finally {
         setBusy(false);
         input.focus();
       }
-    });
+    }
 
     function setBusy(state) {
       busy = state;
@@ -147,10 +179,25 @@
       log.innerHTML = '';
       if (messages.length === 0) {
         addBubble('assistant', GREETING, true);
+        addStarters();
       } else {
         messages.forEach((m) => addBubble(m.role, m.content, true));
       }
       log.scrollTop = log.scrollHeight;
+    }
+
+    function addStarters() {
+      const wrap = document.createElement('div');
+      wrap.className = 'dai-starters';
+      STARTERS.forEach((q) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'dai-starter';
+        chip.textContent = q;
+        chip.addEventListener('click', () => sendMessage(q));
+        wrap.appendChild(chip);
+      });
+      log.appendChild(wrap);
     }
 
     function addBubble(role, content, skipScroll) {
@@ -340,6 +387,31 @@
     box-shadow: var(--shadow-pressed);
   }
   .dai-msg a { font-weight: 600; }
+
+  .dai-starters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-self: flex-start;
+    max-width: 88%;
+  }
+  .dai-starter {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 13.5px;
+    text-align: left;
+    padding: 9px 12px;
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+    border: var(--border-thin);
+    box-shadow: var(--shadow-pressed);
+    cursor: pointer;
+    transition: transform 80ms ease-out, box-shadow 80ms ease-out, background 80ms ease-out;
+  }
+  .dai-starter:hover {
+    background: var(--color-secondary-container);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 0 var(--color-ink);
+  }
 
   .dai-typing { display: inline-flex; gap: 4px; align-items: center; }
   .dai-typing span {
