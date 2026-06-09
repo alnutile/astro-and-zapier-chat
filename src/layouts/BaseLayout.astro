@@ -31,12 +31,12 @@ const siteName = "DailyAi - Alfred Nutile";
 // Strukturierte Daten (JSON-LD) für bessere SEO
 // Author as a real entity: the `sameAs` links let AI answer engines and search
 // recognize Alfred as a known person and attribute/cite his work to him.
-// (Add a LinkedIn profile URL here when available.)
 const authorPerson = {
   "@type": "Person",
   "name": author,
   "url": new URL("/about", Astro.site).toString(),
   "sameAs": [
+    "https://www.linkedin.com/in/alfrednutile",
     "https://github.com/alnutile",
     "https://twitter.com/alnutile",
     "https://www.youtube.com/@AlfredNutile",
