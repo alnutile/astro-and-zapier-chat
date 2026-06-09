@@ -1,11 +1,12 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import PostNavigation from '../components/PostNavigation.astro';
+import FaqSection from '../components/FaqSection.astro';
 import { formatDate } from '../utils/date';
 import { optimizeImagePath } from '../utils/optimizeImagePath';
 
 const { frontmatter, headings, prevPost, nextPost } = Astro.props;
-const { title, date, tags, image, excerpt } = frontmatter;
+const { title, date, tags, image, excerpt, faq } = frontmatter;
 const slug = Astro.url.pathname.split('/').filter(Boolean).pop();
 
 // Ensure image path is optimized
@@ -69,6 +70,8 @@ const publishDate = new Date(date);
     <div class="max-w-3xl mx-auto prose prose-xl">
       <slot />
     </div>
+
+    <FaqSection faq={faq} />
 
     <div class="max-w-3xl mx-auto">
       <PostNavigation prevPost={prevPost} nextPost={nextPost} />

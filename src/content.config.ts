@@ -9,6 +9,13 @@ const postsCollection = defineCollection({
     excerpt: z.string(),
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    // Optional Q&A for tutorial/explainer posts. When present, the post renders
+    // a visible FAQ section AND matching FAQPage JSON-LD (for AI answer engines
+    // and "how do I…" results). Keep questions/answers as plain prose so the
+    // structured data matches the visible text.
+    faq: z
+      .array(z.object({ question: z.string(), answer: z.string() }))
+      .optional(),
   }),
 });
 

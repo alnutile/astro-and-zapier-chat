@@ -47,7 +47,22 @@ tags: [ai, automation, no-code]   # lowercase; reuse existing tags where possibl
 - Required: `title`, `date`, `excerpt`. Optional: `image`, `tags` (defaults `[]`).
 - Open the body with a `> **TLDR:**` or "Big Idea" line — it's his house style and
   helps skimmers. Then `---`, then the post.
-- Keep frontmatter simple (`key: value`); no exotic YAML.
+
+### Optional: FAQ (for tutorial / how-to posts)
+
+If the post answers concrete "how do I…" questions, add a `faq:` list. It renders
+a visible FAQ section AND `FAQPage` JSON-LD, which is what AI answer engines pull
+into "how do I…" responses (good for GEO). Only add it when the Q&A genuinely
+fits the post — the structured data must match real on-page content, so keep
+answers as plain prose.
+
+```yaml
+faq:
+  - question: "How do I keep an AI chatbot from running up a bill?"
+    answer: "Put limits in front of it: a per-person rate limit, a hard daily cap, and a monthly spend limit in your provider's dashboard."
+  - question: "Do I need a vector database for this?"
+    answer: "Usually not to start — a simple list of your pages fits in the prompt."
+```
 
 ## Cover image — ALWAYS ask Alfred for one
 

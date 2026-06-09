@@ -1,0 +1,66 @@
+---
+// Renders a visible FAQ section AND a matching FAQPage JSON-LD block. AI answer
+// engines (and Google) want the structured data to mirror on-page content, so we
+// always render both from the same source — never schema without the visible Q&A.
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+const { faq } = Astro.props as { faq?: FaqItem[] };
+const items = (faq ?? []).filter((f) => f?.question && f?.answer);
+
+const faqSchema =
+  items.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: items.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
+      }
+    : null;
+---
+
+{items.length > 0 && (
+  <section class="faq-section max-w-3xl mx-auto mt-12" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Frequently asked questions</h2>
+    <dl>
+      {items.map((f) => (
+        <div class="faq-item">
+          <dt>{f.question}</dt>
+          <dd>{f.answer}</dd>
+        </div>
+      ))}
+    </dl>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </section>
+)}
+
+<style>
+  .faq-section {
+    border-top: var(--border-thick);
+    padding-top: var(--space-md);
+  }
+  .faq-section h2 {
+    margin-top: 0;
+  }
+  .faq-item {
+    border: var(--border-thin);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+    background: var(--color-surface-container-low);
+  }
+  .faq-item dt {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: var(--space-xs);
+  }
+  .faq-item dd {
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>

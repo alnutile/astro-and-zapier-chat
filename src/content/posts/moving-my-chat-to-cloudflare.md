@@ -4,6 +4,15 @@ date: 2026-06-08
 excerpt: "Cloudflare's always been an option for this kind of thing. It just used to feel too technical to bother with. A spam problem on another project nudged me to finally try it — and with AI doing the heavy lifting, I wrapped my chat around OpenAI with real guardrails in an afternoon."
 image: "/images/moving-my-chat-to-cloudflare/cover.png"
 tags: [ai, chatbot, cloudflare, no-code, security]
+faq:
+  - question: "Do I need to be technical to add an AI chat to my website?"
+    answer: "Not really anymore. The hard parts — the server, the streaming, the security wrapper — can be built by describing what you want to an AI. Your real job is the decisions: set a spending cap, lock it to your own domain, and keep it simple. The AI brings the speed; you bring the judgment."
+  - question: "How do I keep an AI chatbot from running up a huge bill?"
+    answer: "Put limits in front of it. Use a per-person rate limit, a hard daily cap that stops all spending once it is hit, and a monthly spending limit set in your AI provider's dashboard. Those three together give you a bounded worst case instead of a surprise invoice."
+  - question: "Can someone copy my chatbot and use it on their own site with my AI key?"
+    answer: "Not if you lock it down. Reject any request that is not coming from your own domain, and require a quick bot check (like Cloudflare Turnstile) on every message. That stops bots and stops people from lifting your widget onto their page to spend your credits."
+  - question: "Do I need a vector database (RAG) for a chat that answers from my blog?"
+    answer: "Usually not to start. For a few hundred posts you can bundle a simple list of titles, summaries, and links and hand it to the model — it fits. Only reach for a vector database if your answers turn out too vague, and let that be a measured decision rather than a guess."
 ---
 
 > **TLDR:** I swapped the chatbot on this site for a simpler setup I run myself — a little Cloudflare service in front of OpenAI. Cloudflare was always an option, it just used to feel too technical to reach for. This time the AI did almost all the building, and I made the calls. The win isn't the chat. It's that it's wrapped in enough protection that nobody can turn it into *their* free chatbot on my dime.
