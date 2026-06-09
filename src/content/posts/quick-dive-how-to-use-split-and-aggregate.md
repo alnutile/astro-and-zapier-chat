@@ -4,6 +4,13 @@ date: 2025-09-07
 excerpt: "When it comes to building workflows in n8n, there are a few nodes that don’t get the spotlight they deserve — but once you master them, you’ll find yourself using them almost everywhere."
 image: "https://substackcdn.com/image/youtube/w_728,c_limit/m6GwIIDR-oc"
 tags: []
+faq:
+  - question: "What do the Split and Aggregate nodes do in n8n?"
+    answer: "Split breaks an array or result into individual, loopable items. Aggregate combines multiple items back into a single payload you can send forward. They are the pair you reach for whenever you are working with lists of data."
+  - question: "Why would I aggregate data before sending it to an AI model?"
+    answer: "So you call the model once instead of many times. Instead of hitting ChatGPT five separate times, aggregate the items and send them in one request — like asking it to summarize all your task items at once. It is cheaper and cleaner."
+  - question: "When should I use Split versus Aggregate?"
+    answer: "Use Split when you need to loop over items one at a time and process each result individually. Use Aggregate when you need to bundle many items into one payload to send onward. Most real workflows use both together."
 # original_url: https://substack.com/home/post/p-173008338
 ---
 

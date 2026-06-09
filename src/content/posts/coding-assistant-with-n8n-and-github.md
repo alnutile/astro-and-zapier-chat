@@ -4,6 +4,13 @@ date: 2025-07-14
 excerpt: "From PR to Issues and Suggestions get some help before every Pull Request"
 image: "https://substackcdn.com/image/youtube/w_728,c_limit/x7JebstIZHs"
 tags: []
+faq:
+  - question: "How can I get automated help reviewing my pull requests?"
+    answer: "Trigger an n8n workflow from a GitHub pull request that opens issues on that PR — catching the things you forget, like SEO or row-level security, and even running browser-based QA before you merge."
+  - question: "What kinds of checks can this PR workflow run?"
+    answer: "Whatever you build as tools. The post includes a security workflow and an SEO workflow as examples, plus browser-use QA. Each one is a building block you can mix into the main workflow."
+  - question: "Do I have to build this from scratch?"
+    answer: "No. There is a shared Gist with the main workflow and the example tools for security and SEO, so you can start from a working template and adapt it to your repo."
 # original_url: https://substack.com/home/post/p-168254717
 ---
 

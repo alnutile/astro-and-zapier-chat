@@ -4,6 +4,13 @@ date: 2025-07-20
 excerpt: "This workflow and notes go with the related YouTube video to help you get started with NoCode workflows and N8N"
 image: "https://substackcdn.com/image/youtube/w_728,c_limit/anW0cZ5jfpE"
 tags: []
+faq:
+  - question: "Do I need to know how to code to build automations with n8n?"
+    answer: "No, and that is the whole point. n8n is a no-code platform where you connect visual blocks. If you are an expert in your field but not in Python or JavaScript, you can still build the solutions you need."
+  - question: "What are the basic building blocks of an n8n workflow?"
+    answer: "Three of them: triggers (what starts the workflow, like a new email, a sale, a form submission, or a schedule), flows (the brain that pulls and processes your data), and outputs (the action, like sending an email, posting to Slack, or updating a database)."
+  - question: "What can I automate with n8n as a beginner?"
+    answer: "Everyday repetitive work: pull data from a Google Sheet, update your CRM, manage tasks in Notion, let AI analyze information, then send a custom email or Slack message. Start with one task you are tired of doing by hand and build from there."
 # original_url: https://substack.com/home/post/p-168792681
 ---
 

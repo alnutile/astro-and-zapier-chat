@@ -4,6 +4,13 @@ date: 2026-04-29
 excerpt: "Anyone can drop a chatbot on their site in ten minutes. Here's how to do it without waking up to a $10,000 bill or letting somebody else use your AI on their site."
 image: "/images/careful-way-to-add-ai-chat/cover.png"
 tags: [ai, chatbot, zapier, no-code, security]
+faq:
+  - question: "How do I add a chatbot to my website without risking a huge bill?"
+    answer: "Use a setup that enforces a hard cost cap for you. When you hit your plan limit the chat simply stops responding instead of running up an open-ended bill. Setting that cap before you go live is the single most important step."
+  - question: "Can someone copy my chat embed and use my AI on their own site?"
+    answer: "Not if you add a domain lock to the embed. Even if someone pastes your script tag onto their own page, it does nothing for them — the chat only works on the domains you allow."
+  - question: "Do I need to be a developer to set this up safely?"
+    answer: "No. This careful version uses Zapier Chat, Tables, and a Zap to make your GitHub content chattable, and the two guardrails — the cost cap and the domain lock — take about ten minutes total."
 ---
 
 ## TLDR

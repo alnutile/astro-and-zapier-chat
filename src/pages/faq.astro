@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// FAQ hub: aggregates every post's `faq` into one place + a single FAQPage
+// JSON-LD. A central, crawlable Q&A page is a strong GEO asset and gives the
+// nav link a real destination. Each answer links back to its full post.
+const posts = (await getCollection('posts'))
+  .filter((p) => Array.isArray(p.data.faq) && p.data.faq.length > 0)
+  .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+
+const allFaqs = posts.flatMap((p) => p.data.faq ?? []);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allFaqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+---
+
+<BaseLayout
+  title="FAQ"
+  description="Answers to common questions about AI, no-code, and automation — pulled from the guides on the DailyAi blog."
+>
+  <div class="faq-page max-w-3xl mx-auto px-6">
+    <header class="mb-12">
+      <span class="tag tag--primary">// FAQ</span>
+      <h1 class="text-5xl mt-4 mb-4">Frequently asked questions</h1>
+      <p class="text-xl text-gray-500">
+        {allFaqs.length} straight answers about AI, no-code, and automation — for the rest of us. Each one is pulled from a full guide on the blog, linked below.
+      </p>
+    </header>
+
+    {posts.map((p) => (
+      <section class="faq-group">
+        <h2><a href={`/posts/${p.id}/`}>{p.data.title}</a></h2>
+        <dl>
+          {(p.data.faq ?? []).map((f) => (
+            <div class="faq-item">
+              <dt>{f.question}</dt>
+              <dd>{f.answer}</dd>
+            </div>
+          ))}
+        </dl>
+        <a class="faq-readmore" href={`/posts/${p.id}/`}>Read the full post →</a>
+      </section>
+    ))}
+
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </div>
+</BaseLayout>
+
+<style>
+  .faq-group {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--color-ink);
+  }
+  .faq-group h2 {
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    font-size: 1.5rem;
+  }
+  .faq-group h2 a {
+    color: var(--color-on-surface);
+    text-decoration: none;
+    background: transparent;
+  }
+  .faq-group h2 a:hover {
+    color: var(--color-primary);
+    background: transparent;
+    text-decoration: underline;
+  }
+  .faq-item {
+    border: var(--border-thin);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+    background: var(--color-surface-container-low);
+  }
+  .faq-item dt {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: var(--space-xs);
+  }
+  .faq-item dd {
+    margin: 0;
+    line-height: 1.6;
+  }
+  .faq-readmore {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+</style>

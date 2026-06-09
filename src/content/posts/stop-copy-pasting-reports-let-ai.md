@@ -4,6 +4,13 @@ date: 2026-02-13
 excerpt: "A step-by-step guide to automations that write your reports, route your requests, and give you hours back every week"
 image: "https://substackcdn.com/image/fetch/$s_!NUfM!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe271a15c-28dc-480b-9a1d-32f52f724790_1279x720.jpeg"
 tags: []
+faq:
+  - question: "How can I stop manually writing the same status reports every day?"
+    answer: "Build an automation that pulls from your project management tool and writes the reports for you — a detailed morning task list for the team, a polished weekly summary for leadership, and an end-of-day review of what is waiting. Each audience gets its own format, generated automatically."
+  - question: "Do I need a separate automation for each report format?"
+    answer: "No. One system can produce several outputs from the same source data — the building team's detailed list, leadership's summary, and the end-of-day blocked-items report — each formatted for its audience."
+  - question: "What does automating my reports actually save me?"
+    answer: "Hours every week of copy-paste grind, plus the mental load of reformatting the same information for different people. The reports just show up, written, formatted, and delivered."
 # original_url: https://substack.com/home/post/p-187911608
 ---
 
