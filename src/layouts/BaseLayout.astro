@@ -29,12 +29,28 @@ const ogImageURL = image.startsWith('/') ? new URL(image, Astro.site) : image;
 const siteName = "DailyAi - Alfred Nutile";
 
 // Strukturierte Daten (JSON-LD) für bessere SEO
+// Author as a real entity: the `sameAs` links let AI answer engines and search
+// recognize Alfred as a known person and attribute/cite his work to him.
+// (Add a LinkedIn profile URL here when available.)
+const authorPerson = {
+  "@type": "Person",
+  "name": author,
+  "url": new URL("/about", Astro.site).toString(),
+  "sameAs": [
+    "https://github.com/alnutile",
+    "https://twitter.com/alnutile",
+    "https://www.youtube.com/@AlfredNutile",
+    "https://substack.com/@dailyaistudio",
+  ],
+};
+
 const jsonLDWebsite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": siteName,
   "url": Astro.site?.toString(),
   "description": description,
+  "author": authorPerson,
 };
 
 const jsonLDArticle = publishedDate ? {
@@ -42,10 +58,7 @@ const jsonLDArticle = publishedDate ? {
   "@type": "Article",
   "headline": title,
   "image": ogImageURL.toString(),
-  "author": {
-    "@type": "Person",
-    "name": author
-  },
+  "author": authorPerson,
   "publisher": {
     "@type": "Organization",
     "name": siteName,
@@ -88,6 +101,7 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
 
     <title>{title} | DailyAi - Alfred Nutile</title>
     <meta name="description" content={description} />
+    <meta name="author" content={author} />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Aktivieren der View Transitions -->
@@ -119,7 +133,8 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content={siteName} />
     {publishedDate && <meta property="article:published_time" content={publishedDate.toISOString()} />}
-    {modifiedDate && <meta property="article:modified_time" content={modifiedDate.toISOString()} />}
+    {(modifiedDate || publishedDate) && <meta property="article:modified_time" content={(modifiedDate || publishedDate).toISOString()} />}
+    {type === 'article' && <meta property="article:author" content={author} />}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
