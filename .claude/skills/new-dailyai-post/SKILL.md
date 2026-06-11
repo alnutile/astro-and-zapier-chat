@@ -19,6 +19,36 @@ that, if skipped, either break the live build or ship an ugly/inconsistent post.
 This skill is the checklist so every post lands clean. The *writing* is still a
 collaboration — this just nails everything around it.
 
+## The standard format (produce these, in order)
+
+This is Alfred's house format for a post. Build it in this order:
+
+1. **Cover image prompt** — write an image-generation prompt in the hand-drawn
+   *notebook sketchnote* style (template below). Alfred renders it and provides
+   the `cover.png` himself (sometimes as a URL to download).
+2. **Title** — conversational, Title Case.
+3. **TLDR** — a `> **TLDR:**` blockquote that sets up the whole piece.
+4. **Skill link** (when there's a companion skill) — right under the TLDR:
+   `👉 **The skill:** [link]`. Many of Alfred's posts ship with a reusable skill
+   in the repo's `skills/` folder; link it here so readers can grab it.
+5. **The article** — in his voice (see below).
+6. **FAQs** — the `faq:` frontmatter for how-to posts (visible + schema).
+
+### Cover image prompt — the notebook sketchnote style
+
+Alfred likes a specific look: a hand-drawn guide on a notebook page. Use this
+template, swapping in the post's content (a 2–3 step flow usually works):
+
+> Handwritten notebook page photographed from above on a wooden desk, cream/
+> off-white, slightly worn and lived-in. A hand-lettered title in bold black,
+> with ONE keyword in blue. Below, a left-to-right / top-to-bottom flow of 2–3
+> boxes — a blue-bordered box, a red-bordered box, a green-bordered box —
+> connected by bold yellow arrows, each box with a short note and a small
+> hand-drawn icon. Bullet points use arrow markers (→); key words are underlined
+> or in different colors. A yellow callout box at the bottom holds the one-line
+> takeaway. Natural overhead lighting, slight page curl at the edges, realistic
+> paper texture; casual blue-ballpoint-and-markers sketchnote feel.
+
 ## Before writing
 
 1. **Pull Alfred's voice.** Invoke the `alfred-nutile-voice-style` skill and write
@@ -28,6 +58,11 @@ collaboration — this just nails everything around it.
    (especially **Zapier**, a sponsor), do NOT disparage it. Frame positively:
    "X was always good, this is just simpler for me now." (See the project memory
    `content-no-dump-on-tools`.)
+3. **Stay humble — he's sharing, not lecturing.** Alfred rarely positions himself
+   as an expert. Frame posts as "here's what worked for me," never authoritative
+   how-to-from-on-high. A light disclaimer like *"I'm no expert here — just
+   sharing what helped"* fits his voice perfectly. Avoid expert/guru framing.
+   (See the project memory `content-voice-sharing-not-expert`.)
 
 ## Frontmatter (exact schema — the build is Zod-validated and will fail otherwise)
 
@@ -64,14 +99,17 @@ faq:
     answer: "Usually not to start — a simple list of your pages fits in the prompt."
 ```
 
-## Cover image — ALWAYS ask Alfred for one
+## Cover image — give him a prompt, then ask for the rendered file
 
-Alfred wants to provide the hero image himself. So:
+Alfred provides the hero image himself, but he likes a starting prompt. So:
 
-1. Create the folder: `mkdir -p public/images/<slug>/`.
-2. **Stop and ask him** to save his image to `public/images/<slug>/cover.png`
-   (the convention; match the `image:` path in frontmatter).
-3. **Do not push until the file exists** — a missing hero image looks broken on
+1. **Offer a cover-image prompt** in the notebook sketchnote style (see "The
+   standard format" above), tailored to the post.
+2. Create the folder: `mkdir -p public/images/<slug>/`.
+3. **Ask him to save the rendered image** to `public/images/<slug>/cover.png`
+   (match the `image:` path in frontmatter). He may hand you a download URL —
+   `curl` it straight into that path.
+4. **Do not push until the file exists** — a missing hero image looks broken on
    the live post. Verify with `ls public/images/<slug>/cover.png` before deploying.
 
 ## Verify, then ship

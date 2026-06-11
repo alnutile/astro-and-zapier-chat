@@ -17,6 +17,10 @@ faq:
 
 > **TLDR:** The way people search is changing. More and more, they don't open Google — they ask an AI. And if that AI can't easily read your site, or doesn't trust it, you simply don't show up in the answer. There's a small new layer — call it SEO for AI — that fixes this. It's mostly a handful of plain text files and some labels. I added it to this blog in an afternoon, the AI did most of the building, and I'll walk you through what each piece does and why.
 
+👉 **The skill:** [github.com/alnutile/astro-and-zapier-chat → skills/site-geo-optimization](https://github.com/alnutile/astro-and-zapier-chat/tree/main/skills/site-geo-optimization)
+
+*Quick note: I'm no expert here — just sharing what worked for me, in case it helps you too.*
+
 ---
 
 ## The front door moved
