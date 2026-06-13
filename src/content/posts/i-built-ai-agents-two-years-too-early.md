@@ -2,12 +2,14 @@
 title: "I Built AI Agents Two Years Too Early"
 date: 2026-06-13
 excerpt: "In 2023 I built basically every AI platform feature you've watched ship since — document collections, multi-model workflows, deployable bots. Here's why being early was the same as being wrong, and what I'm building now that the labs structurally can't eat."
-image: "/images/i-built-ai-agents-two-years-too-early/cover.png"
+image: "/images/i-built-ai-agents-two-years-too-early/cover.jpeg"
 tags: [ai, agents, open-source, no-code]
 ---
 
 > **TLDR:** Back in 2023 I built LaraLlama — document collections you chat with, email/web ingestion, multi-model workflows, deployable bots and APIs. Two years later every major lab shipped the same shapes. I'm not claiming I invented anything; the ideas were obvious. What I got wrong was the *layer* (horizontal capability is exactly what model providers commoditize) and the *substrate* (the models couldn't cash the checks the vision wrote). Now the substrate works, so I'm building the one thing the labs structurally won't: software you own, on your own database, MIT licensed, shaped for small teams.
 
+
+![](mages/i-built-ai-agents-two-years-too-early/skills.png)
 ---
 
 In 2023 I started building a product where you'd pour your documents, email, and web pages into collections, chat with them, wire workflows around them, and deploy the results as bots and APIs. I called it LaraLlama. If that sounds like every AI platform announcement of the last two years — yes. That's the point of this story.
