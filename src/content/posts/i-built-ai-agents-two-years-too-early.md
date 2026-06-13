@@ -2,7 +2,7 @@
 title: "I Built AI Agents Two Years Too Early"
 date: 2026-06-13
 excerpt: "In 2023 I built basically every AI platform feature you've watched ship since — document collections, multi-model workflows, deployable bots. Here's why being early was the same as being wrong, and what I'm building now that the labs structurally can't eat."
-image: "/images/i-built-ai-agents-two-years-too-early/cover.jpeg"
+image: "/images/i-built-ai-agents-two-years-too-early/cover.png"
 tags: [ai, agents, open-source, no-code]
 ---
 
