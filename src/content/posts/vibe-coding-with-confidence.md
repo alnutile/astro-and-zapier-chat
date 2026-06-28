@@ -88,14 +88,19 @@ That first-time setup might mean clicking a few things myself — set up a new p
 
 ### Step Four - generate a url
 
-Just for a moment we will use the built in URL\
+Just for a moment we will use the built in URL:
 ![Generate a Domain](/images/vibe-coding-with-confidence/railway-generate-domain.png)
+
+
+> NOTE: 👇
+
+![Waiting](/images/vibe-coding-with-confidence/cloudflare-waiting.png)
 
 And then the magic: when I want to make a change, I just push the code and walk away. **Railway redeploys the update on its own.** Hello world → hello world version two. You can already feel how this scales.
 
 Want it on your own fancy domain? Point it through Cloudflare and you're set — which ties right back to that security layer I mentioned.
 
-> 📸 **SCREENSHOT:** Cloudflare domains list / the custom domain pointed at the Railway app.
+![Custom Domain](/images/vibe-coding-with-confidence/cloudflare-custom-domain.png)
 
 So now we've hosted a simple asset, it's behind a real domain, and updates are one `git push` away. That's genuinely it.
 
