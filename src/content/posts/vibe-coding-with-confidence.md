@@ -19,15 +19,13 @@ faq:
 
 > **TLDR:** It still kind of amazes me that we can vibe code our own apps now. This is me sharing how to do it *with confidence* — three things that trip people up (security, hosting, and GitHub), none of them as scary as they sound. We'll build the whole thing around the most boring, most perfect example there is: a to-do list. By the end you'll go from a static "hello world" all the way to your own little agent that has access to one of your own systems.
 
-👉 **Sponsored by [Zapier](https://zapier.com/).** I'll get to where they come in later — there's one part near the end where I use their SDK to connect a vibe coded app to an outside service without having to wrestle with all the credential and auth plumbing myself. Zapier's always been good for this kind of glue; this is just a newer, simpler way for me to reach for it.
-
 ---
 
 I want to write about vibe coding because, honestly, it's still amazing to me that we can build and ship our own applications this way. Something shifted at the start of the year — Claude Code, Codex from OpenAI, Cursor — these tools got genuinely good at vibe coding a real application *and* at hosting a simple static file you just want to share with someone.
 
 So I want to cover the little nuances of vibe coding so you can feel more comfortable doing it, and not get caught up in the negative vibes floating around about it right now.
 
-Quick disclaimer before we go: **I'm no expert here.** I'm just sharing what's worked for me. The audience I have in mind is pretty wide — maybe you're a junior dev, maybe you're someone who just wants to get an idea out of your head and onto the internet. Either way, this is for you.
+Quick disclaimer before we go: I'm just sharing what's worked for me. The audience I have in mind is pretty wide — maybe you're a junior dev, maybe you're someone who just wants to get an idea out of your head and onto the internet. Either way, this is for you.
 
 > 📸 **SCREENSHOT:** the finished to-do app we're building toward — the board view with Backlog / Next / In Progress / Done lanes. (Set the destination up front so people know where we're headed.)
 
@@ -35,7 +33,7 @@ Quick disclaimer before we go: **I'm no expert here.** I'm just sharing what's w
 
 Here's the whole article in three words: **security, hosting, GitHub.**
 
-That's it. Those are the three things that make people nervous about putting their vibe coded work into the world. I'm going to walk through each one, and then we'll do it for real with the to-do list.
+Those are the three things that can make people nervous about putting their vibe coded work into the world. I'm going to walk through each one, and then we'll do it for real with the to-do list.
 
 A note on order: I actually built the demo starting with the exciting stuff and worked my way back to GitHub — but that gets confusing. So in this write-up I'm going to introduce GitHub naturally, right where it shows up (the first time we host), and build up from "boring and safe" to "fancy" from there.
 
@@ -52,6 +50,8 @@ Let's get the scary one out of the way, because it isn't.
 There's no single magic answer to security, and here's the honest truth: **no matter how hard you work, your site is hackable.** It's very rare for a site to be completely un-attackable. But — and this is the key idea — **the scope of hackability grows with the complexity of your site.**
 
 So if I'm just sharing a static artifact — some HTML with CSS and JavaScript baked in — and I put it on a web host so people can visit it in their browser, that thing is *pretty darn safe.* All that's happening is: a browser downloads an HTML file and renders it. There's not much there to attack.
+
+> Remember obscurity is NEVER security. You can not depend on funky URLs etc to equate to a secure page.
 
 (Side note on why hosting beats emailing a file: if you just email someone an HTML file, it might not open, their machine might block it, Windows vs. Mac weirdness, or your interactive bits silently don't work. Hosting it means everyone gets the same experience, the way you intended.)
 
