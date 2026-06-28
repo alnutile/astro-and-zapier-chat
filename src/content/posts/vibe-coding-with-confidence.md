@@ -228,6 +228,8 @@ So that is a log in 2 prompts! We are now going to move into our final prompt an
 ## Adding real authentication
 
 
+> Prompt 3 can be found [here](https://github.com/alnutile/training-todo-app/blob/main/Prompt_3.md)
+
 So far we've used anonymous auth — fine for a session. Now I want real accounts, so I get **private state** (my tasks are mine) and the option of **shared state** later (a team board you log into).
 
 Still using Supabase, but the big rule applies to every auth system: **never roll your own.** There are plenty of proven options — pick one.
@@ -238,14 +240,11 @@ Here's where having an opinion pays off again. I tell the AI:
 
 That's wide open on purpose — you can tighten it however you like (even invite-only). Then, since I'd already set up anonymous auth, I just say:
 
-Deploying this it will ask us to enter **VITE_** variables. This means these are PUBLIC facing so you never want to put anything there that is a secret. Supabase has a public facing key we will put there:
+> "Remove the anonymous auth feature."
 
+…to keep things simple, and now we have a to-do system **stored per user, behind a login.**
 
-
-Then we add the url to the system as well:
-
-
-> This Anonymous Auth pattern is powerful and will lead later into more normal auth. 
+> That anonymous-auth pattern from the last step is powerful — it's exactly what led us right into normal auth here.
 
 
 > 📸 **SCREENSHOT:** the new login / magic-link screen in front of the to-do board.
@@ -317,6 +316,10 @@ So here's the only call to action that matters: pick one idea that's been stuck 
 
 
 
-## AI REMIND ME TO DO THESE THINGS
+## The prompts, in order
 
-Link to all the prompts 
+Want to follow along? Here are the exact prompts I used, step by step:
+
+1. [Static to-do list + deploy to Railway](https://github.com/alnutile/training-todo-app/blob/main/Prompt_1.md)
+2. [Database, the four-lane board + realtime (anonymous auth)](https://github.com/alnutile/training-todo-app/blob/main/Prompt_2.md)
+3. [Real authentication — magic links + open sign-up](https://github.com/alnutile/training-todo-app/blob/main/Prompt_3.md) 
