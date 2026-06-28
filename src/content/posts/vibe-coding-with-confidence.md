@@ -195,13 +195,16 @@ So now we've got: authentication, row level security, sensible permissions. That
 ![CloudFlare Proxy](/images/vibe-coding-with-confidence/cloudflare-proxy.png)
 
 
-CLAUDE - FLESH THIS OUT MORE
+The proxy (that "orange cloud" toggle next to your DNS record) is a great way to get some instant baseline "security" on your project — I put "security" in quotes on purpose, more on that in a second. A few quick wins the moment you turn it on:
 
-The proxy is a great way to get instant "security" on your project here are some quick wins when you turn it on.
+- **It hides your origin.** Visitors hit Cloudflare instead of your Railway app directly, so your real server isn't just sitting out in the open for someone to poke at.
+- **HTTPS everywhere, free.** You get SSL at the edge, and you can flip on "Always Use HTTPS" so anyone who shows up on `http://` gets bounced to `https://`.
+- **DDoS protection out of the box.** Cloudflare soaks up the big, dumb traffic floods at the network level before they ever reach you — included even on the free plan.
+- **A CDN you didn't have to set up.** Your static stuff gets cached and served from somewhere near your visitor, so it's faster *and* your origin gets hit less.
+- **Bot Fight Mode.** One toggle that knocks back a lot of the low-effort bots and scrapers.
+- **Simple firewall rules.** Block an IP, block a whole country, or throw up an "Under Attack" challenge page if something's going sideways — all from the dashboard.
 
-  * one 
-  * two
-  * ...
+Now the honest part (this is why "security" is in quotes): the proxy is a *baseline*, not a force field. It's a great layer to put in front of the real work — your auth and row level security — not a replacement for it. Same theme as the rest of the article: layers, start simple, nothing's bulletproof.
 
 
 
