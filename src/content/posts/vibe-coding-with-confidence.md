@@ -61,7 +61,7 @@ We'll talk about putting **Cloudflare** in front of things in a moment, which ad
 
 ## 2. Hosting — also not scary
 
-Okay, so I've vibe coded a static artifact and I want to share it. I'm not using Lovable or Replit here — for whatever reason (pricing, preference) I'm doing it on my own. So I tell the AI:
+Ok, so I've vibe coded a static artifact and I want to share it. I'm not using Lovable or Replit here — for whatever reason (pricing, preference) I'm doing it on my own. So I tell the AI:
 
 > "Deploy this to a known service."
 
@@ -99,7 +99,7 @@ Static files are great, but now I want to actually *save* things. The classic ex
 
 Here's a thing to be careful about when you vibe code: you don't want your to-do list living only in a **browser session.** When you use a tool like Replit or Lovable, there's a layer of built-in prompting that nudges the AI toward building things consistently and "for real." If you're rolling on your own, *you* have to bring that opinion — your own set of requirements, your own sense of how it should be built. (That's exactly what skills/rules files are for, and I'll share some at the end.)
 
-So I'm going to make a new GitHub repo for the to-do app, and I'm going to use a database. There are tons of great database providers — **[Supabase](https://supabase.com/)** is my favorite, so that's what we'll use. I'm leaning on Supabase on purpose, because I'm going to build on its auth, file storage, and websockets as we go.
+So I'm going to make a new GitHub repo for the to-do app, and I'm going to use a database. There are tons of great database providers — **[Supabase](https://supabase.com/)** is my favorite, so that's what we'll use. I'm leaning on Supabase on purpose, because I'm going to build on its auth and websockets as we go.
 
 My prompt to the AI is roughly:
 
@@ -178,5 +178,7 @@ None of the three scary things turned out to be that scary:
 - **GitHub** is just where the code lives so the host can grab it.
 
 That's vibe coding with confidence.
+
+So here's the only call to action that matters: pick one idea that's been stuck in your head, open up your AI tool, and ask it for a static "hello world." That's it. That's the first step. Everything else in this article just builds on that one move.
 
 > 🛠️ **Skills & files:** I'll be sharing the skills/rules files I used to keep the AI building things *my* way (the opinions that replace what Lovable/Replit bake in for you). _(Link to be added.)_
