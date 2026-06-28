@@ -37,6 +37,9 @@ Those are the three things that can make people nervous about putting their vibe
 
 A note on order: I actually built the demo starting with the exciting stuff and worked my way back to GitHub — but that gets confusing. So in this write-up I'm going to introduce GitHub naturally, right where it shows up (the first time we host), and build up from "boring and safe" to "fancy" from there.
 
+
+> I share prompts and skills but there are no "magic" prompts. So just use what makes sense and work with AI to continue building the way that works for you.
+
 ## Why a to-do list?
 
 Because everyone understands it. A to-do list is the perfect foundation. We can literally start with a static "hello world" page — *technically* even that could be a kind of to-do list — and grow it step by step until it's a real, secure, multi-user app that syncs with your phone.
@@ -55,7 +58,7 @@ So if I'm just sharing a static artifact — some HTML with CSS and JavaScript b
 
 (Side note on why hosting beats emailing a file: if you just email someone an HTML file, it might not open, their machine might block it, Windows vs. Mac weirdness, or your interactive bits silently don't work. Hosting it means everyone gets the same experience, the way you intended.)
 
-> 📸 **SCREENSHOT:** an example of a nice interactive HTML artifact (e.g. a pitch deck / slide page) — to make the point that this stuff looks great in the browser but is risky to just email around.
+![Our First Deployment](/images/vibe-coding-with-confidence/static-todo-area.png)
 
 We'll talk about putting **Cloudflare** in front of things in a moment, which adds another layer. But the headline for this section is simple: **the more your app does, the more you have to think about. Start simple and you start safe.**
 
@@ -71,9 +74,22 @@ Here's the nice part: this kind of integration is already industry standard. Whe
 
 That first-time setup might mean clicking a few things myself — set up a new project, find the repo, hit deploy. The AI can probably do most of it; here I just want to do it by hand to show it working.
 
-> 📸 **SCREENSHOT:** the Railway "New Project → Deploy from GitHub repo" screen, picking the repo.
+### Step One - New App
 
-> 📸 **SCREENSHOT:** the Railway deploy succeeding, with the live URL.
+![New App](/images/vibe-coding-with-confidence/railway-new-app.png)
+
+### Step Two - Pick the Repo
+
+![Pick your Repo](/images/vibe-coding-with-confidence/step-two-pick-your-repo.png)
+
+
+### Step Three - wait and edit
+![Pick your Repo](/images/vibe-coding-with-confidence/railwy-edit-project.png)
+
+### Step Four - generate a url
+
+Just for a moment we will use the built in URL\
+![Generate a Domain](/images/vibe-coding-with-confidence/railway-generate-domain.png)
 
 And then the magic: when I want to make a change, I just push the code and walk away. **Railway redeploys the update on its own.** Hello world → hello world version two. You can already feel how this scales.
 
@@ -158,6 +174,22 @@ This is important. Depending on your database setup, the gate on the *front* isn
 A couple of freebies worth naming: with Railway you already get **HTTPS** out of the box (certificates are free), so that box is checked. If your host doesn't default to HTTPS, go get that in place.
 
 So now we've got: authentication, row level security, sensible permissions. That keeps your app secure and ready at the baseline. Not bulletproof — nothing is — but sensible.
+
+
+### Cloudflare Proxy
+
+![CloudFlare Proxy](/images/vibe-coding-with-confidence/cloudflare-proxy.png)
+
+
+CLAUDE - FLESH THIS OUT MORE
+
+The proxy is a great way to get instant "security" on your project here are some quick wins when you turn it on.
+
+  * one 
+  * two
+  * ...
+
+
 
 ## The fun finale: give your app its own agent
 
