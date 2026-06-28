@@ -2,7 +2,7 @@
 title: "Vibe Coding With Confidence"
 date: 2026-06-28
 excerpt: "It still amazes me that we can vibe code our own apps. Here's how to do it with confidence — keeping it secure, getting it hosted, and not getting scared off by GitHub — all built around the humble to-do list."
-image: "/images/vibe-coding-with-confidence/cover.png"
+image: "/images/vibe-coding-with-confidence/cover.jpeg"
 tags: [ai, vibe-coding, security, no-code, zapier]
 faq:
   - question: "Is a vibe coded site safe to put online?"
@@ -29,9 +29,15 @@ Quick disclaimer before we go: I'm just sharing what's worked for me. The audien
 
 > 📸 **SCREENSHOT:** the finished to-do app we're building toward — the board view with Backlog / Next / In Progress / Done lanes. (Set the destination up front so people know where we're headed.)
 
-## The three things people get stuck on
 
-Here's the whole article in three words: **security, hosting, GitHub.**
+
+> NOTE: There is not one way to do things. This is just an example of how to end up with something that has authentication, has some security, and can deploy easily.
+
+## The three things I will cover
+
+  * 🔒 Security
+  * ⛴︎ Hosting
+  * 🧑‍💻 GitHub
 
 Those are the three things that can make people nervous about putting their vibe coded work into the world. I'm going to walk through each one, and then we'll do it for real with the to-do list.
 
@@ -46,6 +52,10 @@ Because everyone understands it. A to-do list is the perfect foundation. We can 
 
 Watch how far this one humble example can take us.
 
+The first prompt we will do you can find [here](https://github.com/alnutile/training-todo-app/blob/main/Prompt_1.md)
+
+This will build a static page for us to push to the hosting service.
+
 ## 1. Security — it won't be scary
 
 Let's get the scary one out of the way, because it isn't.
@@ -59,6 +69,8 @@ So if I'm just sharing a static artifact — some HTML with CSS and JavaScript b
 (Side note on why hosting beats emailing a file: if you just email someone an HTML file, it might not open, their machine might block it, Windows vs. Mac weirdness, or your interactive bits silently don't work. Hosting it means everyone gets the same experience, the way you intended.)
 
 ![Our First Deployment](/images/vibe-coding-with-confidence/static-todo-area.png)
+
+> 👆 As noted this is the prompt found [here](https://github.com/alnutile/training-todo-app/blob/main/Prompt_1.md)
 
 We'll talk about putting **Cloudflare** in front of things in a moment, which adds another layer. But the headline for this section is simple: **the more your app does, the more you have to think about. Start simple and you start safe.**
 
@@ -82,7 +94,6 @@ That first-time setup might mean clicking a few things myself — set up a new p
 
 ![Pick your Repo](/images/vibe-coding-with-confidence/step-two-pick-your-repo.png)
 
-
 ### Step Three - wait and edit
 ![Pick your Repo](/images/vibe-coding-with-confidence/railwy-edit-project.png)
 
@@ -98,7 +109,7 @@ Just for a moment we will use the built in URL:
 
 **TIP**
 
-Try running the below command once the Cloudflare shows ready if you still can not connect on your Mac
+Try running the below command once the Cloudflare shows ready if you still can not connect to the site on your Mac
 
 ```bash
 sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
@@ -121,19 +132,22 @@ Conceptually, GitHub is just **where your code lives** so that other tools — l
 
 The reassuring bit: the AI can handle most of the GitHub steps for you. It helps to understand what it's doing — that's why I'm naming it instead of hiding it — but you do not need to be a Git wizard to vibe code with confidence.
 
-> 📸 **SCREENSHOT:** the GitHub repo for the to-do app (so the "this is just where the code lives" idea has a face).
+![GitHub](/images/vibe-coding-with-confidence/github.png)
 
 Scary moments when you can not "merge" a file without "conflicts" 😱
 
 This can come up and be pretty frustrating but just paste your issue or screenshot into AI and let it help you find the right commands to run. I just had to do it for this article and was told to run:
 
-```
-git pull --rebase origin claude/vibe-coding-guide-dgs3ch
+```bash
+git pull --rebase origin YOUR_BRANCH_NAME
 ```
 
 So bizarre but now so easy!
 
 ## Leveling up: the real to-do list with a database
+
+
+> Prompt 2 can be found [here](https://github.com/alnutile/training-todo-app/blob/main/Prompt_2.md)
 
 Static files are great, but now I want to actually *save* things. The classic example — our to-do list.
 
@@ -144,6 +158,10 @@ So I'm going to make a new GitHub repo for the to-do app, and I'm going to use a
 My prompt to the AI is roughly:
 
 > "Using anonymous authentication in Supabase, set up a session for me and a to-do list. Save my to-dos using the classic to-do schema. I should be able to mark items as **Backlog, Next, In Progress, and Done**, and drag them from lane to lane — and when I drag one, it updates. If I have another tab open and I move an item, use **websockets** so it shows in both screens."
+
+You will be asked to turn it on: 
+
+![Turn on Anonymous Auth](/images/vibe-coding-with-confidence/anon-auth.png)
 
 > 📸 **SCREENSHOT:** the AI prompt + the to-do board rendering for the first time with the four lanes.
 
@@ -157,9 +175,58 @@ In a lot of setups, when you see a variable prefixed with `VITE_` (or similar), 
 
 This is exactly why I love Supabase: they *understand* this split, and they let you do a surprising amount safely on the public side while keeping a secure foundation underneath. We'll lean on that next.
 
-> 📸 **SCREENSHOT:** Supabase keys screen, highlighting which key is the public/anon one (the safe-to-expose one).
+
+![Connect to get Key](/images/vibe-coding-with-confidence/connect.png)
+
+And the public key:
+
+
+![The Key](/images/vibe-coding-with-confidence/public-key.png)
+
+
+Locally as I build they system already had these keys for me:
+
+```env
+# Local dev env — gitignored. Public anon/publishable values only.
+VITE_SUPABASE_URL=https://torocnrxwdepeceouzpe.supabase.co
+VITE_SUPABASE_ANON_KEY=sb_publishable_a1dYbZV_CKlXVfjg_nhESg_rM_uGObp
+```
+
+It put them into a .env file which is how we deal with secrets. They never go into Github.
+
+We had to put these on Railway as well:
+
+![Add Vars](/images/vibe-coding-with-confidence/railway-vars.png)
+
+And deploy again:
+
+![Deploy](/images/vibe-coding-with-confidence/railway-deploy-vars.png)
+
+
+We are making progress 🎉
+
+![Deploys and can save my info](/images/vibe-coding-with-confidence/anon-auth-saved.png)
+
+
+And you can see it in the table:
+![Saved in Table](/images/vibe-coding-with-confidence/table.png)
+
+
+But if I open up a private browsing sessing:
+![Saved in Table](/images/vibe-coding-with-confidence/private.png)
+
+There are not TODO items but if I add a few we can see a new user_id
+
+But if I open up a private browsing sessing:
+![Other user](/images/vibe-coding-with-confidence/private-todo.png)
+
+
+So that is a log in 2 prompts! We are now going to move into our final prompt and have user signup.
+
+
 
 ## Adding real authentication
+
 
 So far we've used anonymous auth — fine for a session. Now I want real accounts, so I get **private state** (my tasks are mine) and the option of **shared state** later (a team board you log into).
 
@@ -171,9 +238,15 @@ Here's where having an opinion pays off again. I tell the AI:
 
 That's wide open on purpose — you can tighten it however you like (even invite-only). Then, since I'd already set up anonymous auth, I just say:
 
-> "Remove the anonymous auth feature."
+Deploying this it will ask us to enter **VITE_** variables. This means these are PUBLIC facing so you never want to put anything there that is a secret. Supabase has a public facing key we will put there:
 
-…to keep things simple, and now we have a to-do system **stored per user, behind a login.**
+
+
+Then we add the url to the system as well:
+
+
+> This Anonymous Auth pattern is powerful and will lead later into more normal auth. 
+
 
 > 📸 **SCREENSHOT:** the new login / magic-link screen in front of the to-do board.
 
@@ -241,3 +314,9 @@ That's vibe coding with confidence.
 So here's the only call to action that matters: pick one idea that's been stuck in your head, open up your AI tool, and ask it for a static "hello world." That's it. That's the first step. Everything else in this article just builds on that one move.
 
 > 🛠️ **Skills & files:** here are the rules files I used to keep the AI building things *my* way — the opinions that replace what Lovable/Replit bake in for you. Drop the `CLAUDE.md` into a fresh repo and start from it: [vibe-coding-with-confidence skill files](https://github.com/alnutile/astro-and-zapier-chat/tree/main/skills/vibe-coding-with-confidence).
+
+
+
+## AI REMIND ME TO DO THESE THINGS
+
+Link to all the prompts 
