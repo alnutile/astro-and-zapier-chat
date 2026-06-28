@@ -181,4 +181,4 @@ That's vibe coding with confidence.
 
 So here's the only call to action that matters: pick one idea that's been stuck in your head, open up your AI tool, and ask it for a static "hello world." That's it. That's the first step. Everything else in this article just builds on that one move.
 
-> 🛠️ **Skills & files:** I'll be sharing the skills/rules files I used to keep the AI building things *my* way (the opinions that replace what Lovable/Replit bake in for you). _(Link to be added.)_
+> 🛠️ **Skills & files:** here are the rules files I used to keep the AI building things *my* way — the opinions that replace what Lovable/Replit bake in for you. Drop the `CLAUDE.md` into a fresh repo and start from it: [vibe-coding-with-confidence skill files](https://github.com/alnutile/astro-and-zapier-chat/tree/main/skills/vibe-coding-with-confidence).
