@@ -96,6 +96,15 @@ Just for a moment we will use the built in URL:
 
 ![Waiting](/images/vibe-coding-with-confidence/cloudflare-waiting.png)
 
+**TIP**
+
+Try running the below command once the Cloudflare shows ready if you still can not connect on your Mac
+
+```bash
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+```
+
+
 And then the magic: when I want to make a change, I just push the code and walk away. **Railway redeploys the update on its own.** Hello world → hello world version two. You can already feel how this scales.
 
 Want it on your own fancy domain? Point it through Cloudflare and you're set — which ties right back to that security layer I mentioned.
