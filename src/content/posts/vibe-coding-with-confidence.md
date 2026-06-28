@@ -227,9 +227,7 @@ So that is a log in 2 prompts! We are now going to move into our final prompt an
 
 ## Adding real authentication
 
-
 > Prompt 3 can be found [here](https://github.com/alnutile/training-todo-app/blob/main/Prompt_3.md)
-
 So far we've used anonymous auth — fine for a session. Now I want real accounts, so I get **private state** (my tasks are mine) and the option of **shared state** later (a team board you log into).
 
 Still using Supabase, but the big rule applies to every auth system: **never roll your own.** There are plenty of proven options — pick one.
@@ -240,12 +238,11 @@ Here's where having an opinion pays off again. I tell the AI:
 
 That's wide open on purpose — you can tighten it however you like (even invite-only). Then, since I'd already set up anonymous auth, I just say:
 
-> "Remove the anonymous auth feature."
+Deploying this it will ask us to enter **VITE_** variables. This means these are PUBLIC facing so you never want to put anything there that is a secret. Supabase has a public facing key we will put there:
 
-…to keep things simple, and now we have a to-do system **stored per user, behind a login.**
 
-> That anonymous-auth pattern from the last step is powerful — it's exactly what led us right into normal auth here.
 
+Then we add the url to the system as well:
 
 > 📸 **SCREENSHOT:** the new login / magic-link screen in front of the to-do board.
 
@@ -313,7 +310,6 @@ That's vibe coding with confidence.
 So here's the only call to action that matters: pick one idea that's been stuck in your head, open up your AI tool, and ask it for a static "hello world." That's it. That's the first step. Everything else in this article just builds on that one move.
 
 > 🛠️ **Skills & files:** here are the rules files I used to keep the AI building things *my* way — the opinions that replace what Lovable/Replit bake in for you. Drop the `CLAUDE.md` into a fresh repo and start from it: [vibe-coding-with-confidence skill files](https://github.com/alnutile/astro-and-zapier-chat/tree/main/skills/vibe-coding-with-confidence).
-
 
 
 ## The prompts, in order
