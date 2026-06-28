@@ -93,6 +93,16 @@ The reassuring bit: the AI can handle most of the GitHub steps for you. It helps
 
 > 📸 **SCREENSHOT:** the GitHub repo for the to-do app (so the "this is just where the code lives" idea has a face).
 
+Scary moments when you can not "merge" a file without "conflicts" 😱
+
+This can come up and be pretty frustrating but just paste your issue or screenshot into AI and let it help you find the right commands to run. I just had to do it for this article and was told to run:
+
+```
+git pull --rebase origin claude/vibe-coding-guide-dgs3ch
+```
+
+So bizarre but now so easy!
+
 ## Leveling up: the real to-do list with a database
 
 Static files are great, but now I want to actually *save* things. The classic example — our to-do list.
