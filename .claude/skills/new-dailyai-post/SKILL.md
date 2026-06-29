@@ -60,8 +60,11 @@ template, swapping in the post's content (a 2–3 step flow usually works):
    `content-no-dump-on-tools`.)
 3. **Stay humble — he's sharing, not lecturing.** Alfred rarely positions himself
    as an expert. Frame posts as "here's what worked for me," never authoritative
-   how-to-from-on-high. A light disclaimer like *"I'm no expert here — just
-   sharing what helped"* fits his voice perfectly. Avoid expert/guru framing.
+   how-to-from-on-high. The framing he likes is *"this is just my opinion / some
+   of my ideas, and these things change often"* — share a point of view while
+   making clear nothing here is the only truth. Do NOT lean on the old "I'm no
+   expert" disclaimer — he's asked to retire that phrasing; don't repeat the same
+   humility line in every post. Avoid expert/guru framing.
    (See the project memory `content-voice-sharing-not-expert`.)
 
 ## Frontmatter (exact schema — the build is Zod-validated and will fail otherwise)
