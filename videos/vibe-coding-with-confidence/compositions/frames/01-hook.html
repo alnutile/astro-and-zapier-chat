@@ -1,0 +1,193 @@
+<template>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap');
+
+#root {
+  width: 1080px;
+  height: 1920px;
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  background: #F5F5F0;
+}
+
+.wallpaper-pill {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgba(26,26,26,0.06);
+  background: rgba(26,26,26,0.02);
+}
+
+.headline {
+  position: absolute;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: 3.8cqw;
+  line-height: 1.15;
+  color: #1A1A1A;
+  text-align: center;
+  width: 85%;
+  left: 7.5%;
+  top: 280px;
+  opacity: 0;
+}
+
+.headline .word {
+  display: inline-block;
+  margin-right: 0.25em;
+  opacity: 0;
+}
+
+.pill-word {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid #1A1A1A;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 2.4cqw;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 18px 48px;
+  opacity: 0;
+  box-shadow: 6px 6px 0 rgba(26,26,26,0.08);
+}
+
+.pill-security {
+  background: #E85D4E;
+  color: #FFFFFF;
+  left: 50%;
+  top: 550px;
+}
+
+.pill-hosting {
+  background: #8BB4F7;
+  color: #1A1A1A;
+  left: 50%;
+  top: 700px;
+}
+
+.pill-github {
+  background: #C5B5E0;
+  color: #1A1A1A;
+  left: 50%;
+  top: 850px;
+}
+
+.payoff {
+  position: absolute;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: 5.5cqw;
+  line-height: 1.05;
+  color: #E85D4E;
+  text-align: center;
+  width: 90%;
+  left: 5%;
+  top: 750px;
+  opacity: 0;
+}
+
+.payoff-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  left: 290px;
+  top: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,93,78,0.15) 0%, transparent 70%);
+  opacity: 0;
+}
+</style>
+
+<div data-composition-id="01-hook" data-width="1080" data-height="1920">
+  <div id="root">
+    <!-- Background -->
+    <div class="bg-layer clip" id="el-01-hook-bg" data-start="0" data-duration="8" data-track-index="0">
+      <div class="wallpaper-pill" style="width:180px;height:60px;top:120px;left:80px;transform:rotate(-12deg)"></div>
+      <div class="wallpaper-pill" style="width:140px;height:50px;top:350px;right:100px;transform:rotate(8deg)"></div>
+      <div class="wallpaper-pill" style="width:160px;height:55px;bottom:500px;left:150px;transform:rotate(-5deg)"></div>
+      <div class="wallpaper-pill" style="width:120px;height:45px;top:1100px;right:80px;transform:rotate(15deg)"></div>
+      <div class="wallpaper-pill" style="width:200px;height:65px;top:1400px;left:60px;transform:rotate(-8deg)"></div>
+    </div>
+
+    <!-- Headline -->
+    <div class="headline clip" id="el-01-headline" data-start="0" data-duration="8" data-track-index="1">
+      <span class="word" id="el-01-w1">You</span>
+      <span class="word" id="el-01-w2">can</span>
+      <span class="word" id="el-01-w3">vibe</span>
+      <span class="word" id="el-01-w4">code</span>
+    </div>
+
+    <!-- Three pill words -->
+    <div class="pill-word pill-security clip" id="el-01-security" data-start="0" data-duration="8" data-track-index="2">Security</div>
+    <div class="pill-word pill-hosting clip" id="el-01-hosting" data-start="0" data-duration="8" data-track-index="3">Hosting</div>
+    <div class="pill-word pill-github clip" id="el-01-github" data-start="0" data-duration="8" data-track-index="4">GitHub</div>
+
+    <!-- Payoff glow -->
+    <div class="payoff-glow clip" id="el-01-glow" data-start="0" data-duration="8" data-track-index="5"></div>
+
+    <!-- Payoff text -->
+    <div class="payoff clip" id="el-01-payoff" data-start="0" data-duration="8" data-track-index="6">Not that scary.</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script>
+(function() {
+  const tl = gsap.timeline({ paused: true });
+  window.__timelines = window.__timelines || {};
+  window.__timelines["01-hook"] = tl;
+
+  // Scene 1 (0.0-2.0s): Headline per-word reveal
+  tl.fromTo("#el-01-headline", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0);
+  tl.fromTo("#el-01-w1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.1);
+  tl.fromTo("#el-01-w2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.3);
+  tl.fromTo("#el-01-w3", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.5);
+  tl.fromTo("#el-01-w4", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.7);
+
+  // Scene 2 (2.0-5.5s): Three pills spring in staggered
+  tl.fromTo("#el-01-security",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.5, ease: "power3.out" }, 2.5);
+
+  tl.fromTo("#el-01-hosting",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.5, ease: "power3.out" }, 3.5);
+
+  tl.fromTo("#el-01-github",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.5, ease: "power3.out" }, 4.5);
+
+  // Headline fades down
+  tl.to("#el-01-headline", { opacity: 0.35, duration: 0.4, ease: "power3.out" }, 5.0);
+
+  // Scene 3 (5.5-8.0s): Pills shrink, payoff lands
+  tl.to("#el-01-security", { scale: 0.55, y: -80, opacity: 0.4, duration: 0.4, ease: "power3.out" }, 5.5);
+  tl.to("#el-01-hosting", { scale: 0.55, y: -80, opacity: 0.4, duration: 0.4, ease: "power3.out" }, 5.5);
+  tl.to("#el-01-github", { scale: 0.55, y: -80, opacity: 0.4, duration: 0.4, ease: "power3.out" }, 5.5);
+
+  // Payoff enters with hard cut feel
+  tl.fromTo("#el-01-payoff",
+    { opacity: 0, scale: 0.9 },
+    { opacity: 1, scale: 1, duration: 0.15, ease: "power3.out" }, 5.8);
+
+  // Glow blooms
+  tl.fromTo("#el-01-glow",
+    { opacity: 0, scale: 0.5 },
+    { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 5.9);
+
+  // Subtle jitter on payoff during hold
+  tl.fromTo("#el-01-payoff",
+    { x: 0 },
+    { x: 2, duration: 1.5, ease: "sine.inOut" }, 6.5);
+})();
+</script>
+</template>

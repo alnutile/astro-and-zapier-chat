@@ -128,7 +128,7 @@ So now we've hosted a simple asset, it's behind a real domain, and updates are o
 
 ## 3. GitHub — the concept, not the fear
 
-GitHub came up twice already, so let's name it.
+GitHub came up twice already, so let's face it. 😱
 
 Conceptually, GitHub is just **where your code lives** so that other tools — like Railway — can pick it up and deploy it. That's the whole job to understand for now. It happens to be run by a company (GitHub) in a way that AI uses *beautifully*, but that can also be confusing the first time you see it.
 
@@ -136,7 +136,7 @@ The reassuring bit: the AI can handle most of the GitHub steps for you. It helps
 
 ![GitHub](/images/vibe-coding-with-confidence/github.png)
 
-Scary moments when you can not "merge" a file without "conflicts" 😱
+Scary moments when you can not "merge" a file without "conflicts" 😱😱😱😱
 
 This can come up and be pretty frustrating but just paste your issue or screenshot into AI and let it help you find the right commands to run. I just had to do it for this article and was told to run:
 
