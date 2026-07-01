@@ -1,0 +1,19 @@
+{
+  "bgm": {
+    "path": "assets/bgm/track.mp3",
+    "volume": 0.15,
+    "query": "upbeat optimistic light electronic, approachable and warm",
+    "duration_s": 40
+  },
+  "voices": [
+    { "line": 1, "frame": 1, "path": "assets/voice/line-01.wav", "duration_s": 8.87, "start_s": 0 },
+    { "line": 2, "frame": 2, "path": "assets/voice/line-02.wav", "duration_s": 8.11, "start_s": 8.87 },
+    { "line": 3, "frame": 3, "path": "assets/voice/line-03.wav", "duration_s": 5.74, "start_s": 16.98 },
+    { "line": 4, "frame": 4, "path": "assets/voice/line-04.wav", "duration_s": 7.49, "start_s": 22.72 },
+    { "line": 5, "frame": 5, "path": "assets/voice/line-05.wav", "duration_s": 9.39, "start_s": 30.21 },
+    { "line": 6, "frame": 6, "path": "assets/voice/line-06.wav", "duration_s": 9.17, "start_s": 39.60 },
+    { "line": 7, "frame": 7, "path": "assets/voice/line-07.wav", "duration_s": 6.29, "start_s": 48.77 }
+  ],
+  "sfx": [],
+  "total_duration_s": 55.06
+}

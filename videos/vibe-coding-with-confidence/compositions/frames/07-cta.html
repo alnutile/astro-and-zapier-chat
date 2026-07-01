@@ -1,0 +1,137 @@
+<template>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap');
+
+#root {
+  width: 1080px;
+  height: 1920px;
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  background: #F5F5F0;
+}
+
+.wallpaper-pill {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgba(26,26,26,0.06);
+  background: rgba(26,26,26,0.02);
+}
+
+.cta-line {
+  position: absolute;
+  left: 50%;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.cta-line-1 {
+  top: 450px;
+  font-size: 4.8cqw;
+  color: #1A1A1A;
+}
+
+.cta-line-2 {
+  top: 650px;
+  font-size: 4.2cqw;
+  color: #C4D94E;
+}
+
+.cta-line-3 {
+  top: 830px;
+  font-size: 4.2cqw;
+  color: #8BB4F7;
+}
+
+.site-pill {
+  position: absolute;
+  top: 1050px;
+  left: 50%;
+  padding: 14px 36px;
+  border-radius: 9999px;
+  border: 2px solid #1A1A1A;
+  background: #E85D4E;
+  box-shadow: 4px 4px 0 rgba(26,26,26,0.08);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.1cqw;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.cta-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  left: 240px;
+  top: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,93,78,0.12) 0%, transparent 70%);
+  opacity: 0;
+}
+</style>
+
+<div data-composition-id="07-cta" data-width="1080" data-height="1920">
+  <div id="root">
+    <div class="bg-layer clip" id="el-07-cta-bg" data-start="0" data-duration="8" data-track-index="0">
+      <div class="wallpaper-pill" style="width:160px;height:55px;top:180px;left:90px;transform:rotate(-10deg)"></div>
+      <div class="wallpaper-pill" style="width:140px;height:50px;top:280px;right:100px;transform:rotate(6deg)"></div>
+      <div class="wallpaper-pill" style="width:180px;height:60px;top:1300px;right:80px;transform:rotate(-7deg)"></div>
+      <div class="wallpaper-pill" style="width:120px;height:45px;top:1400px;left:120px;transform:rotate(12deg)"></div>
+    </div>
+
+    <div class="cta-line cta-line-1 clip" id="el-07-l1" data-start="0" data-duration="8" data-track-index="1">Pick one idea.</div>
+    <div class="cta-line cta-line-2 clip" id="el-07-l2" data-start="0" data-duration="8" data-track-index="2">Open your AI.</div>
+    <div class="cta-line cta-line-3 clip" id="el-07-l3" data-start="0" data-duration="8" data-track-index="3">Say hello world.</div>
+
+    <div class="cta-glow clip" id="el-07-glow" data-start="0" data-duration="8" data-track-index="4"></div>
+    <div class="site-pill clip" id="el-07-pill" data-start="0" data-duration="8" data-track-index="5">chat.dailyai.studio</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script>
+(function() {
+  const tl = gsap.timeline({ paused: true });
+  window.__timelines = window.__timelines || {};
+  window.__timelines["07-cta"] = tl;
+
+  // Scene 1 (0.0-2.0s): First line slams in
+  tl.fromTo("#el-07-l1",
+    { opacity: 0, scale: 0.7, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.25, ease: "power3.out" }, 0.3);
+
+  // Scene 2 (2.0-4.0s): Second line
+  tl.fromTo("#el-07-l2",
+    { opacity: 0, scale: 0.7, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.25, ease: "power3.out" }, 2.2);
+
+  // Scene 3 (4.0-6.0s): Third line
+  tl.fromTo("#el-07-l3",
+    { opacity: 0, scale: 0.7, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.25, ease: "power3.out" }, 4.2);
+
+  // Scene 4 (6.0-8.0s): Site pill + glow — final landing hold
+  tl.fromTo("#el-07-pill",
+    { opacity: 0, xPercent: -50 },
+    { opacity: 1, xPercent: -50, duration: 0.4, ease: "power3.out" }, 6.2);
+
+  tl.fromTo("#el-07-glow",
+    { opacity: 0, scale: 0.4 },
+    { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 6.3);
+
+  // Final frame — hold still. This is the landing.
+})();
+</script>
+</template>

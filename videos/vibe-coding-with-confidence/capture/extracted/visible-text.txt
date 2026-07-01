@@ -1,0 +1,63 @@
+Vibe Coding With Confidence
+
+TLDR: It still kind of amazes me that we can vibe code our own apps now. This is me sharing how to do it with confidence — three things that trip people up (security, hosting, and GitHub), none of them as scary as they sound. We'll build the whole thing around the most boring, most perfect example there is: a to-do list. By the end you'll go from a static "hello world" all the way to your own little agent that has access to one of your own systems.
+
+I want to write about vibe coding because, honestly, it's still amazing to me that we can build and ship our own applications this way. Something shifted at the start of the year — Claude Code, Codex from OpenAI, Cursor — these tools got genuinely good at vibe coding a real application and at hosting a simple static file you just want to share with someone.
+
+Quick disclaimer before we go: I'm just sharing what's worked for me. The audience I have in mind is pretty wide — maybe you're a junior dev, maybe you're someone who just wants to get an idea out of your head and onto the internet. Either way, this is for you.
+
+The three things I will cover:
+- Security
+- Hosting
+- GitHub
+
+Those are the three things that can make people nervous about putting their vibe coded work into the world.
+
+1. Security — it won't be scary
+
+There's no single magic answer to security, and here's the honest truth: no matter how hard you work, your site is hackable. But the scope of hackability grows with the complexity of your site.
+
+So if I'm just sharing a static artifact — some HTML with CSS and JavaScript baked in — and I put it on a web host so people can visit it in their browser, that thing is pretty darn safe. All that's happening is: a browser downloads an HTML file and renders it. There's not much there to attack.
+
+The more your app does, the more you have to think about. Start simple and you start safe.
+
+2. Hosting — also not scary
+
+I've vibe coded a static artifact and I want to share it. I tell the AI: "Deploy this to a known service." I'm going to choose Railway. This kind of integration is already industry standard. When I tell the AI to release this thing, it uses my GitHub repository, and after a one-time setup it shows up on Railway automatically.
+
+The magic: when I want to make a change, I just push the code and walk away. Railway redeploys the update on its own. Want it on your own fancy domain? Point it through Cloudflare and you're set.
+
+3. GitHub — the concept, not the fear
+
+GitHub is just where your code lives so that other tools — like Railway — can pick it up and deploy it. The AI can handle most of the GitHub steps for you. You do not need to be a Git wizard to vibe code with confidence.
+
+Leveling up: the real to-do list with a database
+
+Static files are great, but now I want to actually save things. I'm going to use Supabase. My prompt to the AI is roughly: "Using anonymous authentication in Supabase, set up a session for me and a to-do list. Save my to-dos using the classic to-do schema. I should be able to mark items as Backlog, Next, In Progress, and Done, and drag them from lane to lane."
+
+Adding real authentication
+
+Still using Supabase, but the big rule applies to every auth system: never roll your own. There are plenty of proven options — pick one.
+
+The part people forget: row level security. You want the database itself to enforce that people can only touch their own rows. Supabase calls this Row Level Security (RLS).
+
+Cloudflare Proxy: The proxy is a great way to get some instant baseline security on your project. It hides your origin, gives you HTTPS everywhere free, DDoS protection, a CDN, Bot Fight Mode, and simple firewall rules.
+
+The fun finale: give your app its own agent
+
+When everything's working, you honestly start treating your app like Dropbox — stuff just syncs and shows up. I want a little agent that syncs tasks from one of my own systems into this to-do app. In the demo, it pulls tasks from Google Tasks so that when I make a task on my phone, it shows up here.
+
+The usual headache with connecting two services is all the credential and authentication plumbing. This is exactly what an SDK is for — and Zapier's SDK lets me wire my vibe coded app up to an outside service without me having to deal with all that complexity myself.
+
+Each person can host their own agent, wired to their own systems, with their own access. Your agent reaches your stuff.
+
+Wrapping up
+
+We went from a static "hello world" to a hosted artifact, added a database and a real to-do board, put proper authentication and row level security in front of it, and finished with our own agent syncing from a system we already use — all vibe coded.
+
+None of the three scary things turned out to be that scary:
+- Security scales with complexity — start simple, stay safe, layer in auth + RLS as you grow.
+- Hosting is a git push away once Railway is pointed at your repo.
+- GitHub is just where the code lives so the host can grab it.
+
+That's vibe coding with confidence.

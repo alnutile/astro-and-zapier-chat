@@ -1,0 +1,241 @@
+<template>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap');
+
+#root {
+  width: 1080px;
+  height: 1920px;
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  background: #F5F5F0;
+}
+
+.section-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  top: 220px;
+  left: 50%;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.6cqw;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  opacity: 0;
+}
+
+.shield-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.shield-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.diagram-zone {
+  position: absolute;
+  top: 420px;
+  left: 80px;
+  width: 920px;
+  height: 500px;
+  opacity: 0;
+}
+
+.file-icon {
+  position: absolute;
+  left: 60px;
+  top: 180px;
+  width: 120px;
+  height: 140px;
+  border-radius: 12px;
+  border: 2px solid #1A1A1A;
+  background: #E85D4E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 0 rgba(26,26,26,0.08);
+  opacity: 0;
+}
+
+.file-icon-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+}
+
+.dotted-line {
+  position: absolute;
+  left: 200px;
+  top: 248px;
+  width: 500px;
+  height: 2px;
+  border-top: 2px dashed rgba(26,26,26,0.25);
+  opacity: 0;
+}
+
+.browser-icon {
+  position: absolute;
+  right: 60px;
+  top: 180px;
+  width: 120px;
+  height: 140px;
+  border-radius: 12px;
+  border: 2px solid #1A1A1A;
+  background: #8BB4F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 0 rgba(26,26,26,0.08);
+  opacity: 0;
+}
+
+.browser-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #1A1A1A;
+  letter-spacing: 0.05em;
+}
+
+.complexity-pill {
+  position: absolute;
+  left: 50%;
+  border-radius: 9999px;
+  border: 2px solid #1A1A1A;
+  padding: 10px 24px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 rgba(26,26,26,0.08);
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.cp-database { top: 130px; background: #8BB4F7; color: #1A1A1A; }
+.cp-auth { top: 210px; background: #C5B5E0; color: #1A1A1A; }
+.cp-api { top: 290px; background: #A8E6CF; color: #1A1A1A; }
+
+.takeaway {
+  position: absolute;
+  bottom: 420px;
+  left: 5%;
+  width: 90%;
+  text-align: center;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: 4cqw;
+  line-height: 1.15;
+  color: #1A1A1A;
+  opacity: 0;
+}
+
+.takeaway .accent {
+  color: #E85D4E;
+}
+</style>
+
+<div data-composition-id="02-security" data-width="1080" data-height="1920">
+  <div id="root">
+    <div class="bg-layer clip" id="el-02-security-bg" data-start="0" data-duration="10" data-track-index="0"></div>
+
+    <!-- Section label -->
+    <div class="section-label clip" id="el-02-label" data-start="0" data-duration="10" data-track-index="1">
+      <div class="shield-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E85D4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <span>Security</span>
+    </div>
+
+    <!-- Diagram zone -->
+    <div class="diagram-zone clip" id="el-02-diagram" data-start="0" data-duration="10" data-track-index="2">
+      <div class="file-icon" id="el-02-file">
+        <span class="file-icon-label">&lt;html&gt;</span>
+      </div>
+      <div class="dotted-line" id="el-02-line"></div>
+      <div class="browser-icon" id="el-02-browser">
+        <span class="browser-label">Browser</span>
+      </div>
+
+      <!-- Complexity pills between icons -->
+      <div class="complexity-pill cp-database" id="el-02-cp1">Database</div>
+      <div class="complexity-pill cp-auth" id="el-02-cp2">Auth</div>
+      <div class="complexity-pill cp-api" id="el-02-cp3">API</div>
+    </div>
+
+    <!-- Takeaway -->
+    <div class="takeaway clip" id="el-02-takeaway" data-start="0" data-duration="10" data-track-index="3">
+      Start <span class="accent">simple</span> = start safe
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script>
+(function() {
+  const tl = gsap.timeline({ paused: true });
+  window.__timelines = window.__timelines || {};
+  window.__timelines["02-security"] = tl;
+
+  // Scene 1 (0.0-3.5s): Label + diagram enter
+  tl.fromTo("#el-02-label",
+    { opacity: 0, scale: 0.8, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.4, ease: "power3.out" }, 0.3);
+
+  tl.fromTo("#el-02-diagram", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 1.0);
+
+  tl.fromTo("#el-02-file",
+    { opacity: 0, scale: 0, x: 0 },
+    { opacity: 1, scale: 1, x: 0, duration: 0.45, ease: "power3.out" }, 1.2);
+
+  tl.fromTo("#el-02-line",
+    { opacity: 0, scaleX: 0 },
+    { opacity: 1, scaleX: 1, duration: 0.5, ease: "power3.out" }, 1.6);
+
+  tl.fromTo("#el-02-browser",
+    { opacity: 0, scale: 0 },
+    { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" }, 2.0);
+
+  // Scene 2 (3.5-7.0s): Complexity pills cascade in
+  tl.fromTo("#el-02-cp1",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.45, ease: "power3.out" }, 4.0);
+
+  tl.fromTo("#el-02-cp2",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.45, ease: "power3.out" }, 5.0);
+
+  tl.fromTo("#el-02-cp3",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.45, ease: "power3.out" }, 6.0);
+
+  // Stretch dotted line as pills arrive
+  tl.to("#el-02-line", { width: 520, duration: 2.5, ease: "power3.out" }, 4.0);
+
+  // Scene 3 (7.0-10.0s): Dim complexity, reveal takeaway
+  tl.to(["#el-02-cp1", "#el-02-cp2", "#el-02-cp3"], { opacity: 0.35, duration: 0.4, ease: "power3.out" }, 7.2);
+
+  tl.fromTo("#el-02-takeaway",
+    { opacity: 0, y: 30 },
+    { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 7.5);
+
+  // Hold still
+  tl.to("#el-02-takeaway", { x: 1.5, duration: 2, ease: "sine.inOut" }, 8.0);
+})();
+</script>
+</template>
