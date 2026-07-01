@@ -4,6 +4,7 @@ date: 2026-06-28
 excerpt: "The gory trail behind the finale of my vibe-coding build — a per-user Zapier SDK agent that syncs Google Tasks into Supabase. Partial-index upserts, a crash with no error, and a scopes default I missed."
 image: "/images/debugging-my-google-tasks-sync-agent/cover.png"
 tags: [ai, vibe-coding, zapier, supabase, debugging]
+draft: true
 faq:
   - question: "Why did my Node script crash on the host with no error message?"
     answer: "Two common causes: calling process.exit() truncates buffered stdout/stderr before it flushes, so your logged error vanishes — prefer process.exitCode = 1 and let the event loop drain. And a total silence with no stack is often a hard kill (SIGKILL, e.g. out-of-memory), which no try/catch can catch — add synchronous logging with fs.writeSync so checkpoints survive an instant kill."

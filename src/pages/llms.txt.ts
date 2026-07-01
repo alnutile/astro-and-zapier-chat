@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../lib/posts';
 
 // /llms.txt — the GEO (Generative Engine Optimization) index, per llmstxt.org.
 // A clean, link-rich map of the site that AI answer engines can read to
@@ -6,7 +6,7 @@ import { getCollection } from 'astro:content';
 export async function GET(context) {
   const site = (context.site?.toString() ?? 'https://chat.dailyai.studio').replace(/\/$/, '');
 
-  const posts = (await getCollection('posts')).sort(
+  const posts = (await getPublishedPosts()).sort(
     (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
   );
 

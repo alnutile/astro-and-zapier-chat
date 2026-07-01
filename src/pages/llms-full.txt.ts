@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../lib/posts';
 
 // /llms-full.txt — every post's full content in one file, newest first, as clean
 // markdown. This is the "give the model everything" companion to /llms.txt, so an
@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 export async function GET(context) {
   const site = (context.site?.toString() ?? 'https://chat.dailyai.studio').replace(/\/$/, '');
 
-  const posts = (await getCollection('posts')).sort(
+  const posts = (await getPublishedPosts()).sort(
     (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
   );
 

@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../lib/posts';
 
 // FAQ hub: aggregates every post's `faq` into one place + a single FAQPage
 // JSON-LD. A central, crawlable Q&A page is a strong GEO asset and gives the
 // nav link a real destination. Each answer links back to its full post.
-const posts = (await getCollection('posts'))
+const posts = (await getPublishedPosts())
   .filter((p) => Array.isArray(p.data.faq) && p.data.faq.length > 0)
   .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
 

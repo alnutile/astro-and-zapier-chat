@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostListWithThumbnails from '../components/PostListWithThumbnails.astro';
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../lib/posts';
 
 // Get all blog posts and sort them by date
-const allPosts = await getCollection('posts');
+const allPosts = await getPublishedPosts();
 const sortedPosts = allPosts.sort((a, b) => {
   return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
 });

@@ -1,11 +1,11 @@
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../lib/posts';
 
 // Build-time JSON index of every post. This is the chatbot's entire "knowledge
 // base" — no vector DB / no RAG. The Cloudflare Worker fetches this file and
 // stuffs it into the system prompt, so new posts flow in on each deploy with no
 // Worker change. Mirrors the pattern in rss.xml.js.
 export async function GET() {
-  const posts = await getCollection('posts');
+  const posts = await getPublishedPosts();
 
   const index = posts
     .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf())
