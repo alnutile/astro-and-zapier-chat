@@ -2,7 +2,7 @@
 title: "Vibe Coding With Confidence"
 date: 2026-06-28
 excerpt: "It still amazes me that we can vibe code our own apps. Here's how to do it with confidence — keeping it secure, getting it hosted, and not getting scared off by GitHub — all built around the humble to-do list."
-image: "/images/vibe-coding-with-confidence/cover.jpeg"
+image: "/images/vibe-coding-with-confidence/cover.png"
 tags: [ai, vibe-coding, security, no-code, zapier]
 faq:
   - question: "Is a vibe coded site safe to put online?"
@@ -32,13 +32,14 @@ Quick disclaimer before we go: I'm just sharing what's worked for me. The audien
 > ALL THE CODE IS HERE https://github.com/alnutile/training-todo-app all the prompts etc. Nothing special but just some patterns that might help you vibe-code with confidence
 
 
-## The three things I will cover
+## The four things I will cover
 
   * 🔒 Security
   * ⛴︎ Hosting
   * 🧑‍💻 GitHub
+  * 🚀 Zapier Agents
 
-Those are the three things that can make people nervous about putting their vibe coded work into the world. I'm going to walk through each one, and then we'll do it for real with the to-do list.
+Those are the four things that can make people nervous about putting their vibe coded work into the world. I'm going to walk through each one, and then we'll do it for real with the to-do list.
 
 
 > NOTE: There is not one way to do things. This is just an example of how to end up with something that has authentication, has some security, and can deploy easily.
