@@ -27,7 +27,7 @@ So I want to cover the little nuances of vibe coding so you can feel more comfor
 
 Quick disclaimer before we go: I'm just sharing what's worked for me. The audience I have in mind is pretty wide — maybe you're a junior dev, maybe you're someone who just wants to get an idea out of your head and onto the internet. Either way, this is for you.
 
-> 📸 **SCREENSHOT:** the finished to-do app we're building toward — the board view with Backlog / Next / In Progress / Done lanes. (Set the destination up front so people know where we're headed.)
+![A bit of Design](/images/vibe-coding-with-confidence/a-bit-of-design.png)
 
 
 
@@ -243,16 +243,26 @@ Deploying this it will ask us to enter **VITE_** variables. This means these are
 
 
 Then we add the url to the system as well:
+![Auth in place](/images/vibe-coding-with-confidence/auth-screen.png)
 
-> 📸 **SCREENSHOT:** the new login / magic-link screen in front of the to-do board.
+We can Sign out:
 
-> 📸 **SCREENSHOT:** an incognito window hitting the app and being asked to log in (proving the gate works).
+![Sign Out](/images/vibe-coding-with-confidence/sign-out.png)
+
+And we see the todo items I make are mine:
+
+![My Todo Items](/images/vibe-coding-with-confidence/auth-todo.png)
 
 ### The part people forget: row level security
 
 This is important. Depending on your database setup, the gate on the *front* isn't enough — you also want the **database itself** to enforce that people can only touch their own rows. Supabase calls this **Row Level Security (RLS)**, and I just have the AI make sure it's turned on and the policies are right.
 
-> 📸 **SCREENSHOT:** Supabase RLS policies enabled on the to-dos table.
+![RLS](/images/vibe-coding-with-confidence/rls-overview.png)
+
+And then the details of what it is doing:
+
+![RLS Details](/images/vibe-coding-with-confidence/rls-details.png)
+
 
 A couple of freebies worth naming: with Railway you already get **HTTPS** out of the box (certificates are free), so that box is checked. If your host doesn't default to HTTPS, go get that in place.
 
@@ -274,6 +284,22 @@ The proxy (that "orange cloud" toggle next to your DNS record) is a great way to
 - **Simple firewall rules.** Block an IP, block a whole country, or throw up an "Under Attack" challenge page if something's going sideways — all from the dashboard.
 
 Now the honest part (this is why "security" is in quotes): the proxy is a *baseline*, not a force field. It's a great layer to put in front of the real work — your auth and row level security — not a replacement for it. Same theme as the rest of the article: layers, start simple, nothing's bulletproof.
+
+If you have an SSL error like this:
+
+![SSL Error](/images/vibe-coding-with-confidence/proxy-and-ssl.png)
+
+It can be really frustring. One suggestion is to:
+
+  * Set the record to DNS only (grey cloud) first.
+  * Wait for Railway to show the domain verified + certificate issued (the ⚠️ turns green).
+  * Then turn the orange cloud (proxy) back on.
+  * In Cloudflare, set SSL/TLS mode to Full (strict).
+
+
+You can turn it off this way:
+
+![SSL Off then On](/images/vibe-coding-with-confidence/proxy-off.png)
 
 
 
@@ -310,6 +336,18 @@ That's vibe coding with confidence.
 So here's the only call to action that matters: pick one idea that's been stuck in your head, open up your AI tool, and ask it for a static "hello world." That's it. That's the first step. Everything else in this article just builds on that one move.
 
 > 🛠️ **Skills & files:** here are the rules files I used to keep the AI building things *my* way — the opinions that replace what Lovable/Replit bake in for you. Drop the `CLAUDE.md` into a fresh repo and start from it: [vibe-coding-with-confidence skill files](https://github.com/alnutile/astro-and-zapier-chat/tree/main/skills/vibe-coding-with-confidence).
+
+
+## One more Thing
+
+![Design Bump](/images/vibe-coding-with-confidence/todo-with-progress-bar.gif)
+
+
+Design, lets go to [Claude Design](https://claude.ai/) and bump up the ui a bit
+
+We can then export the "prompt" and pass it over to Claude Code 🤯
+
+![Export](/images/vibe-coding-with-confidence/design-export.png)
 
 
 ## The prompts, in order
