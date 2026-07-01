@@ -305,21 +305,29 @@ You can turn it off this way:
 
 ## The fun finale: give your app its own agent
 
+> Prompt 5 can be found [here](https://github.com/alnutile/training-todo-app/blob/main/Prompt_5.md)
+
 Here's the part I'm most excited about, and where **Zapier** comes in.
 
-When everything's working, you honestly start treating your app like Dropbox — stuff just syncs and shows up. So let's make that real: I want a little **agent** that syncs tasks *from one of my own systems* into this to-do app. In the demo, it pulls tasks from **Google Tasks** so that when I make a task on my phone, it shows up here.
+When everything's working, you honestly start treating your app like Dropbox — stuff just syncs and shows up. So let's make that real: I want a little **agent** that syncs tasks *from one of my own systems* into this to-do app. In the demo it pulls from **Google Tasks**, so a task I jot on my phone shows up on the board.
 
-The usual headache with connecting two services is all the credential and authentication plumbing. This is exactly what an **SDK** is for — *Software Development Kit* — and **Zapier's SDK** lets me wire my vibe coded app up to an outside service without me having to deal with all that complexity myself.
+The usual headache with connecting two services is all the credential and authentication plumbing — OAuth, refreshing tokens, learning each app's API one at a time. This is exactly what an **SDK** is for — *Software Development Kit* — and **Zapier's SDK** hands me one consistent way to reach the 9,000+ apps it already knows how to talk to, using connections I've already authorized. I don't have to build any of that plumbing myself. (Their quickstart is [here](https://docs.zapier.com/sdk/quickstart).)
 
-> 📸 **SCREENSHOT:** the Zapier SDK connection / config step.
+Nice touch: when you set the SDK up, it gives you a ready-made prompt to run. I took that default prompt and just changed the tail end to my actual goal — the sync agent — instead of the little demo it ships with. (I even had Claude help me translate it into exactly what I wanted.)
 
-> 📸 **SCREENSHOT:** the Railway service running the sync agent.
+> 📸 **SCREENSHOT (optional):** how I turned the SDK's default setup prompt into my own goal.
 
-> 📸 **SCREENSHOT (or clip):** add a task in Google Tasks on the phone → it appears in the to-do board.
+So here's what I asked for, in plain words: make a small **agent** in its own `agents/` folder that I can push to **Railway** as a second little service and run on a schedule — every hour, though I'll just run it by hand for the demo. Have it connect to my **Google Tasks** connection, read my tasks, and sync them into the `todos` table — being careful not to create duplicates as it re-runs (a small `external_id` on each row keeps track of what's already come across).
 
-And here's the spin that makes this genuinely cool: this isn't "one big shared bot." **Each person can host their own agent, wired to their own systems, with their own access.** Your agent reaches *your* stuff. That's a really nice place to land — your own little system, talking to your other systems, on your terms.
+> 📸 **SCREENSHOT:** my connected apps, with the Google Tasks connection.
 
-> 📸 **SCREENSHOT:** the final board with a synced task highlighted, to close the loop on the whole build.
+> 📸 **SCREENSHOT:** the `agents/` service running on Railway (the hourly cron).
+
+> 📸 **SCREENSHOT (or clip):** a task I add in Google Tasks on my phone → it shows up on the board.
+
+And here's the spin that makes this genuinely cool — and honestly why I like this more than pointing one shared bot at everything: this isn't *one* big brain with *one* set of keys. **Each person runs their own agent, wired to their own connections, touching only their own account.** Your agent reaches *your* stuff, on your terms. That's a really nice place to land: your own little system, quietly talking to your other systems.
+
+> 📸 **SCREENSHOT:** the final board with the synced task highlighted — phone to board, done.
 
 ## Wrapping up
 
