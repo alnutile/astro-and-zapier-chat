@@ -165,10 +165,6 @@ You will be asked to turn it on:
 
 ![Turn on Anonymous Auth](/images/vibe-coding-with-confidence/anon-auth.png)
 
-> 📸 **SCREENSHOT:** the AI prompt + the to-do board rendering for the first time with the four lanes.
-
-> 📸 **SCREENSHOT (or short clip):** dragging a card between lanes and it updating live in a second browser tab — the websockets moment.
-
 ### The one careful bit: public vs. private
 
 When you build a web app, there are two parts that really matter: the **front-facing / public part**, and (when you have one) the **back-facing / API part.**
@@ -315,15 +311,23 @@ The usual headache with connecting two services is all the credential and authen
 
 Nice touch: when you set the SDK up, it gives you a ready-made prompt to run. I took that default prompt and just changed the tail end to my actual goal — the sync agent — instead of the little demo it ships with. (I even had Claude help me translate it into exactly what I wanted.)
 
-> 📸 **SCREENSHOT (optional):** how I turned the SDK's default setup prompt into my own goal.
 
 So here's what I asked for, in plain words: make a small **agent** in its own `agents/` folder that I can push to **Railway** as a second little service and run on a schedule — every hour, though I'll just run it by hand for the demo. Have it connect to my **Google Tasks** connection, read my tasks, and sync them into the `todos` table — being careful not to create duplicates as it re-runs (a small `external_id` on each row keeps track of what's already come across).
 
-> 📸 **SCREENSHOT:** my connected apps, with the Google Tasks connection.
+**You can find Apps or Connections by searching in Zapier**
+![Finding Apps](/images/vibe-coding-with-confidence/making-connection.png)
 
-> 📸 **SCREENSHOT:** the `agents/` service running on Railway (the hourly cron).
+**You can see here I had to get the Connection ID in Zapier**
+![Zapier Connection ID](/images/vibe-coding-with-confidence/connection-id.png)
 
-> 📸 **SCREENSHOT (or clip):** a task I add in Google Tasks on my phone → it shows up on the board.
+
+Then back to Railway we put the agents in a folder so we can as many agents as we want!
+
+Then I choose the subfolder we put the code into 
+
+![Subfolder](/images/vibe-coding-with-confidence/subfolder.png)
+
+You can see the code [here](https://github.com/alnutile/training-todo-app/tree/main/agents/google-tasks-sync)
 
 ### It wasn't all smooth — and honestly, that's the point
 
@@ -337,13 +341,17 @@ Here's the messy reality, quickly:
 
 **And then the real culprit showed up:** the credentials my agent used had been created without permission to actually *run* actions — only to peek at a bit of metadata. The tell was sneaky: listing my task lists worked fine (that's why it got to "22 lists"), but actually *reading* the tasks was denied. This one was on me — the SDK lets you control exactly what a set of credentials is allowed to do (which is a *good* thing, security-wise), and I just hadn't set that scope. One flag later, it worked.
 
-Notice the shape of all three: each one looked mysterious for about a minute, and every single one turned out to be a small, boring fix. That's the whole game. You don't need to know the answer up front — you just keep making the problem show you more until the boring fix is obvious.
+I just pasted any logs into the AI session and the fix was that easy:
+
+![Logs](/images/vibe-coding-with-confidence/view-logs.png)
+
+![Copy Logs](/images/vibe-coding-with-confidence/copy-logs.png)
 
 > 🛠️ **For the devs reading — the transferable bits:** a program that dies with *no* output is usually being hard-killed, or it's throwing away its logs on exit — make it log synchronously and loudly before you theorize. "Half of it worked" doesn't mean your auth is fine; a metadata call passing can hide that *running* the real action is denied, so test the real action early. Keep a sub-component's dependencies *in* the sub-component. And pin your Node version for the host (`engines` + `.nvmrc`) so it doesn't default to something old. I wrote the whole gory trail up separately: [debugging my Google Tasks sync agent](/posts/debugging-my-google-tasks-sync-agent/).
 
 And here's the spin that makes this genuinely cool — and honestly why I like this more than pointing one shared bot at everything: this isn't *one* big brain with *one* set of keys. **Each person runs their own agent, wired to their own connections, touching only their own account.** Your agent reaches *your* stuff, on your terms. That's a really nice place to land: your own little system, quietly talking to your other systems.
 
-> 📸 **SCREENSHOT:** the final board with the synced task highlighted — phone to board, done.
+![Final Sync](/images/vibe-coding-with-confidence/google-tasks-in-app.png)
 
 ## Wrapping up
 
