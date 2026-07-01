@@ -29,9 +29,8 @@ Quick disclaimer before we go: I'm just sharing what's worked for me. The audien
 
 ![A bit of Design](/images/vibe-coding-with-confidence/a-bit-of-design.png)
 
+> ALL THE CODE IS HERE https://github.com/alnutile/training-todo-app all the prompts etc. Nothing special but just some patterns that might help you vibe-code with confidence
 
-
-> NOTE: There is not one way to do things. This is just an example of how to end up with something that has authentication, has some security, and can deploy easily.
 
 ## The three things I will cover
 
@@ -40,6 +39,9 @@ Quick disclaimer before we go: I'm just sharing what's worked for me. The audien
   * 🧑‍💻 GitHub
 
 Those are the three things that can make people nervous about putting their vibe coded work into the world. I'm going to walk through each one, and then we'll do it for real with the to-do list.
+
+
+> NOTE: There is not one way to do things. This is just an example of how to end up with something that has authentication, has some security, and can deploy easily.
 
 A note on order: I actually built the demo starting with the exciting stuff and worked my way back to GitHub — but that gets confusing. So in this write-up I'm going to introduce GitHub naturally, right where it shows up (the first time we host), and build up from "boring and safe" to "fancy" from there.
 
