@@ -184,7 +184,7 @@ And the public key:
 ![The Key](/images/vibe-coding-with-confidence/public-key.png)
 
 
-Locally as I build they system already had these keys for me:
+Locally as I build, the system already had these keys for me:
 
 ```env
 # Local dev env — gitignored. Public anon/publishable values only.
@@ -212,22 +212,21 @@ And you can see it in the table:
 ![Saved in Table](/images/vibe-coding-with-confidence/table.png)
 
 
-But if I open up a private browsing sessing:
-![Saved in Table](/images/vibe-coding-with-confidence/private.png)
+But if I open up a private browsing session:
+![Private window — no todos](/images/vibe-coding-with-confidence/private.png)
 
-There are not TODO items but if I add a few we can see a new user_id
-
-But if I open up a private browsing sessing:
+There are no TODO items — but if I add a few, we can see a new user_id:
 ![Other user](/images/vibe-coding-with-confidence/private-todo.png)
 
 
-So that is a log in 2 prompts! We are now going to move into our final prompt and have user signup.
+So that's real per-user data in 2 prompts! We are now going to move into our final prompt and have user signup.
 
 
 
 ## Adding real authentication
 
 > Prompt 3 can be found [here](https://github.com/alnutile/training-todo-app/blob/main/Prompt_3.md)
+
 So far we've used anonymous auth — fine for a session. Now I want real accounts, so I get **private state** (my tasks are mine) and the option of **shared state** later (a team board you log into).
 
 Still using Supabase, but the big rule applies to every auth system: **never roll your own.** There are plenty of proven options — pick one.
@@ -238,11 +237,10 @@ Here's where having an opinion pays off again. I tell the AI:
 
 That's wide open on purpose — you can tighten it however you like (even invite-only). Then, since I'd already set up anonymous auth, I just say:
 
-Deploying this it will ask us to enter **VITE_** variables. This means these are PUBLIC facing so you never want to put anything there that is a secret. Supabase has a public facing key we will put there:
+> "Remove the anonymous auth feature."
 
+…to keep things simple, and now we have a to-do system **stored per user, behind a login.**
 
-
-Then we add the url to the system as well:
 ![Auth in place](/images/vibe-coding-with-confidence/auth-screen.png)
 
 We can Sign out:
@@ -289,7 +287,7 @@ If you have an SSL error like this:
 
 ![SSL Error](/images/vibe-coding-with-confidence/proxy-and-ssl.png)
 
-It can be really frustring. One suggestion is to:
+It can be really frustrating. One suggestion is to:
 
   * Set the record to DNS only (grey cloud) first.
   * Wait for Railway to show the domain verified + certificate issued (the ⚠️ turns green).
