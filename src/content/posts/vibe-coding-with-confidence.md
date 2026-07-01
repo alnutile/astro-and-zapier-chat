@@ -325,6 +325,22 @@ So here's what I asked for, in plain words: make a small **agent** in its own `a
 
 > 📸 **SCREENSHOT (or clip):** a task I add in Google Tasks on my phone → it shows up on the board.
 
+### It wasn't all smooth — and honestly, that's the point
+
+I want to be straight with you: this last step threw the most curveballs of the whole build. Not one of them was actually scary once I slowed down — but I hit a bunch. And this is the part I most want you to take with you, because *this* is what "with confidence" really means. It's not that nothing goes wrong. It's that you trust you'll work through whatever does.
+
+Here's the messy reality, quickly:
+
+**The setup leaked into the wrong place.** Adding the Zapier tools quietly dropped some dependencies into my *web app* that didn't belong there, and it broke the web app's deploy — an out-of-sync lockfile, plus it tried to build on an old version of Node. The fix was just tidiness: the agent's stuff belongs *with* the agent, in its own folder, not mixed into the web app.
+
+**Then the agent "crashed" with zero explanation.** The deploy log got as far as `Found 22 Google Tasks lists` and then… stopped. No error. No stack trace. Nothing. That's the worst kind of bug — the silent one. Turned out my agent was quitting in a way that threw its *own* error message in the trash before it could print it. So step one wasn't fixing the bug, it was making the program **louder** — forcing it to log stubbornly, no matter how it died.
+
+**And then the real culprit showed up:** the credentials my agent used had been created without permission to actually *run* actions — only to peek at a bit of metadata. The tell was sneaky: listing my task lists worked fine (that's why it got to "22 lists"), but actually *reading* the tasks was denied. This one was on me — the SDK lets you control exactly what a set of credentials is allowed to do (which is a *good* thing, security-wise), and I just hadn't set that scope. One flag later, it worked.
+
+Notice the shape of all three: each one looked mysterious for about a minute, and every single one turned out to be a small, boring fix. That's the whole game. You don't need to know the answer up front — you just keep making the problem show you more until the boring fix is obvious.
+
+> 🛠️ **For the devs reading — the transferable bits:** a program that dies with *no* output is usually being hard-killed, or it's throwing away its logs on exit — make it log synchronously and loudly before you theorize. "Half of it worked" doesn't mean your auth is fine; a metadata call passing can hide that *running* the real action is denied, so test the real action early. Keep a sub-component's dependencies *in* the sub-component. And pin your Node version for the host (`engines` + `.nvmrc`) so it doesn't default to something old. I wrote the whole gory trail up separately: [debugging my Google Tasks sync agent](/posts/debugging-my-google-tasks-sync-agent/).
+
 And here's the spin that makes this genuinely cool — and honestly why I like this more than pointing one shared bot at everything: this isn't *one* big brain with *one* set of keys. **Each person runs their own agent, wired to their own connections, touching only their own account.** Your agent reaches *your* stuff, on your terms. That's a really nice place to land: your own little system, quietly talking to your other systems.
 
 > 📸 **SCREENSHOT:** the final board with the synced task highlighted — phone to board, done.
