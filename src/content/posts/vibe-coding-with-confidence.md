@@ -17,7 +17,7 @@ faq:
     answer: "Yes — this is where an SDK like Zapier's helps. It handles the integration and credential side so your app (or an agent you host) can sync with things like Google Tasks without you managing all the auth plumbing yourself."
 ---
 
-> **TLDR:** It still kind of amazes me that we can vibe code our own apps now. This is me sharing how to do it *with confidence* — three things that trip people up (security, hosting, and GitHub), none of them as scary as they sound. We'll build the whole thing around the most boring, most perfect example there is: a to-do list. By the end you'll go from a static "hello world" all the way to your own little agent that has access to one of your own systems.
+> **TLDR:** It still kind of amazes me that we can vibe code our own apps now. This is me sharing how to do it *with confidence* — three things that trip people up (security, hosting, and GitHub), none of them as scary as they sound. We'll build the whole thing around the most boring, most perfect example there is: a to-do list. By the end you'll go from a static "hello world todo app" all the way to your own agent that has access to one of your own systems (Google Tasks).
 
 ---
 
@@ -37,14 +37,14 @@ Quick disclaimer before we go: I'm just sharing what's worked for me. The audien
   * 🔒 Security
   * ⛴︎ Hosting
   * 🧑‍💻 GitHub
-  * 🚀 Zapier Agents
+  * 🚀 Zapier Agents (bonus: running services that gets tasks from Google Tasks and more)
 
 Those are the four things that can make people nervous about putting their vibe coded work into the world. I'm going to walk through each one, and then we'll do it for real with the to-do list.
 
 
 > NOTE: There is not one way to do things. This is just an example of how to end up with something that has authentication, has some security, and can deploy easily.
 
-A note on order: I actually built the demo starting with the exciting stuff and worked my way back to GitHub — but that gets confusing. So in this write-up I'm going to introduce GitHub naturally, right where it shows up (the first time we host), and build up from "boring and safe" to "fancy" from there.
+If you go through this start to end the order might be different for you depending on your experience level. For example GitHub might be new to you so maybe read through once to get the bigger picture.
 
 
 > I share prompts and skills but there are no "magic" prompts. So just use what makes sense and work with AI to continue building the way that works for you.
@@ -53,11 +53,7 @@ A note on order: I actually built the demo starting with the exciting stuff and 
 
 Because everyone understands it. A to-do list is the perfect foundation. We can literally start with a static "hello world" page — *technically* even that could be a kind of to-do list — and grow it step by step until it's a real, secure, multi-user app that syncs with your phone.
 
-Watch how far this one humble example can take us.
-
 The first prompt we will do you can find [here](https://github.com/alnutile/training-todo-app/blob/main/Prompt_1.md)
-
-This will build a static page for us to push to the hosting service.
 
 ## 1. Security — it won't be scary
 
@@ -131,7 +127,7 @@ So now we've hosted a simple asset, it's behind a real domain, and updates are o
 
 GitHub came up twice already, so let's face it. 😱
 
-Conceptually, GitHub is just **where your code lives** so that other tools — like Railway — can pick it up and deploy it. That's the whole job to understand for now. It happens to be run by a company (GitHub) in a way that AI uses *beautifully*, but that can also be confusing the first time you see it.
+Conceptually, GitHub is just **where your code lives** so that other tools — like Railway — can pick it up and deploy it. That's the whole job to understand for now. It happens to be run by a company (GitHub) in a way that AI uses really well, but that can also be confusing the first time you see it.
 
 The reassuring bit: the AI can handle most of the GitHub steps for you. It helps to understand what it's doing — that's why I'm naming it instead of hiding it — but you do not need to be a Git wizard to vibe code with confidence.
 
