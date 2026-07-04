@@ -1,0 +1,221 @@
+<template>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600;700&family=Space+Grotesk:wght@400;600&display=swap');
+
+#root {
+  width: 1080px;
+  height: 1920px;
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  background: #F5F5F0;
+}
+
+.section-label {
+  position: absolute;
+  top: 220px;
+  left: 50%;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.6cqw;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  opacity: 0;
+}
+
+.accent-bar {
+  display: inline-block;
+  width: 4px;
+  height: 22px;
+  background: #8BB4F7;
+  border-radius: 2px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.connector-line {
+  position: absolute;
+  left: 50%;
+  top: 400px;
+  width: 2px;
+  height: 600px;
+  background: rgba(26,26,26,0.08);
+  opacity: 0;
+}
+
+.step-pill {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 40px;
+  border-radius: 9999px;
+  border: 2px solid #1A1A1A;
+  background: #8BB4F7;
+  box-shadow: 6px 6px 0 rgba(26,26,26,0.08);
+  opacity: 0;
+}
+
+.step-pill .step-num {
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: 2cqw;
+  color: #1A1A1A;
+}
+
+.step-pill .step-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.5cqw;
+  color: #1A1A1A;
+  letter-spacing: 0.05em;
+}
+
+.step-1 { top: 450px; }
+.step-2 { top: 650px; }
+.step-3 { top: 850px; }
+
+.check-mark {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  margin-top: -14px;
+  width: 28px;
+  height: 28px;
+  opacity: 0;
+}
+
+.check-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.walk-away {
+  position: absolute;
+  top: 1100px;
+  left: 50%;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: 4.5cqw;
+  color: #1A1A1A;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.hosting-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  left: 240px;
+  top: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,180,247,0.12) 0%, transparent 70%);
+  opacity: 0;
+}
+</style>
+
+<div data-composition-id="03-hosting" data-width="1080" data-height="1920">
+  <div id="root">
+    <div class="bg-layer clip" id="el-03-hosting-bg" data-start="0" data-duration="9" data-track-index="0"></div>
+
+    <div class="section-label clip" id="el-03-label" data-start="0" data-duration="9" data-track-index="1">
+      <span class="accent-bar"></span>Hosting
+    </div>
+
+    <div class="connector-line clip" id="el-03-connector" data-start="0" data-duration="9" data-track-index="2"></div>
+
+    <!-- Step 1 -->
+    <div class="step-pill step-1 clip" id="el-03-s1" data-start="0" data-duration="9" data-track-index="3">
+      <span class="step-num">1.</span>
+      <span class="step-text">Push code</span>
+      <div class="check-mark" id="el-03-c1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-pill step-2 clip" id="el-03-s2" data-start="0" data-duration="9" data-track-index="4">
+      <span class="step-num">2.</span>
+      <span class="step-text">Railway picks it up</span>
+      <div class="check-mark" id="el-03-c2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-pill step-3 clip" id="el-03-s3" data-start="0" data-duration="9" data-track-index="5">
+      <span class="step-num">3.</span>
+      <span class="step-text">Live</span>
+      <div class="check-mark" id="el-03-c3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+
+    <div class="hosting-glow clip" id="el-03-glow" data-start="0" data-duration="9" data-track-index="6"></div>
+
+    <div class="walk-away clip" id="el-03-walkaway" data-start="0" data-duration="9" data-track-index="7">Walk away.</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script>
+(function() {
+  const tl = gsap.timeline({ paused: true });
+  window.__timelines = window.__timelines || {};
+  window.__timelines["03-hosting"] = tl;
+
+  // Scene 1 (0.0-3.0s): Label + connector + step 1
+  tl.fromTo("#el-03-label",
+    { opacity: 0, y: 15, xPercent: -50 },
+    { opacity: 1, y: 0, xPercent: -50, duration: 0.35, ease: "power3.out" }, 0.2);
+
+  tl.fromTo("#el-03-connector",
+    { opacity: 0, scaleY: 0 },
+    { opacity: 1, scaleY: 1, duration: 0.6, ease: "power3.out", transformOrigin: "top center" }, 0.5);
+
+  tl.fromTo("#el-03-s1",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.5, ease: "power3.out" }, 1.0);
+
+  tl.fromTo("#el-03-c1",
+    { opacity: 0, scale: 0 },
+    { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 1.8);
+
+  // Scene 2 (3.0-6.0s): Steps 2 and 3 + checks
+  tl.fromTo("#el-03-s2",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.5, ease: "power3.out" }, 3.2);
+
+  tl.fromTo("#el-03-c2",
+    { opacity: 0, scale: 0 },
+    { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 4.0);
+
+  tl.fromTo("#el-03-s3",
+    { opacity: 0, scale: 0, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.5, ease: "power3.out" }, 4.8);
+
+  tl.fromTo("#el-03-c3",
+    { opacity: 0, scale: 0 },
+    { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 5.5);
+
+  // Scene 3 (6.0-9.0s): Walk away + glow
+  tl.fromTo("#el-03-walkaway",
+    { opacity: 0, scale: 0.85, xPercent: -50 },
+    { opacity: 1, scale: 1, xPercent: -50, duration: 0.2, ease: "power3.out" }, 6.5);
+
+  tl.fromTo("#el-03-glow",
+    { opacity: 0, scale: 0.5 },
+    { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 6.6);
+
+  // Subtle jitter hold
+  tl.fromTo("#el-03-walkaway", { x: 0 }, { x: 2, duration: 1.8, ease: "sine.inOut" }, 7.2);
+})();
+</script>
+</template>

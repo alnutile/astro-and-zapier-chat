@@ -58,14 +58,14 @@ template, swapping in the post's content (a 2–3 step flow usually works):
    (especially **Zapier**, a sponsor), do NOT disparage it. Frame positively:
    "X was always good, this is just simpler for me now." (See the project memory
    `content-no-dump-on-tools`.)
-3. **Stay humble — he's sharing, not lecturing.** Alfred rarely positions himself
-   as an expert. Frame posts as "here's what worked for me," never authoritative
-   how-to-from-on-high. The framing he likes is *"this is just my opinion / some
-   of my ideas, and these things change often"* — share a point of view while
-   making clear nothing here is the only truth. Do NOT lean on the old "I'm no
-   expert" disclaimer — he's asked to retire that phrasing; don't repeat the same
-   humility line in every post. Avoid expert/guru framing.
-   (See the project memory `content-voice-sharing-not-expert`.)
+3. **Humble about the _approach_, not about competence.** Alfred *is* experienced
+   (decades of building software) — do NOT write self-deprecating "I'm no expert"
+   disclaimers. That undersells him and rings false. The humility is about
+   *method*, not ability: **there is more than one way to do this, and he's sharing
+   what he sees working** — not claiming the one right way. Frame as "here's what's
+   working for me — your path may differ," never "the correct way from on high"
+   *and* never "I'm just a beginner." Avoid guru/only-way framing on one side and
+   false modesty on the other. (See the project memory `content-voice-sharing-not-expert`.)
 
 ## Frontmatter (exact schema — the build is Zod-validated and will fail otherwise)
 
