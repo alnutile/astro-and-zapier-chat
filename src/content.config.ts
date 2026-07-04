@@ -9,6 +9,10 @@ const postsCollection = defineCollection({
     excerpt: z.string(),
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    // Work-in-progress flag. `draft: true` posts stay visible in `npm run dev`
+    // (so you can preview + keep editing on `main`) but are excluded from the
+    // production build, RSS/llms feeds, and the chatbot index. See src/lib/posts.ts.
+    draft: z.boolean().default(false),
     // Optional Q&A for tutorial/explainer posts. When present, the post renders
     // a visible FAQ section AND matching FAQPage JSON-LD (for AI answer engines
     // and "how do I…" results). Keep questions/answers as plain prose so the

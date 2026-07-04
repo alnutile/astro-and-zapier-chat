@@ -4,6 +4,7 @@ date: 2026-06-29
 excerpt: "One-shot prompting is a coin flip on the hard cases. Loop engineering — let the model propose, let a dumb checker grade it, feed the failure back, repeat — makes the output reliable with almost any model, big or small, cloud or local. Here's the pattern, an opt-out-email example, and how I'd run it on Railway with cron."
 image: "/images/loop-engineering/cover.png"
 tags: [ai, agents, automation, zapier, no-code]
+draft: true
 faq:
   - question: "What is loop engineering?"
     answer: "Loop engineering is wrapping an LLM in a feedback loop instead of trusting one answer. The model proposes a result, a deterministic checker grades it against ground truth, and if it's wrong the specific reason is fed back so the model tries again — over and over until it passes or you hit an iteration cap. The model does the creative part; a dumb, reliable checker guarantees correctness."
