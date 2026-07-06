@@ -264,6 +264,12 @@ defaultTest:
 
 That `apiBaseUrl` line is the whole trick — it points promptfoo at LM Studio running on your own computer instead of out at a paid service. And you don't even write this block yourself: I put "use my local model as the judge" in the spec file, and Claude Code wired it up. It even caught that I had a smaller Gemma loaded than the spec named, and used what was actually there.
 
+Here's what that looks like on my machine — LM Studio running, one toggle for the server, reachable at that same localhost address:
+
+![LM Studio serving a local Gemma model on localhost:1234](/images/evals-stop-guessing-whether-your-ai-works/lmstudio-local-models.png)
+
+Eagle-eyed readers will spot that's a *bigger* Gemma (a 12B) in the window — because once this worked, I got greedy and tried running the **whole pipeline** locally, extraction and all. No API key anywhere. It works — slower, and the extraction isn't as sharp as the cloud model's — and that fully-offline variant is in [the demo repo](https://github.com/alnutile/training-evals) too if you want to try the zero-cost version.
+
 ### But can you trust a tiny free judge?
 
 Fair question — and this is my favorite moment of the whole demo. Before trusting the little local model, Claude Code ran what it called a **negative control**: it fed the judge a *deliberately wrong* answer. Wrong classification ("know" when the truth was "delete"), a bogus reply-to, an invented phone number. If the judge is doing its job, it has to fail that garbage.
