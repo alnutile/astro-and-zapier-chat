@@ -73,6 +73,8 @@ This is the part I like, because it fits how I actually work.
 ![A plain-English goal going in, and the transcript of every move the agent made coming back](/images/make-your-own-headless-browser/prompt-transcript.png)
 *Plain-English goal in — the final answer plus a transcript of every move it made.*
 
+> The skill is in the browser repo as well [Skill](https://github.com/alnutile/browser/blob/main/examples/agent-skill.example.md)
+
 Same little server. Same browser. Two gears — one for "I know the steps," one for "you figure it out."
 
 ## The real reason: wrap it as an MCP
@@ -94,9 +96,10 @@ So I wrap this browser as *one MCP tool.* And now?
 ![The browser showing up as a single MCP tool that an AI client can call](/images/make-your-own-headless-browser/mcp-tool.png)
 *One tool in the list — and every agent can reach the same logged-in browser.*
 
-## Was this hard? Honestly, no
+> See the [README.md](https://github.com/alnutile/browser/blob/main/mcp/README.md)
 
-I'm not going to pretend I hand-wrote every line of this. I described what I wanted — a browser on a server, keeps its login, gives me clean Markdown, locked behind a token, drivable two ways — and worked through it with AI doing the heavy building. My job was the judgment calls: *yes, put the profile on a Volume so it survives restarts. Yes, require a token. Give me a transcript so I can see what the agent did.*
+## Was this hard? Honestly, no
+I described what I wanted to Claude Code in Claude Desktop — a browser on a server, keeps its login, gives me clean Markdown, locked behind a token, drivable two ways — and worked through it with AI doing the heavy building. My job was the judgment calls: *yes, put the profile on a Volume so it survives restarts. Yes, require a token. Give me a transcript so I can see what the agent did.*
 
 The pieces underneath are all off-the-shelf and battle-tested — Playwright to drive the browser, a small web server to take the calls, Railway to host it with that bit of permanent disk. None of it is exotic. The "hard" part was really just deciding what I wanted it to be, and then wiring good parts together.
 
