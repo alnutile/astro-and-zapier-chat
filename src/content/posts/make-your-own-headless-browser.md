@@ -50,6 +50,9 @@ Three things make it genuinely useful instead of just a toy:
 **1. It stays logged in — even after a restart.**
 This was the part I cared about most. A browser normally forgets everything when it closes. So I have it save its "profile" — the cookies, the logged-in state — onto a little bit of permanent disk (a Volume, in Railway terms). When the server restarts, it reads that profile back and it's *still logged in.* No re-doing the login dance every time the thing reboots. The one trick that makes this work: shut the browser down gently on the way out, so it has a second to write that profile to disk before the process ends.
 
+![The Railway Volume mounted at /data, where the browser profile lives](/images/make-your-own-headless-browser/volume.png)
+*The little bit of permanent disk that keeps the login alive across restarts.*
+
 **2. It gives back clean Markdown, not a mess.**
 When you ask a page "what's on you?", you don't want the ads, the nav bars, the cookie banners, the footer with forty links. So it runs the page through reader-mode (the same idea as the "reading view" button in your browser), strips it down to the actual article, and converts it to tidy Markdown. That's the format AI models love. Point it at a cluttered page, get back the clean version.
 
@@ -62,7 +65,13 @@ This is the part I like, because it fits how I actually work.
 
 **Way one — spell out the steps.** When I know exactly what I want, I send an ordered list: *go here, type this in the search box, click the button, now give me the Markdown.* It runs them in order and reports back on each one. Predictable, boring, reliable — perfect for a task I do the same way every time.
 
+![A batch of browser actions sent in one call, with per-step results coming back](/images/make-your-own-headless-browser/actions.png)
+*A list of steps in — per-step results out.*
+
 **Way two — just say the goal.** When I *don't* want to think through every click, I send plain English: *"Go collect every product on this site, and paginate through all the pages."* Behind the scenes an AI loops on the browser — look at the page, decide the next move, do it, check again — until the job's done. Then it hands me the result *and* a transcript of everything it clicked, so I can see exactly what it did. That last part matters. I'm not blindly trusting it; I can audit the whole run.
+
+![A plain-English goal going in, and the transcript of every move the agent made coming back](/images/make-your-own-headless-browser/prompt-transcript.png)
+*Plain-English goal in — the final answer plus a transcript of every move it made.*
 
 Same little server. Same browser. Two gears — one for "I know the steps," one for "you figure it out."
 
@@ -81,6 +90,9 @@ So I wrap this browser as *one MCP tool.* And now?
 - Claude Desktop itself can reach out and pull a real page.
 
 ...all sharing **one browser that's already logged in to the sites I care about.** I build the browser once. Every AI I make after that just gets to "see the web" as a built-in ability. That's the leverage. That's why I bothered to make my own instead of renting one — a rented one is great, but *this* one snaps into everything else I'm building.
+
+![The browser showing up as a single MCP tool that an AI client can call](/images/make-your-own-headless-browser/mcp-tool.png)
+*One tool in the list — and every agent can reach the same logged-in browser.*
 
 ## Was this hard? Honestly, no
 
