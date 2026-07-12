@@ -32,6 +32,7 @@ export async function GET(context) {
     '## Optional',
     '',
     `- [Full text of every post](${site}/llms-full.txt): all post content concatenated in one file`,
+    'Every page also has a clean-markdown twin at the same path with a `.md` suffix (e.g. `/posts/<slug>.md`, `/about.md`, `/journal.md`), advertised on each page via `<link rel="alternate" type="text/markdown">`.',
     `- [RSS feed](${site}/rss.xml)`,
     '',
   ];
