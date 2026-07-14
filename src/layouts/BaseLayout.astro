@@ -12,6 +12,10 @@ interface Props {
   publishedDate?: Date;
   modifiedDate?: Date;
   author?: string;
+  /** Path to this page's clean-markdown twin, e.g. "/posts/foo.md". When set,
+   *  the page advertises it via <link rel="alternate" type="text/markdown">
+   *  so LLM agents can fetch the source markdown instead of the HTML. */
+  mdAlternate?: string;
 }
 
 const { 
@@ -21,10 +25,12 @@ const {
   type = "website",
   publishedDate,
   modifiedDate,
-  author = "Alfred Nutile"
+  author = "Alfred Nutile",
+  mdAlternate,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const mdAlternateURL = mdAlternate ? new URL(mdAlternate, Astro.site) : null;
 const ogImageURL = image.startsWith('/') ? new URL(image, Astro.site) : image;
 const siteName = "DailyAi - Alfred Nutile";
 
@@ -103,6 +109,9 @@ const jsonLD = type === 'article' && jsonLDArticle ? jsonLDArticle : jsonLDWebsi
     <meta name="description" content={description} />
     <meta name="author" content={author} />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Markdown twin for LLM/agent consumption (llmstxt.org convention) -->
+    {mdAlternateURL && <link rel="alternate" type="text/markdown" href={mdAlternateURL} title={`${title} (Markdown)`} />}
 
     <!-- Aktivieren der View Transitions -->
     <ClientRouter />
