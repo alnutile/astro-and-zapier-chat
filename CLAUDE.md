@@ -45,6 +45,15 @@ Implications when editing posts:
 
 > The old Zapier Table sync (`astro-ai-chat - knowledge source`, documented in [docs/zap-knowledge-source-sync.md](docs/zap-knowledge-source-sync.md)) has been **retired** — it cost too much. That doc is kept for historical reference only; the Zap/Table are no longer live.
 
+## Writing voice for posts
+
+Posts are written in Alfred's first-person practitioner voice — plain-spoken, concrete, no hype. When drafting or editing a post, follow the `alfred-nutile-voice-style` skill. The single most important rule, because it's what most often makes a draft "sound nothing like me":
+
+- **No fake feelings.** Never invent an emotional or sensory reaction Alfred didn't have — no "I actually laughed," "my jaw dropped," "I was blown away," "the part that made me grin," "I'm so proud of this." A real thing that happened ("it cost me an afternoon of debugging") is fine; a manufactured mood is not.
+- **No reader-commanding tics:** "Read that again," "Stay with me," "Think about what that means," "Let that sink in," "Hold that thought."
+- **No clichés:** "boil the ocean," "roach motel," "changes the game," "secret sauce."
+- **Don't flatten his real conventions.** The `**TLDR:**` callout and genuine enthusiasm tied to a real event are his voice, not AI drift — leave them.
+
 ## Deployment
 
 Railway serves the prebuilt static output via `npm start` (`astro preview`). The Vite preview server allow-lists `.dailyai.studio` so Railway preview domains work — keep this in [astro.config.mjs](astro.config.mjs) `vite.preview.allowedHosts` if changing host config.
