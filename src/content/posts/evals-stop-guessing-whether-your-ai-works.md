@@ -105,7 +105,7 @@ member questions using ONLY the schedule in club-data.csv.
    until everything passes.
 ```
 
-Read that "Rules" section again. That's my rubric — my definition of "good," written down before a single test exists. That's the part only I can write, because I'm the one who knows the schedule has a dozen open-play sessions and that members hate long-winded bots.
+That "Rules" section is my rubric — my definition of "good," written down before a single test exists. That's the part only I can write, because I'm the one who knows the schedule has a dozen open-play sessions and that members hate long-winded bots.
 
 ### Step 3: The entire prompt I typed
 
@@ -148,7 +148,7 @@ defaultTest:
         long list or a big table.
 ```
 
-That `llm-rubric` bit just means "have the judge grade this answer against my instructions." Read it out loud — it's a sentence. It came straight out of my spec.
+That `llm-rubric` bit just means "have the judge grade this answer against my instructions." It's basically a plain sentence. It came straight out of my spec.
 
 ### Step 5: Run it — and the first thing that happened
 
@@ -166,7 +166,7 @@ Credits restored, I ran it again. Claude Code asked if I wanted the interactive 
 
 !["Want me to open the interactive web report?" — um, yes](/images/evals-stop-guessing-whether-your-ai-works/promptfoo-open.png)
 
-And this is the part that made me grin. Promptfoo has a little local dashboard — it opens in your browser, right on your machine — showing every question, every answer, and every grade:
+And this is the part I like. Promptfoo has a little local dashboard — it opens in your browser, right on your machine — showing every question, every answer, and every grade:
 
 ![The promptfoo report — 14 of 14 passing in 16 seconds](/images/evals-stop-guessing-whether-your-ai-works/promptfoo-ui.png)
 
@@ -272,7 +272,7 @@ Eagle-eyed readers will spot that's a *bigger* Gemma (a 12B) in the window — b
 
 ### But can you trust a tiny free judge?
 
-Fair question — and this is my favorite moment of the whole demo. Before trusting the little local model, Claude Code ran what it called a **negative control**: it fed the judge a *deliberately wrong* answer. Wrong classification ("know" when the truth was "delete"), a bogus reply-to, an invented phone number. If the judge is doing its job, it has to fail that garbage.
+Fair question — and it's worth slowing down on. Before trusting the little local model, Claude Code ran what it called a **negative control**: it fed the judge a *deliberately wrong* answer. Wrong classification ("know" when the truth was "delete"), a bogus reply-to, an invented phone number. If the judge is doing its job, it has to fail that garbage.
 
 It failed it — with the correct reason:
 
@@ -315,7 +315,7 @@ I'm still figuring plenty of this out myself, honestly. But that shift — from 
 
 ## Your ten-minute start
 
-You don't need to boil the ocean. Here's the whole first step:
+You don't need to do all of this at once. Here's the whole first step:
 
 1. Pick one AI thing you've built that "mostly works."
 2. Open a blank file and write the brief: what's the goal, what data is it allowed to use, and — in plain English — what does a good answer look like? What should it never do?
