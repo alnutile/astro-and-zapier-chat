@@ -12,9 +12,9 @@ I built my first app that really leans on Supabase edge functions instead of sta
 
 If you haven't used them: an edge function is just a small piece of server code that runs close to your users, on demand. You don't manage a server. You don't keep a process running. You drop a folder of code and Supabase hands it a URL.
 
-That's the part that got me. **Each folder *is* a route.** No Express app. No route table. No middleware chain to wire up. I've got about two dozen of these little functions — `chat`, `webhook`, `scheduler`, `mcp`, `run-tool` — and every one is just a folder that turned into a working endpoint.
+That's the shift. **Each folder *is* a route.** No Express app. No route table. No middleware chain to wire up. I've got about two dozen of these little functions — `chat`, `webhook`, `scheduler`, `mcp`, `run-tool` — and every one is just a folder that turned into a working endpoint.
 
-First time it clicked I actually laughed. All that routing code I've written over the years — gone. It's a directory now.
+All that routing code I've written over the years — the route tables, the middleware wiring — it's a directory now.
 
 ## The wall I keep hitting
 
@@ -71,7 +71,7 @@ So the most dangerous part of any multi-user app is mostly not my code anymore. 
 
 ## The pattern that paid off the most
 
-Here's the part I'm actually proud of, because it transfers to any project.
+Here's the part that transfers to any project.
 
 The functions are thin. The real app lives in shared modules — write-once pieces of logic every function reuses. One place that runs a "tool." One place that screens a message for prompt-injection. One place that loads context for the AI. Written once.
 
