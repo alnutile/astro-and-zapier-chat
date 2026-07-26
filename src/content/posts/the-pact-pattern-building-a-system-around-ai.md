@@ -36,7 +36,7 @@ The person closest to the problem usually already knows the Project. They just n
  
 Artifacts are the stuff the work produces. Meeting notes. A draft quote. A Google Doc. A spec. The actual output you can point at and say "that's what we made."
  
-Here's where AI changes how this works. In the old way, artifacts lived in your head or scattered across ten apps. Now the AI can generate them, save them, and hand them back to you later.
+Here's where AI quietly changes the game. In the old way, artifacts lived in your head or scattered across ten apps. Now the AI can generate them, save them, and hand them back to you later.
  
 In one of my projects the AI took raw meeting notes and turned them into a clean, structured doc - then saved it to Google Drive and linked it right back to the Project. Next week I didn't have to remember any of it. I just opened the Project and there it was.
  

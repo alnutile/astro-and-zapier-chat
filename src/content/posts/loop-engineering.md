@@ -59,7 +59,7 @@ The numbers are wild — one kernel ended up **339× faster** — but the speedu
 
 1. **The loop crushed the one-shot.** Asking a model to just spit out optimized code "struggles to guarantee correctness." The loop got a 2.66× average speedup on a single run, 3.54× if you ran it five times and kept the best — and it beat the hand-built state-of-the-art optimizer on a lot of cases.
 2. **It worked across every model they tried — including the cheap, local ones.** This is the part I want to be careful about, because it's easy to misread. The single *best* result came from a frontier cloud model. But open models you can run yourself — llama3.3, qwen2.5-coder, gemma3, qwq — landed right up near it once they were in the loop. So the headline isn't "use cheap models." It's "the loop lifts whatever model you give it," and *that's* what makes cheap models a real option.
-3. **They named the cost risk out loud.** Sometimes the model wouldn't stop, kept iterating, and burned money for no gain. Their words: it shows "the importance of restricting the number of interactions." Cap your loops.
+3. **They named the cost risk out loud.** Sometimes the model wouldn't stop, kept iterating, and burned money for no gain. Their words: it shows "the importance of restricting the number of interactions." Cap your loops. Hold that thought.
 
 If you only take one sentence from the paper, take this one:
 
