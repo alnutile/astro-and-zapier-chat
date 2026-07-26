@@ -47,7 +47,7 @@ Implications when editing posts:
 
 ## Writing voice for posts
 
-Posts are written in Alfred's first-person practitioner voice — plain-spoken, concrete, no hype. When drafting or editing a post, follow the `alfred-nutile-voice-style` skill. The single most important rule, because it's what most often makes a draft "sound nothing like me":
+Posts are written in Alfred's first-person practitioner voice — plain-spoken, concrete, no hype. When drafting or editing a post, follow the `alfred-nutile-voice-style` skill. For technical build write-ups and tutorials specifically — anything teaching a developer to build the thing — also follow the `alfred-technical-writing-voice` skill ([.claude/skills/alfred-technical-writing-voice/SKILL.md](.claude/skills/alfred-technical-writing-voice/SKILL.md)): first-person from the trenches, honest about struggle, "let's break it down" pacing over real code, `> NOTE:` asides, real examples (never `foo`/`bar`), and the payoff-first teaching arc. The single most important rule, because it's what most often makes a draft "sound nothing like me":
 
 - **No fake feelings.** Never invent an emotional or sensory reaction Alfred didn't have — no "I actually laughed," "my jaw dropped," "I was blown away," "the part that made me grin," "I'm so proud of this." A real thing that happened ("it cost me an afternoon of debugging") is fine; a manufactured mood is not.
 - **No reader-commanding tics:** "Read that again," "Stay with me," "Think about what that means," "Let that sink in," "Hold that thought."

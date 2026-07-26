@@ -65,6 +65,8 @@ Supabase does it completely differently, with something called **Row-Level Secur
 
 So the most dangerous part of any multi-user app is mostly not my code anymore. It's a rule the database won't let me break.
 
+> NOTE: One gotcha worth saying out loud — Row-Level Security only guards a table once you actually *turn it on*. A table with RLS off is wide open to anyone with your public key. Enabling it is per-table and on you, so the move is: new table, first thing, switch RLS on and write the rule. Forget one and that table has no bouncer at all.
+
 > 🎨 **IMAGE HERE — "the database is the bouncer."**
 > A simple diagram: a browser and an edge function both firing queries at a Postgres database. In front of the database sits a gate/shield labeled **"Row-Level Security"** that filters rows before anything comes back — show one private row visibly blocked at the gate.
 > **Generation prompt:** *"Flat minimal vector diagram, light/dark friendly. Left: a browser icon and a server/function icon, both sending arrows toward a database on the right. Between them a shield labeled 'Row-Level Security' acting as a gate — green rows pass through, one red 'private' row is stopped. Clean, 2 accent colors, clearly labeled."*
@@ -75,7 +77,7 @@ Here's the part that transfers to any project.
 
 The functions are thin. The real app lives in shared modules — write-once pieces of logic every function reuses. One place that runs a "tool." One place that screens a message for prompt-injection. One place that loads context for the AI. Written once.
 
-And then something great happened. That same tool code is available to the in-app chat, and to an outside AI connecting over MCP, and to plain REST callers, and to webhooks, and to scheduled jobs. All of them run through the same shared code.
+And here's where it compounds. That same tool code is available to the in-app chat, and to an outside AI connecting over MCP, and to plain REST callers, and to webhooks, and to scheduled jobs. All of them run through the same shared code.
 
 So I built the capability once and got five ways to use it, for free. Build five separate services instead and you're maintaining five copies of that logic — and fixing every bug five times.
 
