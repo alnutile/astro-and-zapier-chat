@@ -49,11 +49,21 @@ Implications when editing posts:
 
 Posts are written in Alfred's first-person practitioner voice — plain-spoken, concrete, no hype. When drafting or editing a post, follow the `alfred-nutile-voice-style` skill. For technical build write-ups and tutorials specifically — anything teaching a developer to build the thing — also follow the `alfred-technical-writing-voice` skill ([.claude/skills/alfred-technical-writing-voice/SKILL.md](.claude/skills/alfred-technical-writing-voice/SKILL.md)): first-person from the trenches, honest about struggle, "let's break it down" pacing over real code, `> NOTE:` asides, real examples (never `foo`/`bar`), and the payoff-first teaching arc. The single most important rule, because it's what most often makes a draft "sound nothing like me":
 
-- **No fake feelings — including the subtle, section-framing kind.** Never invent an emotional reaction Alfred didn't have. Beyond the obvious ("I was blown away," "my jaw dropped," "I'm so proud of this"), this covers the LinkedIn-flavored glue that's harder to spot and just as wrong: "the part I was so worried about," "the scary part of…," "here's the fun part," "that's the part that flips it for me," "and then something great happened." A post — especially a technical review — is analysis (tools, trade-offs, build patterns), not a feelings arc. State the point plainly. A real, specific fact ("migration numbering must be contiguous or the deploy is rejected") is fine; a manufactured mood or dramatized struggle is not. Genuine enthusiasm tied to a real event is fine and rare.
+- **No fake feelings — including the subtle, section-framing kind.** Never invent an emotional reaction Alfred didn't have. Beyond the obvious ("I was blown away," "my jaw dropped," "I'm so proud of this"), this covers the LinkedIn-flavored glue that's harder to spot and just as wrong: "the part I was so worried about," "the scary part of…," "here's the fun part," "that's the part that flips it for me," "the honest mess of running it for real," "it's not always clean," "and then something great happened." Don't editorialize his work as a confession, either — report what happened plainly. A post — especially a technical review — is analysis (tools, trade-offs, build patterns), not a feelings arc. State the point plainly. A real, specific fact ("migration numbering must be contiguous or the deploy is rejected") is fine; a manufactured mood or dramatized struggle is not. Genuine enthusiasm tied to a real event is fine and rare.
 - **No condescension or spoon-feeding.** The audience is technical/curious builders who want to know how to build, choose tools, and use AI — not beginners to manage. Don't tell the reader what to notice ("Look down that column," "Notice how…," "See what happened?"), don't re-explain the obvious, don't lecture or throat-clear ("Here's the thing about any real app…"). One-clause jargon glosses are fine; otherwise assume intelligence. Write to a peer.
 - **No reader-commanding tics:** "Read that again," "Stay with me," "Think about what that means," "Let that sink in," "Hold that thought."
 - **No clichés:** "boil the ocean," "roach motel," "changes the game," "secret sauce."
 - **Don't flatten his real conventions.** The `**TLDR:**` callout and genuine enthusiasm tied to a real event are his voice, not AI drift — leave them.
+
+## Post FAQ pattern
+
+Every substantive post gets a `faq:` block in its frontmatter — a short list of `question`/`answer` pairs drawn from what the post actually covers. It renders a visible FAQ section on the page **and** emits `FAQPage` JSON-LD, which AI answer engines pull into "how do I…" results (good for GEO). The field is defined in [src/content.config.ts](src/content.config.ts) as an optional `[{question, answer}]`.
+
+- Keep questions and answers as **plain prose** — the structured data must match the visible on-page text, so no markdown or links inside answers.
+- Pull ~4–6 questions from what the post genuinely supports; don't invent Q&A the post doesn't back up.
+- The same voice rules apply, though FAQ answers lean neutral and factual.
+
+Copy the shape from [my-first-real-edge-functions-app.md](src/content/posts/my-first-real-edge-functions-app.md) or [evals-stop-guessing-whether-your-ai-works.md](src/content/posts/evals-stop-guessing-whether-your-ai-works.md).
 
 ## Deployment
 
