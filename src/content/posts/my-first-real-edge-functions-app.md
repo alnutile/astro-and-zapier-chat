@@ -1,8 +1,8 @@
 ---
-title: "My First Real App on Supabase Edge Functions"
+title: "Thoughts on using Supabase Edge Functions in SupaNet.io"
 date: 2026-07-25
 excerpt: "I built SupaNet.io heavily on Supabase edge functions instead of building a backend from scratch. A review from actually shipping on it: what the platform handles, the build pattern that mattered most, and the trade-offs. Not a tutorial."
-image: "/images/edge-functions/cover.png"
+image: "/images/edge-functions/cover.jpeg"
 tags: ["supabase", "edge-functions", "vibe-coding"]
 draft: false
 faq:
