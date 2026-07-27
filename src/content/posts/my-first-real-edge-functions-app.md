@@ -80,7 +80,7 @@ That's what makes new surfaces cheap. The same tool code runs from the in-app ch
 
 The tell for this style is the shape of the tree: a small `functions/` folder, a large shared-logic folder. When it inverts — functions each re-implementing routing and validation — you're working against the platform. Mine holds except for one function, the MCP server at ~2,200 lines, which is where the discipline broke down.
 
-!["MCP"](/images/edge-functions/mcp.png)
+!["MCP"](/images/edge-functions/mcp.jpeg)
 
 ## Trade-offs
 
