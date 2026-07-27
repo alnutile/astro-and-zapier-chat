@@ -205,6 +205,38 @@
     padding: 0;
   }
 
+  /* Tables — bordered, hard-edged, shaded header; scroll on narrow screens */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--border-thin);
+    margin: var(--space-md) 0;
+    font-size: 0.9em;
+    line-height: 1.5;
+    box-shadow: var(--shadow-sm);
+    /* display:block enables horizontal scroll if a table is wider than the
+     * column on small screens; internal rows/cells keep their table layout */
+    display: block;
+    overflow-x: auto;
+  }
+
+  th, td {
+    border: var(--border-thin);
+    padding: var(--space-xs) var(--space-sm);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    background: var(--color-surface-container);
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--color-surface-container-low);
+  }
+
   /* Images — hard border, no rounding */
   img {
     border-radius: 0;

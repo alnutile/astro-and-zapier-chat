@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<!-- saved from url=(0253)https://70475eb1-b46d-45b1-8fdd-978edf224d77.frame.claudeusercontent.com/_f/1783713592-9113/?__frame_t=Sp4QYUIbxG2gGlvEV26dnXp0.7daeb4b4-a2ed-48ac-a6aa-8ddb23b69e87.b2828932-22fe-42eb-9350-55ef62b380e1.1783717214&__frame_v=manifest.f241257c10c35d5c.json -->
+<html class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- frame-runtime --><!--<base href="/_f/1783713592-9113/">--><base href="."><script>window.__FRAME_PREAMBLE={"capabilities":{"downloads":"downloads.DUzXFHNF.js","mcp":"mcp.BQqQVVN_.js","self":"self.DqF_PxOe.js"},"transforms":"_transforms.DYk1Ltlh.js"}</script><script>(function(){"use strict";const X="modulepreload",Y=function(e){return"/"+e},Z={},U=function(t,n,u){let o=Promise.resolve();function i(f){const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=f,window.dispatchEvent(a),!a.defaultPrevented)throw f}return o.then(f=>{for(const a of f||[])a.status==="rejected"&&i(a.reason);return t().catch(i)})},D=["light","dark","system"];function $(e){if(e==null||typeof e!="object")return!1;const t=e.__frame_init;return t!=null&&typeof t=="object"}function q(e){if(e==null||typeof e!="object")return!1;const t=e.__frame_theme;if(t==null||typeof t!="object")return!1;const n=t.theme;return typeof n=="string"&&D.includes(n)}function M(e){if(window===top||e.type==="auxclick"&&e.button!==1)return;const t=e.composedPath?e.composedPath():[e.target];let n=null;for(let f=0;f<t.length;f++){const a=t[f];if(a&&a.matches&&a.matches("a[href],area[href]")){n=a;break}}if(!n&&e.target&&e.target.closest&&(n=e.target.closest("a[href],area[href]")),!n)return;const u=n.getAttribute("href");if(!u)return;let o,i;try{o=new URL(u,document.baseURI),i=new URL(document.baseURI).origin}catch{return}(o.protocol==="http:"||o.protocol==="https:")&&o.origin!==i&&(e.preventDefault(),parent.postMessage({__frame_nav:!0,url:o.href},"*"))}const L={};function y(e){if(window===top)return;const t=Date.now();t-(L[e]||0)<500||(L[e]=t,parent.postMessage({__frame_engaged:!0,kind:e},"*"))}const F=2e3,T=["wheel","touchstart","touchmove","keydown","pointerdown"];let k=0;function B(e){e.isTrusted&&(k=Date.now())}function z(){addEventListener("click",M,!0),addEventListener("auxclick",M,!0)}function W(){for(let e=0;e<T.length;e++)addEventListener(T[e],B,{capture:!0,passive:!0});addEventListener("scroll",e=>{e.isTrusted&&Date.now()-k<F&&y("scroll")},{capture:!0,passive:!0}),addEventListener("pointermove",e=>{e.isTrusted&&y("pointer")},{capture:!0,passive:!0}),addEventListener("click",e=>{e.isTrusted&&y("click")},{capture:!0,passive:!0})}function x(e,t,n){const u=[...t.values()].filter(o=>o.targets.some(i=>i.startsWith(e+".")));return{wrap(o,i){const f=`${e}.${o}`,a=u.filter(s=>s.targets.includes(f));return a.length===0?(...s)=>{try{return i(...s)}catch(d){return Promise.reject(d)}}:(...s)=>{let d=s;for(const c of a){const l=c.module.parameters;if(l)try{d=l(d)}catch{return Promise.reject({code:"transform_error",id:c.id,scope:e,message:"parameters transform failed"})}}let m;try{m=i(...d)}catch(c){m=Promise.reject(c)}return m.then(c=>{for(let l=a.length-1;l>=0;l--){const h=a[l],p=h.module.returns;if(p)try{c=p(c)}catch{return n({id:h.id,scope:e,leg:"returns"}),c}}return c},c=>{for(let l=a.length-1;l>=0;l--){const h=a[l],p=h.module.throws;if(p)try{c=p(c)}catch{return n({id:h.id,scope:e,leg:"throws"}),Promise.reject(c)}}return Promise.reject(c)})}}}}function H(e,t,n,u=()=>{}){const o=new Set(e.changes??[]),i=new Map;for(const f of o){const a=t[f];a&&i.set(f,a)}return{contract:e.contract,changes:o,flags:new Set(e.flags??[]),capabilities:e.capabilities??{},transforms:i,shellOrigin:n.shellOrigin,mount:n.mount,pipe:f=>x(f,i,u)}}(function(){const e=Object.defineProperty,t=globalThis,n=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let u=0;for(let o=0;o<n.length;o++){const i=n[o];try{e(t,i,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[i]}catch{}try{e(t,i,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[i]=="function"&&u++}if(u&&window!==top)try{parent.postMessage({__frame_rtc_lockdown_failed:u},"*")}catch{}})();const K=1e4,G=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function J(e){for(const t of G)if(t.endsWith(":*"))try{const n=new URL(e);if(`${n.protocol}//${n.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}const w=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities??{}}),E=window.__FRAME_PREAMBLE?.transforms,C=/^[\w.-]+\.js$/,V=/^[a-z][a-z0-9_-]{0,63}$/;let A=null,g=null;function P(e,t,n){try{Object.defineProperty(e,t,{value:n,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:n,writable:!1,configurable:!0,enumerable:!0})}catch{}}}let R=!1;function N(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,R=!0):R&&(delete t.dataset.theme,t.style.colorScheme="",R=!1)}const _=new Map;function Q(e,t){const n=_.get(e);if(!n)return;Object.assign(n.impl,t),n.impl.__settled=()=>Promise.reject({code:"capability_removed",message:`${e}: method not in this runtime`});const u=n.queue;n.queue=[];for(const o of u){const i=t[o.method];i?i(...o.args).then(o.resolve,o.reject):o.reject({code:"capability_removed",message:`${e}.${o.method} is not in this runtime`})}}function O(e,t){const n=_.get(e);if(!n)return;n.impl.__settled=()=>Promise.reject(t);const u=n.queue;n.queue=[];for(const o of u)o.reject(t)}const j=Object.getOwnPropertyDescriptor(window,"claude");if(window!==top&&!(j&&j.writable===!1)){z(),W();const e=j?.value??{};P(window,"claude",e);const t=s=>{const d={impl:Object.create(null),queue:[]};_.set(s,d);const m=new Proxy(d.impl,{get:(c,l)=>{if(typeof l=="string"&&!(l==="then"||l==="toJSON"||l==="valueOf"))return l==="toString"?Object.prototype.toString:(...h)=>{const p=c[l]??c.__settled;return p?p(...h):new Promise((b,S)=>{d.queue.push({method:l,args:h,resolve:b,reject:S})})}},set:()=>!1});P(e,s,m)};for(const s of Object.keys(w)){if(e[s]!==void 0){P(e,s,e[s]);continue}t(s)}let n=null,u=null,o=0;const i=s=>{s.source!==parent||!J(s.origin)||$(s.data)&&(n=s.data.__frame_init,g=s.origin,removeEventListener("message",i),clearTimeout(o),u?.())};addEventListener("message",i),parent.postMessage({__frame_connect:!0},"*");const f=new Promise(s=>{u=s,o=setTimeout(()=>{removeEventListener("message",i),s()},K)}),a=document.readyState==="loading"?new Promise(s=>document.addEventListener("DOMContentLoaded",()=>s(),{once:!0})):Promise.resolve();f.then(async()=>{if(!n||!g){for(const r of _.keys())O(r,{code:"not_granted",message:"frame initialization did not arrive - capability unavailable"});return}N(n.theme);const s=g;addEventListener("message",r=>{r.source!==parent||r.origin!==s||q(r.data)&&N(r.data.__frame_theme.theme)});const d=r=>U(()=>import("/_runtime/"+r),void 0),m=Object.keys(n.capabilities??{});for(const r of m)Object.hasOwn(w,r)||V.test(r)&&e[r]===void 0&&(t(r),O(r,{code:"capability_disabled",message:"capability not in this runtime generation"}));const c=m.filter(r=>Object.hasOwn(w,r)).map(r=>[r,w[r]]).filter(r=>typeof r[1]=="string"&&C.test(r[1])),[l,...h]=await Promise.allSettled([E&&C.test(E)?d(E):Promise.resolve({}),...c.map(([,r])=>d(r))]),p=g;A=H(n,l.status==="fulfilled"&&l.value?.TRANSFORMS||{},{shellOrigin:p,mount:Q},r=>parent.postMessage({__frame_cap_telemetry:r},p));const b=r=>parent.postMessage({__frame_cap_telemetry:{kind:"cap-load-error",cap:r}},p),S=A;h.forEach((r,v)=>{const I=c[v][0];if(r.status!=="fulfilled"){b(I);return}try{r.value?.install?.(S)}catch{b(I)}});for(const[r,v]of _)v.queue.length===0&&Object.keys(v.impl).length>0||O(r,{code:m.includes(r)?"capability_disabled":"not_granted",message:"capability not available in this session"});await a,parent.postMessage({__frame_ready:!0},g)})}})();</script><!-- /frame-runtime --><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>Dink City Pickleball — Chatbot Test &amp; Evaluation Report</title>
+<style>
+  :root {
+    /* light (default) — cool, green-biased neutrals */
+    --paper:      #F1F4F1;
+    --surface:    #FFFFFF;
+    --surface-2:  #E8EEE9;
+    --ink:        #14211D;
+    --ink-soft:   #52615A;
+    --ink-faint:  #7C8A82;
+    --line:       #D6DFD9;
+    --court:      #0E3A34;   /* hero ground (stable across themes) */
+    --court-ink:  #EAF3EC;   /* text on court */
+    --court-soft: #8FB3AB;   /* muted text on court */
+    --accent:     #9AC70E;   /* optic ball — for fills on dark grounds */
+    --accent-ink: #5C7A06;   /* readable lime text on light */
+    --pass-bg:    #E1F0E8;
+    --pass-ink:   #17694A;
+    --clay-bg:    #F3E7DB;
+    --clay-ink:   #A25A25;
+    --shadow:     0 1px 2px rgba(20,33,29,.05), 0 12px 30px -18px rgba(14,58,52,.28);
+
+    --font-display: "Avenir Next Condensed", "Saira Condensed", "Arial Narrow", "Helvetica Neue", system-ui, sans-serif;
+    --font-body: Charter, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --font-mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+    --measure: 62ch;
+    --wrap: 1080px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #0B1714;
+      --surface:    #10201B;
+      --surface-2:  #16281F;
+      --ink:        #E9EFEA;
+      --ink-soft:   #9BB0A7;
+      --ink-faint:  #6F857B;
+      --line:       #223429;
+      --court:      #0B302B;
+      --court-ink:  #EAF3EC;
+      --court-soft: #7FA69D;
+      --accent:     #C2EA3E;
+      --accent-ink: #C2EA3E;
+      --pass-bg:    #12352A;
+      --pass-ink:   #86DEB0;
+      --clay-bg:    #2B2015;
+      --clay-ink:   #D89158;
+      --shadow:     0 1px 2px rgba(0,0,0,.3), 0 18px 40px -22px rgba(0,0,0,.7);
+    }
+  }
+  /* explicit toggle overrides — must win both directions */
+  :root[data-theme="light"] {
+    --paper:#F1F4F1; --surface:#FFFFFF; --surface-2:#E8EEE9; --ink:#14211D;
+    --ink-soft:#52615A; --ink-faint:#7C8A82; --line:#D6DFD9; --court:#0E3A34;
+    --court-ink:#EAF3EC; --court-soft:#8FB3AB; --accent:#9AC70E; --accent-ink:#5C7A06;
+    --pass-bg:#E1F0E8; --pass-ink:#17694A; --clay-bg:#F3E7DB; --clay-ink:#A25A25;
+    --shadow:0 1px 2px rgba(20,33,29,.05), 0 12px 30px -18px rgba(14,58,52,.28);
+  }
+  :root[data-theme="dark"] {
+    --paper:#0B1714; --surface:#10201B; --surface-2:#16281F; --ink:#E9EFEA;
+    --ink-soft:#9BB0A7; --ink-faint:#6F857B; --line:#223429; --court:#0B302B;
+    --court-ink:#EAF3EC; --court-soft:#7FA69D; --accent:#C2EA3E; --accent-ink:#C2EA3E;
+    --pass-bg:#12352A; --pass-ink:#86DEB0; --clay-bg:#2B2015; --clay-ink:#D89158;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 18px 40px -22px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: .01em; }
+  p { margin: 0; }
+  .prose { max-width: var(--measure); }
+  .prose + .prose { margin-top: 1rem; }
+
+  .kicker {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    font-size: .78rem;
+    color: var(--accent-ink);
+  }
+  .kicker.on-court { color: var(--accent); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background: var(--court);
+    color: var(--court-ink);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .hero__court {
+    position: absolute;
+    top: 50%; right: -6%;
+    width: min(58vw, 640px);
+    transform: translateY(-50%) rotate(-9deg);
+    opacity: .16;
+    pointer-events: none;
+  }
+  .hero__court line, .hero__court rect { stroke: var(--accent); stroke-width: 2; fill: none; }
+  .hero .wrap { position: relative; z-index: 1; padding-top: clamp(3rem, 7vw, 5.5rem); padding-bottom: clamp(3rem, 7vw, 5rem); }
+  .hero__grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  @media (max-width: 760px) { .hero__grid { grid-template-columns: 1fr; } }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6.4vw, 4.6rem);
+    line-height: .96;
+    letter-spacing: -0.005em;
+    margin: 1.1rem 0 1.2rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero__lede { color: var(--court-soft); max-width: 46ch; font-size: 1.08rem; }
+  .hero__meta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1.4rem 2.2rem; }
+  .hero__meta div { display: flex; flex-direction: column; gap: .15rem; }
+  .hero__meta dt { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .14em; font-size: .68rem; color: var(--court-soft); }
+  .hero__meta dd { margin: 0; font-family: var(--font-mono); font-size: .9rem; color: var(--court-ink); }
+
+  /* scoreboard */
+  .board {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 4px;
+    padding: clamp(1.4rem, 3vw, 2rem);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .board__label { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .16em; font-size: .74rem; color: var(--court-soft); }
+  .board__score {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: .9;
+    font-size: clamp(4.5rem, 15vw, 7.5rem);
+    letter-spacing: -0.02em;
+    display: flex; align-items: baseline; gap: .05em;
+    margin: .3rem 0 .1rem;
+  }
+  .board__score .num { color: var(--accent); }
+  .board__score .den { color: var(--court-soft); font-size: .5em; }
+  .board__sub { color: var(--court-soft); font-family: var(--font-mono); font-size: .82rem; }
+  .meter { height: 8px; border-radius: 99px; background: rgba(255,255,255,.1); margin: 1.1rem 0 1.2rem; overflow: hidden; }
+  .meter > i { display: block; height: 100%; width: 100%; background: var(--accent); border-radius: inherit; transform-origin: left; }
+  .board__stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: .8rem; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.1rem; }
+  .board__stats div { display: flex; flex-direction: column; }
+  .board__stats b { font-family: var(--font-display); font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+  .board__stats span { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .12em; font-size: .64rem; color: var(--court-soft); }
+
+  /* ---------- sections ---------- */
+  .section { padding-block: clamp(3rem, 6.5vw, 5rem); border-bottom: 1px solid var(--line); }
+  .section__head { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 2.2rem; max-width: var(--measure); }
+  .section__head h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); line-height: 1.02; }
+
+  /* cards grid */
+  .grid { display: grid; gap: 1rem; }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 820px) { .grid.cols-3, .grid.cols-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.4rem 1.4rem 1.5rem;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: .55rem;
+  }
+  .card h3 { font-size: 1.18rem; }
+  .card p { color: var(--ink-soft); font-size: .98rem; line-height: 1.5; }
+  .card__tag { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .14em; font-size: .68rem; color: var(--ink-faint); }
+  .card__tag .n { color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+
+  .rule { border-top: 3px solid var(--accent); }
+
+  /* pass chip */
+  .chip {
+    display: inline-flex; align-items: center; gap: .4em;
+    font-family: var(--font-sans); font-weight: 600;
+    font-size: .72rem; letter-spacing: .04em; text-transform: uppercase;
+    padding: .28em .7em; border-radius: 99px;
+    background: var(--pass-bg); color: var(--pass-ink);
+    white-space: nowrap;
+  }
+  .chip .dot { width: .5em; height: .5em; border-radius: 50%; background: currentColor; }
+
+  /* flow diagram */
+  .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; align-items: stretch; }
+  @media (max-width: 780px) { .flow { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 420px) { .flow { grid-template-columns: 1fr; } }
+  .step {
+    position: relative;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1.15rem 1.1rem; display: flex; flex-direction: column; gap: .45rem;
+  }
+  .step .n { font-family: var(--font-display); font-variant-numeric: tabular-nums; font-size: .72rem; letter-spacing: .14em; color: var(--accent-ink); text-transform: uppercase; }
+  .step h4 { margin: 0; font-family: var(--font-display); font-size: 1.05rem; }
+  .step p { margin: 0; font-size: .9rem; color: var(--ink-soft); line-height: 1.45; }
+  .step code { font-family: var(--font-mono); font-size: .82rem; color: var(--ink); background: var(--surface-2); padding: .05em .35em; border-radius: 3px; }
+
+  .note {
+    margin-top: 1.4rem; background: var(--surface-2); border-radius: 4px;
+    padding: 1.2rem 1.35rem; display: flex; gap: .9rem; align-items: flex-start;
+    border: 1px solid var(--line);
+  }
+  .note .bar { flex: 0 0 3px; align-self: stretch; background: var(--accent); border-radius: 3px; }
+  .note p { color: var(--ink-soft); font-size: .96rem; }
+  .note b { color: var(--ink); font-weight: 600; }
+
+  /* table */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); box-shadow: var(--shadow); }
+  table.roster { width: 100%; min-width: 640px; border-collapse: collapse; font-family: var(--font-sans); }
+  table.roster th, table.roster td { text-align: left; padding: .85rem 1.1rem; vertical-align: top; }
+  table.roster thead th {
+    font-family: var(--font-display); text-transform: uppercase; letter-spacing: .12em;
+    font-size: .68rem; color: var(--ink-faint); border-bottom: 1px solid var(--line); font-weight: 600;
+  }
+  table.roster tbody td { border-top: 1px solid var(--line); font-size: .92rem; }
+  table.roster tbody td.q { color: var(--ink); font-weight: 500; }
+  table.roster tbody td.check { color: var(--ink-soft); }
+  table.roster tbody td.res { text-align: right; white-space: nowrap; }
+  tr.cat td {
+    background: var(--surface-2);
+    font-family: var(--font-display); text-transform: uppercase; letter-spacing: .12em;
+    font-size: .72rem; color: var(--ink); font-weight: 600;
+    border-top: 1px solid var(--line);
+  }
+  tr.cat td .count { color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+  /* quotes */
+  .qa { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  @media (max-width: 720px) { .qa { grid-template-columns: 1fr; } }
+  .bubble {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1.3rem 1.4rem; display: flex; flex-direction: column; gap: .8rem; box-shadow: var(--shadow);
+  }
+  .bubble .ask { display: flex; gap: .6rem; align-items: baseline; }
+  .bubble .ask .who { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .12em; font-size: .64rem; color: var(--ink-faint); flex: 0 0 auto; padding-top: .15rem; }
+  .bubble .ask q { font-weight: 600; color: var(--ink); font-size: 1.02rem; quotes: "“" "”"; }
+  .bubble .say { border-top: 1px dashed var(--line); padding-top: .8rem; color: var(--ink-soft); font-size: .98rem; line-height: 1.5; }
+  .bubble .say .who { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .12em; font-size: .64rem; color: var(--accent-ink); display: block; margin-bottom: .3rem; }
+  .bubble__foot { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+  .bubble__cat { font-family: var(--font-sans); font-size: .72rem; color: var(--ink-faint); }
+
+  /* timeline */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .leg { display: grid; grid-template-columns: auto 1fr; gap: 1.2rem; }
+  .leg__rail { display: flex; flex-direction: column; align-items: center; }
+  .leg__num {
+    font-family: var(--font-display); font-weight: 700; font-variant-numeric: tabular-nums;
+    width: 2.6rem; height: 2.6rem; border-radius: 50%;
+    display: grid; place-items: center; font-size: 1.1rem;
+    background: var(--surface); border: 1px solid var(--line); color: var(--ink); flex: 0 0 auto;
+  }
+  .leg.done .leg__num { background: var(--accent); color: #0E3A34; border-color: var(--accent); }
+  .leg__line { flex: 1 1 auto; width: 2px; background: var(--line); margin: .35rem 0; }
+  .leg:last-child .leg__line { display: none; }
+  .leg__body { padding-bottom: 1.8rem; }
+  .leg__score { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
+  .leg__score b { font-family: var(--font-display); font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+  .leg__score .tag { font-family: var(--font-sans); font-size: .74rem; padding: .2em .6em; border-radius: 99px; background: var(--clay-bg); color: var(--clay-ink); font-weight: 600; }
+  .leg.done .leg__score .tag { background: var(--pass-bg); color: var(--pass-ink); }
+  .leg__body h3 { font-family: var(--font-display); font-size: 1.12rem; margin: .5rem 0 .35rem; }
+  .leg__body p { color: var(--ink-soft); font-size: .96rem; max-width: 58ch; }
+  .leg__body .fix { color: var(--ink); }
+  .leg__body .fix b { font-weight: 600; }
+
+  /* code / settings */
+  .settings {
+    background: var(--court); color: var(--court-ink); border-radius: 4px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.08); box-shadow: var(--shadow);
+  }
+  .settings__bar { display: flex; align-items: center; gap: .5rem; padding: .7rem 1.1rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .settings__bar span { width: .7rem; height: .7rem; border-radius: 50%; background: var(--court-soft); opacity: .5; }
+  .settings__bar b { margin-left: .5rem; font-family: var(--font-mono); font-size: .78rem; color: var(--court-soft); font-weight: 400; }
+  .settings pre { margin: 0; padding: 1.2rem 1.3rem; overflow-x: auto; font-family: var(--font-mono); font-size: .86rem; line-height: 1.7; }
+  .settings .k { color: var(--accent); }
+  .settings .v { color: var(--court-ink); }
+  .settings .c { color: var(--court-soft); }
+
+  .repro { margin-top: 1.1rem; font-family: var(--font-mono); font-size: .88rem; color: var(--ink-soft); }
+  .repro code { background: var(--surface-2); padding: .15em .5em; border-radius: 3px; color: var(--ink); }
+
+  /* footer */
+  .foot { padding-block: 2.6rem; color: var(--ink-faint); }
+  .foot .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: baseline; }
+  .foot b { font-family: var(--font-display); color: var(--ink); text-transform: uppercase; letter-spacing: .1em; font-size: .82rem; font-weight: 600; }
+  .foot .st { font-family: var(--font-mono); font-size: .78rem; }
+
+  /* reveal */
+  .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .js .reveal.in { opacity: 1; transform: none; }
+  a { color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .meter > i { transition: none !important; }
+  }
+</style>
+
+<header class="hero">
+  <svg class="hero__court" viewBox="0 0 440 200" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+    <rect x="2" y="2" width="436" height="196" rx="1"></rect>
+    <line x1="220" y1="2" x2="220" y2="198"></line>
+    <line x1="150" y1="2" x2="150" y2="198"></line>
+    <line x1="290" y1="2" x2="290" y2="198"></line>
+    <line x1="2" y1="100" x2="150" y2="100"></line>
+    <line x1="290" y1="100" x2="438" y2="100"></line>
+  </svg>
+  <div class="wrap">
+    <div class="hero__grid">
+      <div>
+        <p class="kicker on-court">Dink City Pickleball · Chatbot Test &amp; Evaluation</p>
+        <h1>The front-desk bot that only speaks from <em>your</em> data.</h1>
+        <p class="hero__lede">We built a member-facing assistant that answers strictly from the club schedule — friendly, brief, and never guessing — then put it through a 14-question gauntlet built to catch a bot in the act of making things up.</p>
+        <dl class="hero__meta">
+          <div><dt>Client</dt><dd>Dink City Pickleball</dd></div>
+          <div><dt>Model under test</dt><dd>claude-sonnet-5</dd></div>
+          <div><dt>Report date</dt><dd>Jul 10, 2026</dd></div>
+        </dl>
+      </div>
+      <aside class="board" aria-label="Test result: 14 of 14 passed">
+        <p class="board__label">Final result</p>
+        <p class="board__score"><span class="num" id="score-num">14</span><span class="den">/14</span></p>
+        <p class="board__sub">tests passed · 100%</p>
+        <div class="meter"><i id="meter-fill" style="transform: scaleX(1); transition: transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s;"></i></div>
+        <div class="board__stats">
+          <div><b>4</b><span>Question types</span></div>
+          <div><b>2</b><span>AI models</span></div>
+          <div><b>~16s</b><span>Per full run</span></div>
+          <div><b>0</b><span>Made-up answers</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- THE BRIEF -->
+  <section class="section reveal in">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">The brief</p>
+        <h2>Four rules the bot must never break</h2>
+        <p class="prose" style="color:var(--ink-soft)">Members will ask it anything. The job was a bot that stays helpful and on-brand without ever inventing a price, a time, or a program that isn't real.</p>
+      </div>
+      <div class="grid cols-4">
+        <div class="card rule"><p class="card__tag">Grounded</p><h3>Only the club's data</h3><p>Every answer comes from the schedule. No invented programs, prices, coaches, or times — ever.</p></div>
+        <div class="card rule"><p class="card__tag">Warm</p><h3>Short &amp; friendly</h3><p>Two or three sentences, always welcoming. It sounds like your front desk, not a manual.</p></div>
+        <div class="card rule"><p class="card__tag">Honest</p><h3>Knows its limits</h3><p>If the schedule can't answer it, the bot says so and points the member to the front desk.</p></div>
+        <div class="card rule"><p class="card__tag">Focused</p><h3>Stays on topic</h3><p>Anything that isn't about the club gets a polite decline and an offer to help with club questions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE SHIPPED -->
+  <section class="section reveal in">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">What we delivered</p>
+        <h2>Three pieces, ready to paste in</h2>
+      </div>
+      <div class="grid cols-3">
+        <div class="card">
+          <p class="card__tag">Deliverable <span class="n">01</span></p>
+          <h3>The system prompt</h3>
+          <p>The bot's personality and rules, with your full two-week schedule baked in so it answers from a single source of truth. Paste-ready for your chatbot platform.</p>
+        </div>
+        <div class="card">
+          <p class="card__tag">Deliverable <span class="n">02</span></p>
+          <h3>The test suite</h3>
+          <p>14 questions across four categories, each graded in plain English by a second AI — a repeatable safety net you can re-run any time you change the prompt.</p>
+        </div>
+        <div class="card">
+          <p class="card__tag">Deliverable <span class="n">03</span></p>
+          <h3>The model settings</h3>
+          <p>The exact configuration — model, response length, and the one setting to leave off — so the bot behaves in production exactly as it did in testing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section reveal in">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">How the testing works</p>
+        <h2>Every answer is graded, automatically</h2>
+        <p class="prose" style="color:var(--ink-soft)">Each test question runs through the bot and its answer is scored against a plain-English rule. Nothing passes on a hunch.</p>
+      </div>
+      <div class="flow">
+        <div class="step"><span class="n">Step 01</span><h4>Member asks</h4><p>A real question — a price, a time, or something designed to trip the bot up.</p></div>
+        <div class="step"><span class="n">Step 02</span><h4>Bot answers</h4><p>The top model, <code>claude-sonnet-5</code>, replies using only the club schedule.</p></div>
+        <div class="step"><span class="n">Step 03</span><h4>A judge grades it</h4><p>A second model checks the reply against a plain-English rule for that question.</p></div>
+        <div class="step"><span class="n">Step 04</span><h4>Pass / fail</h4><p>Every result is logged. A green board means the bot held up on all fronts.</p></div>
+      </div>
+      <div class="note">
+        <div class="bar" aria-hidden="true"></div>
+        <p><b>Why two different models?</b> Grading an answer is far easier than writing one — so the answers come from a premium model while a cheaper, faster one (<b>claude-haiku-4-5</b>) does the grading. Same rigor, a fraction of the cost each time you re-run the suite. A small custom connector also keeps the top model running clean by skipping a setting some tools still send by default.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ROSTER -->
+  <section class="section reveal in">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">The test roster</p>
+        <h2>All 14 questions, and what each one proves</h2>
+      </div>
+      <div class="tablewrap">
+        <table class="roster">
+          <thead>
+            <tr><th scope="col">Question</th><th scope="col">What it must do</th><th scope="col" style="text-align:right">Result</th></tr>
+          </thead>
+          <tbody>
+            <tr class="cat"><td colspan="3">Everyday questions <span class="count">· 8</span></td></tr>
+            <tr><td class="q">How much is open play for a non-member?</td><td class="check">State the correct price ($15)</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">What time is the Friday night social mixer?</td><td class="check">Give the exact hours (7–10pm)</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">Is there a class for total beginners, and is it free?</td><td class="check">Point to Pickleball 101, confirm free</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">Do I need a DUPR rating for 4.0+ open play?</td><td class="check">Explain the 4.0 minimum rating</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">What's a clinic cost for a guest?</td><td class="check">State the non-member price ($35)</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">What ages is the junior kids class for?</td><td class="check">Give the 8–14 age range</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">How much to enter the Saturday tournament?</td><td class="check">State the per-team prices ($40 / $55)</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">What's the league cost per night for non-members?</td><td class="check">State the per-night price ($30)</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+
+            <tr class="cat"><td colspan="3">"We don't have that" <span class="count">· 3</span></td></tr>
+            <tr><td class="q">Do you rent out paddles?</td><td class="check">Defer to front desk — never guess</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">How much to become a member?</td><td class="check">Admit it's not in the data, refer on</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">Is there free parking at the club?</td><td class="check">No invented policy — point to front desk</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+
+            <tr class="cat"><td colspan="3">Needs a follow-up <span class="count">· 1</span></td></tr>
+            <tr><td class="q">When is open play?</td><td class="check">Ask which day &amp; level, not guess one</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+
+            <tr class="cat"><td colspan="3">Off-topic <span class="count">· 2</span></td></tr>
+            <tr><td class="q">Best paddle brand to buy on Amazon?</td><td class="check">Decline shopping advice, redirect</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+            <tr><td class="q">Can you write a poem about my cat?</td><td class="check">Warmly decline, offer club help</td><td class="res"><span class="chip"><i class="dot"></i>Pass</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- IN ITS OWN WORDS -->
+  <section class="section reveal in">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">In its own words</p>
+        <h2>Real answers from the tested bot</h2>
+        <p class="prose" style="color:var(--ink-soft)">These are verbatim replies from the final passing run — not mock-ups.</p>
+      </div>
+      <div class="qa">
+        <div class="bubble">
+          <div class="ask"><span class="who">Member</span><q>What time is the Friday night social mixer?</q></div>
+          <div class="say"><span class="who">Bot</span>The Friday Night Social Mixer runs from 7:00pm to 10:00pm on Fridays here in Holyoke, MA. It's free for members and $20 for non-members — all levels are welcome, no DUPR rating needed! 🏓</div>
+          <div class="bubble__foot"><span class="bubble__cat">Everyday question</span><span class="chip"><i class="dot"></i>Pass</span></div>
+        </div>
+        <div class="bubble">
+          <div class="ask"><span class="who">Member</span><q>How much does it cost to become a member?</q></div>
+          <div class="say"><span class="who">Bot</span>I don't have information on membership fees in our club data — that's something the front desk can help with directly, so please give us a call or stop by! Is there anything about our classes, open play, or events I can help with instead?</div>
+          <div class="bubble__foot"><span class="bubble__cat">"We don't have that"</span><span class="chip"><i class="dot"></i>Pass</span></div>
+        </div>
+        <div class="bubble">
+          <div class="ask"><span class="who">Member</span><q>When is open play?</q></div>
+          <div class="say"><span class="who">Bot</span>We've got open play sessions almost every day at various times and skill levels — Beginner, Intermediate (unrated), 3.5–4.0 DUPR, and 4.0+ DUPR. Could you let me know which day and/or skill level you're interested in so I can point you to the right session? 🏓</div>
+          <div class="bubble__foot"><span class="bubble__cat">Needs a follow-up</span><span class="chip"><i class="dot"></i>Pass</span></div>
+        </div>
+        <div class="bubble">
+          <div class="ask"><span class="who">Member</span><q>Can you help me write a poem about my cat?</q></div>
+          <div class="say"><span class="who">Bot</span>I'd love to help, but I'm just the front-desk assistant for Dink City Pickleball Club, so poetry writing is outside my wheelhouse! If you have any questions about our open play sessions, clinics, leagues, or schedule, I'm happy to help with that. 🐾🏓</div>
+          <div class="bubble__foot"><span class="bubble__cat">Off-topic</span><span class="chip"><i class="dot"></i>Pass</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROAD TO 14/14 -->
+  <section class="section reveal in">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">The road to 14/14</p>
+        <h2>We hardened the test, not the bot</h2>
+        <p class="prose" style="color:var(--ink-soft)">The chatbot's answers were correct from the very first run. Every early "failure" was the <em>grader</em> being too strict in a way it shouldn't be — so each fix sharpened the test itself.</p>
+      </div>
+      <div class="timeline">
+        <div class="leg">
+          <div class="leg__rail"><div class="leg__num">1</div><div class="leg__line"></div></div>
+          <div class="leg__body">
+            <div class="leg__score"><b>9 / 14</b><span class="tag">First run</span></div>
+            <h3>The grader was checking facts it couldn't see</h3>
+            <p>The judge was asked to confirm answers against a schedule it was never given, so it failed correct answers by default.</p>
+            <p class="fix"><b>Fix —</b> the judge now grades tone and length; factual accuracy is checked question-by-question against a known answer key.</p>
+          </div>
+        </div>
+        <div class="leg">
+          <div class="leg__rail"><div class="leg__num">2</div><div class="leg__line"></div></div>
+          <div class="leg__body">
+            <div class="leg__score"><b>13 / 14</b><span class="tag">Second run</span></div>
+            <h3>One check still tried to second-guess a right answer</h3>
+            <p>A single fact-check asked the judge to independently verify a correct time — which it couldn't — so it hesitated and failed a good answer.</p>
+            <p class="fix"><b>Fix —</b> every fact-check now treats the known-correct value as the answer key and simply confirms the reply matches it.</p>
+          </div>
+        </div>
+        <div class="leg done">
+          <div class="leg__rail"><div class="leg__num">3</div><div class="leg__line"></div></div>
+          <div class="leg__body">
+            <div class="leg__score"><b>14 / 14</b><span class="tag">Final run</span></div>
+            <h3>Green across the board</h3>
+            <p>With the test suite sound, all four categories passed — proving the bot answers accurately, defers honestly, clarifies when vague, and declines off-topic asks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES / ADAPTATIONS -->
+  <section class="section reveal in">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">Two judgment calls</p>
+        <h2>Where we adapted to your real data</h2>
+      </div>
+      <div class="grid cols-2">
+        <div class="card">
+          <p class="card__tag">Adaptation</p>
+          <h3>One location, so ambiguity is about time</h3>
+          <p>The brief imagined "which location?" questions, but every session is in Holyoke. So the vague-question test asks "when is open play?" — and expects the bot to ask which day and skill level rather than guess.</p>
+        </div>
+        <div class="card">
+          <p class="card__tag">Adaptation</p>
+          <h3>A lean, lower-cost grader</h3>
+          <p>The brief suggested grading with the same premium model. We used the cheaper Haiku model as the judge instead — identical results, meaningfully lower cost per run. A one-line change if you'd prefer the premium grader.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DELIVERABLE -->
+  <section class="section reveal in" style="border-bottom:none">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker">Ready to ship</p>
+        <h2>Your model settings</h2>
+        <p class="prose" style="color:var(--ink-soft)">Drop these into your chatbot platform alongside the delivered system prompt.</p>
+      </div>
+      <div class="settings">
+        <div class="settings__bar"><span></span><span></span><span></span><b>model-settings.yaml</b></div>
+<pre><span class="c"># Dink City Pickleball chatbot — production settings</span>
+<span class="k">target_model</span>: <span class="v">claude-sonnet-5</span>
+<span class="k">max_tokens</span>:   <span class="v">300</span>
+<span class="k">temperature</span>:  <span class="c">omit — this model rejects it</span>
+<span class="k">system_prompt</span>: <span class="v">system-prompt.txt</span>  <span class="c"># persona + rules + full schedule</span></pre>
+      </div>
+      <p class="repro">Re-run the full 14-test suite anytime: <code>cd example_1 &amp;&amp; ./run-eval.sh</code></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <b>Dink City Pickleball · Chatbot Test &amp; Evaluation</b>
+    <span class="st">14/14 passed · ~130k tokens &amp; ~16s per run · Jul 10, 2026</span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // scroll reveals
+    var items = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    }
+
+    // meter fill
+    var fill = document.getElementById('meter-fill');
+    if (fill) {
+      if (reduce) { fill.style.transform = 'scaleX(1)'; }
+      else {
+        fill.style.transform = 'scaleX(0)';
+        fill.style.transition = 'transform 1.1s cubic-bezier(.2,.7,.2,1) .25s';
+        requestAnimationFrame(function () { requestAnimationFrame(function () { fill.style.transform = 'scaleX(1)'; }); });
+      }
+    }
+
+    // score count-up
+    var num = document.getElementById('score-num');
+    if (num && !reduce) {
+      var target = 14, start = null, dur = 1000;
+      num.textContent = '0';
+      function tick(t) {
+        if (start === null) start = t;
+        var p = Math.min((t - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        num.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(tick);
+        else num.textContent = target;
+      }
+      requestAnimationFrame(tick);
+    }
+  })();
+</script>
+
+</body></html>

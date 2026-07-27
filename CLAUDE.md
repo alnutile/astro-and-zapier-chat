@@ -45,6 +45,16 @@ Implications when editing posts:
 
 > The old Zapier Table sync (`astro-ai-chat - knowledge source`, documented in [docs/zap-knowledge-source-sync.md](docs/zap-knowledge-source-sync.md)) has been **retired** — it cost too much. That doc is kept for historical reference only; the Zap/Table are no longer live.
 
+## Writing voice for posts
+
+Posts are written in Alfred's first-person practitioner voice — plain-spoken, concrete, no hype. When drafting or editing a post, follow the `alfred-nutile-voice-style` skill. For technical build write-ups and tutorials specifically — anything teaching a developer to build the thing — also follow the `alfred-technical-writing-voice` skill ([.claude/skills/alfred-technical-writing-voice/SKILL.md](.claude/skills/alfred-technical-writing-voice/SKILL.md)): first-person from the trenches, honest about struggle, "let's break it down" pacing over real code, `> NOTE:` asides, real examples (never `foo`/`bar`), and the payoff-first teaching arc. The single most important rule, because it's what most often makes a draft "sound nothing like me":
+
+- **No fake feelings — including the subtle, section-framing kind.** Never invent an emotional reaction Alfred didn't have. Beyond the obvious ("I was blown away," "my jaw dropped," "I'm so proud of this"), this covers the LinkedIn-flavored glue that's harder to spot and just as wrong: "the part I was so worried about," "the scary part of…," "here's the fun part," "that's the part that flips it for me," "and then something great happened." A post — especially a technical review — is analysis (tools, trade-offs, build patterns), not a feelings arc. State the point plainly. A real, specific fact ("migration numbering must be contiguous or the deploy is rejected") is fine; a manufactured mood or dramatized struggle is not. Genuine enthusiasm tied to a real event is fine and rare.
+- **No condescension or spoon-feeding.** The audience is technical/curious builders who want to know how to build, choose tools, and use AI — not beginners to manage. Don't tell the reader what to notice ("Look down that column," "Notice how…," "See what happened?"), don't re-explain the obvious, don't lecture or throat-clear ("Here's the thing about any real app…"). One-clause jargon glosses are fine; otherwise assume intelligence. Write to a peer.
+- **No reader-commanding tics:** "Read that again," "Stay with me," "Think about what that means," "Let that sink in," "Hold that thought."
+- **No clichés:** "boil the ocean," "roach motel," "changes the game," "secret sauce."
+- **Don't flatten his real conventions.** The `**TLDR:**` callout and genuine enthusiasm tied to a real event are his voice, not AI drift — leave them.
+
 ## Deployment
 
 Railway serves the prebuilt static output via `npm start` (`astro preview`). The Vite preview server allow-lists `.dailyai.studio` so Railway preview domains work — keep this in [astro.config.mjs](astro.config.mjs) `vite.preview.allowedHosts` if changing host config.
