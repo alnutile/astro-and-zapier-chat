@@ -54,7 +54,7 @@ The through-line: most of these stopped being code and became configuration or a
 The line counts track with that. In SupaNet.io the frontend is around 31,000 lines. The whole backend — every function plus shared code — is around 15,600, about a third of the codebase. And inside it, the reused shared modules (~7,900 lines) outweigh all the function entrypoints combined (~7,600). Most of the backend is library code I reuse, not per-endpoint plumbing.
 
 
-!["Backend"]('/images/edge-functions/backend-small-part.png')
+!["Backend"](/images/edge-functions/backend-small-part.png)
 
 ## Authorization: one rule instead of many checks
 
@@ -69,7 +69,7 @@ So authorization moves from scattered application logic to one declarative rule 
 > NOTE: RLS is per-table and off until you enable it. A table without it is open through the public API, so the order is: create the table, enable RLS, write the policy.
 
 
-!["Database"]('/images/edge-functions/database-bouncer.png')
+!["Database"](/images/edge-functions/database-bouncer.png)
 
 
 ## The build pattern that mattered: thin functions, shared core
@@ -80,8 +80,7 @@ That's what makes new surfaces cheap. The same tool code runs from the in-app ch
 
 The tell for this style is the shape of the tree: a small `functions/` folder, a large shared-logic folder. When it inverts — functions each re-implementing routing and validation — you're working against the platform. Mine holds except for one function, the MCP server at ~2,200 lines, which is where the discipline broke down.
 
-> 🎨 IMAGE HERE — "Write once, use five ways." A hub-and-spoke: one "Shared logic" core feeding five surfaces — In-app Chat, External AI (MCP), REST API, Webhooks, Scheduled jobs.
-> Generation prompt: "Flat minimal vector hub-and-spoke diagram, light/dark friendly. A central node 'Shared logic (write once)' with arrows out to five labeled surfaces: 'In-app Chat', 'External AI / MCP', 'REST API', 'Webhooks', 'Scheduled jobs'. Emphasize that all five reuse the one center. 2–3 accent colors, clean."
+!["MCP"](/images/edge-functions/mcp.png)
 
 ## Trade-offs
 
