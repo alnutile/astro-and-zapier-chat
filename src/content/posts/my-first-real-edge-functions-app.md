@@ -1,118 +1,112 @@
 ---
-title: "My First Real Edge Functions App (And What It Actually Saved Me)"
+title: "My First Real App on Supabase Edge Functions"
 date: 2026-07-25
-excerpt: "I built my first app that really leans on Supabase edge functions instead of rolling my own backend. Here's what it actually saved me — and the sharp edges nobody warns you about."
-tags: []
-draft: true
+excerpt: "I built SupaNet.io heavily on Supabase edge functions instead of building a backend from scratch. A review from actually shipping on it: what the platform handles, the build pattern that mattered most, and the trade-offs. Not a tutorial."
+image: "/images/edge-functions/cover.png"
+tags: ["supabase", "edge-functions", "vibe-coding"]
+draft: false
+faq:
+  - question: "What is a Supabase edge function?"
+    answer: "A small piece of server code that runs on Supabase's infrastructure instead of a server you manage. Each function is a folder with an entry file, written in TypeScript on a Deno runtime, and once deployed it is served at its own URL. You add an endpoint by adding a folder, not by wiring up more routing and auth."
+  - question: "Do Supabase edge functions replace your whole backend?"
+    answer: "No. You still write the feature logic, and there is plenty of it. What the platform absorbs is the undifferentiated 60 to 70 percent of a typical backend: routing, auth, authorization, realtime, storage, secrets, and cron. Those become configuration and declarative rules instead of code you own and debug. The app itself is still yours to build."
+  - question: "What is Row-Level Security (RLS) and why does it matter?"
+    answer: "Row-Level Security is a Postgres feature, not a Supabase one, though Supabase makes it easy to use. You write one rule per table (for example, a row is visible if you own it or it is shared with your workspace) and Postgres applies it like a WHERE clause on every query, from any client. It is default-deny: until you write a policy, the API returns nothing. It matters because authorization moves from checks scattered across every endpoint to a single rule the database enforces, which removes the highest-severity bug class: a missed permission check leaking data."
+  - question: "Are you locked into Supabase if you build on edge functions?"
+    answer: "Not really. Supabase is open source and self-hostable: Postgres, auth, storage, the edge-functions runtime, and the secrets Vault are all in the open-source stack, and the functions run on any Deno-compatible platform. The real trade is convenience versus control. The hosted platform's managed secrets, one-command deploys, and cron just work, while self-hosting means running that operational layer yourself. Which conveniences carry over changes over time, so check the current docs before depending on it."
+  - question: "How do you deploy Supabase edge functions?"
+    answer: "You can deploy through the Supabase dashboard, the CLI, or MCP. In my setup deployment runs through GitHub Actions, so shipping a function is automated: I push and the action deploys it. One thing to know is that functions deploy on a separate path from the frontend, so it is its own step rather than riding along with the frontend deploy."
 ---
 
-I built my first app that really leans on Supabase edge functions instead of standing up my own backend. Routing, auth, all of it. This is the honest version of what that bought me — not a sales pitch. The stuff Supabase quietly handled, the one pattern that paid off the most, and the places I cut myself along the way.
+Wanted to share some thoughts on Supabase edge functions, since I've leaned on them so heavily building SupaNet.io.
 
-## First, what an "edge function" even is
+This is a review, not a tutorial. I'm coming at it the way you decide how to build any real multi-tenant app: what to write yourself, what to hand to the platform, where AI fits, and what it costs you later. Here's how that broke down.
 
-If you haven't used them: an edge function is just a small piece of server code that runs close to your users, on demand. You don't manage a server. You don't keep a process running. You drop a folder of code and Supabase hands it a URL.
+## What an edge function is here
 
-That's the shift. **Each folder *is* a route.** No Express app. No route table. No middleware chain to wire up. I've got about two dozen of these little functions — `chat`, `webhook`, `scheduler`, `mcp`, `run-tool` — and every one is just a folder that turned into a working endpoint.
+An edge function is server code that runs on Supabase's infrastructure instead of a server I run. Each one is a folder with an entry file, TypeScript on a Deno runtime. Deployment runs through GitHub Actions, so shipping a function is automated — push, the action deploys it. You can see the pipeline [here](https://github.com/alnutile/supabase-as-a-service/blob/main/.github/workflows/deploy-functions.yml)
 
-All that routing code I've written over the years — the route tables, the middleware wiring — it's a directory now.
+The unit is the folder: one folder, one endpoint. That's the first architectural shift. Routing decisions mostly go away, so the design question moves off "how do I wire up routes and middleware" and onto "how do I organize the shared code sitting behind these folders." More on that below, because that's where the interesting part is.
 
-## The wall I keep hitting
+## Where the time normally goes
 
-Here's the thing every side project runs into. You have an idea. The idea is the fun part — the chat assistant, the shareable doc, the little tool. That's maybe 30% of the work.
+Most of a multi-tenant app isn't the feature. It's the same infrastructure every time: auth, authorization, a database and a safe path to it, realtime, file storage, secrets, cron. Call it 60–70% of a typical backend. It's also where the costly mistakes live — authorization especially, where a missed check is a data leak, not a bug that throws.
 
-The other 70%? Same boring problems, every single time:
+That's the part I wanted to hand off — not to write faster, to not own at all. Less of my own infrastructure code means less surface for me, or an AI I'm pairing with, to get wrong.
 
-- Auth. Login, sessions, password resets, magic links.
-- Who's allowed to see what.
-- A database and a safe way to talk to it.
-- Realtime updates so two people don't see stale data.
-- File storage. Signed URLs.
-- Somewhere to keep secrets.
-- Background jobs and cron.
+## What the platform handles
 
-Every one of those is a place to introduce a bug. And the two scariest ones — auth and who-can-see-what — are exactly where a mistake stops being a typo and becomes a data leak.
+Each concern, how I'd normally build it, and what it became on Supabase:
 
-So here's what I actually wanted to know going in: how much of that 70% can I just stop writing?
-
-> 🎨 **IMAGE HERE — "the backend is the small part."**
-> A clean, minimal proportional-size diagram (light + dark friendly) comparing three code sizes in this app: **Frontend UI ≈ 31,000 lines** (one big block), **Shared backend logic ≈ 7,900 lines**, **Edge functions ≈ 7,600 lines** (two small blocks next to it). The point of the picture: the actual backend is tiny compared to the app.
-> **Generation prompt:** *"Flat minimal vector infographic, light and dark mode friendly, three labeled proportional blocks showing relative code size — one large block 'Frontend UI ~31k lines', two small blocks 'Shared logic ~7.9k' and 'Edge functions ~7.6k'. Caption underneath: 'The backend is the small part.' 2–3 accent colors, lots of whitespace, no clutter."*
-
-## What Supabase just... handled
-
-Let me put it in a table, because seeing it side by side is what made it land for me. Left is how I'd normally build each piece from scratch. Right is what I actually had to write this time.
-
-| The boring-but-critical part | How I'd normally build it | What I actually wrote |
+| Concern | Roll-your-own | On Supabase |
 | --- | --- | --- |
-| **Routing** | An Express/Fastify app, a route table, a middleware chain, a deploy target to babysit | Nothing. Each folder in `functions/` *is* a route. One line of config is the auth middleware. |
-| **Auth** | A session store, JWT issue/verify, password resets, magic links, OAuth flows | Nothing. The browser calls Supabase Auth. I never wrote a login backend. |
-| **Who can see what** | Permission checks copy-pasted into every endpoint (miss one = data leak) | A **rule in the database** (Row-Level Security). Written once, enforced everywhere. |
-| **Database access** | An ORM, a migration tool, connection pooling | The browser talks to the database directly — safely, because of the rule above. |
-| **Realtime** | A websocket server, presence, pub/sub, reconnection logic | Nothing. Flip a table to "realtime," subscribe from the client. |
-| **File storage** | S3 wiring, signed URLs, access control | Storage buckets + a folder rule. Signed URLs are one call. |
-| **Secrets** | A vault/KMS integration | Supabase Vault + two small functions. |
-| **Background jobs / cron** | A worker process, a scheduler, a queue | A bit of database cron poking a function on a timer. |
+| **Routing** | Express/Fastify, a route table, a middleware chain, a deploy target | A folder per endpoint. One config line for the auth check. |
+| **Auth** | Session store, JWT, resets, magic links, OAuth | Supabase Auth via the client SDK. No login backend. |
+| **Authorization** | Per-endpoint permission checks | One Row-Level Security rule per table, enforced by Postgres. |
+| **Database access** | ORM, migrations, connection pooling | Auto-generated API; the browser can query the DB directly, gated by RLS. |
+| **Realtime** | Websocket server, presence, pub/sub, reconnection | A realtime publication + a client subscribe. Runs chat sync, the multiplayer whiteboard/cards, the activity feed. |
+| **File storage** | S3 wiring, signed URLs, access control | Storage buckets + folder-scoped policies. |
+| **Secrets** | KMS/Vault integration | Supabase Vault + two small DB functions. |
+| **Cron / jobs** | Worker process, scheduler, queue | Postgres cron calling a function on a timer. |
 
-That right-hand column is the whole story. Look how much of it says "nothing" or "one rule."
+The through-line: most of these stopped being code and became configuration or a single declarative rule.
 
-### The one that matters most: who can see what
+The line counts track with that. In SupaNet.io the frontend is around 31,000 lines. The whole backend — every function plus shared code — is around 15,600, about a third of the codebase. And inside it, the reused shared modules (~7,900 lines) outweigh all the function entrypoints combined (~7,600). Most of the backend is library code I reuse, not per-endpoint plumbing.
 
-This is the reason I'd do it again.
 
-Normally "who's allowed to see this?" is logic scattered across every endpoint you've got. A check here, a check there. And heaven help you if you forget one, because that's how a single wrong line leaks somebody's private data.
+!["Backend"]("/images/edge-functions/backend-small-part.png")
 
-Supabase does it completely differently, with something called **Row-Level Security**. Fancy name, simple idea: the database itself decides who sees each row. I write the rule once — "you can see this if you own it, or if it's shared with your workspace" — and Postgres enforces it on every query. The browser can talk to the database directly and it's *still* safe, because the database just refuses to hand back rows you're not allowed to see.
+## Authorization: one rule instead of many checks
 
-So the most dangerous part of any multi-user app is mostly not my code anymore. It's a rule the database won't let me break.
+This is the piece that mattered most, so it's worth being precise about what actually changes.
 
-> NOTE: One gotcha worth saying out loud — Row-Level Security only guards a table once you actually *turn it on*. A table with RLS off is wide open to anyone with your public key. Enabling it is per-table and on you, so the move is: new table, first thing, switch RLS on and write the rule. Forget one and that table has no bouncer at all.
+You can do authorization in application code — middleware, per-endpoint checks — and it works. The cost is that every new query path is another place the check has to be repeated, and the failure mode is silent: miss one and data leaks with no error to catch it.
 
-> 🎨 **IMAGE HERE — "the database is the bouncer."**
-> A simple diagram: a browser and an edge function both firing queries at a Postgres database. In front of the database sits a gate/shield labeled **"Row-Level Security"** that filters rows before anything comes back — show one private row visibly blocked at the gate.
-> **Generation prompt:** *"Flat minimal vector diagram, light/dark friendly. Left: a browser icon and a server/function icon, both sending arrows toward a database on the right. Between them a shield labeled 'Row-Level Security' acting as a gate — green rows pass through, one red 'private' row is stopped. Clean, 2 accent colors, clearly labeled."*
+Postgres handles this a level down, with Row-Level Security (RLS). It's a Postgres feature, not a Supabase one — Supabase makes it easy to enable and manage. You write a policy on the table ("a row is visible if you own it or it's shared with your workspace") and Postgres applies it like a `WHERE` clause on every query, from any client. An edge function and the browser hitting the auto-generated API go through the same rule. It's default-deny: enable RLS and the API returns nothing until a policy exists.
 
-## The pattern that paid off the most
+So authorization moves from scattered application logic to one declarative rule per table, enforced by the database. That's the strongest reason I'd build this way again — it removes the highest-severity bug class instead of relying on me to be careful across every endpoint.
 
-Here's the part that transfers to any project.
+> NOTE: RLS is per-table and off until you enable it. A table without it is open through the public API, so the order is: create the table, enable RLS, write the policy.
 
-The functions are thin. The real app lives in shared modules — write-once pieces of logic every function reuses. One place that runs a "tool." One place that screens a message for prompt-injection. One place that loads context for the AI. Written once.
+!["Backend"]("/images/edge-functions/database-bouncer.png")
 
-And here's where it compounds. That same tool code is available to the in-app chat, and to an outside AI connecting over MCP, and to plain REST callers, and to webhooks, and to scheduled jobs. All of them run through the same shared code.
+## The build pattern that mattered: thin functions, shared core
 
-So I built the capability once and got five ways to use it, for free. Build five separate services instead and you're maintaining five copies of that logic — and fixing every bug five times.
+The functions are thin. The logic lives in shared modules every function imports — one that runs a tool, one that screens input for prompt-injection, one that assembles context for the model. Written once, imported everywhere.
 
-> 🎨 **IMAGE HERE — "write once, use five ways" (this is the Venn/overlap idea).**
-> A hub-and-spoke diagram (or overlapping circles): one center labeled **"Shared logic"** feeding five surfaces that all reuse it — **In-app Chat**, **External AI (MCP)**, **REST API**, **Webhooks**, **Scheduled jobs**. The visual point is the overlap: one shared core, five surfaces on top of it.
-> **Generation prompt:** *"Flat minimal vector hub-and-spoke diagram, light/dark friendly. A central node 'Shared logic (write once)' with five arrows out to labeled surfaces: 'In-app Chat', 'External AI / MCP', 'REST API', 'Webhooks', 'Scheduled jobs'. Emphasize that all five reuse the one center. Clean, 2–3 accent colors."*
+That's what makes new surfaces cheap. The same tool code runs from the in-app chat, a webhook, the scheduler, a Slack handler, an event dispatcher, and a loop runner — and it's exposed again to an external AI over MCP, to a REST endpoint, and to a direct tool-runner. One implementation, roughly ten call sites, no divergence. Build the capability once and every surface gets it; build them as separate services and you maintain the same logic in several places and fix each bug several times.
 
-That's the tell that this whole thing is working, by the way. My `functions/` folder is small, and my shared-logic folder is where all the lines are. When it's backwards — fat functions each reinventing routing and sessions — that's when you know you're fighting the platform instead of using it.
+The tell for this style is the shape of the tree: a small `functions/` folder, a large shared-logic folder. When it inverts — functions each re-implementing routing and validation — you're working against the platform. Mine holds except for one function, the MCP server at ~2,200 lines, which is where the discipline broke down.
 
-## The sharp edges (because it's not a free lunch)
+> 🎨 IMAGE HERE — "Write once, use five ways." A hub-and-spoke: one "Shared logic" core feeding five surfaces — In-app Chat, External AI (MCP), REST API, Webhooks, Scheduled jobs.
+> Generation prompt: "Flat minimal vector hub-and-spoke diagram, light/dark friendly. A central node 'Shared logic (write once)' with arrows out to five labeled surfaces: 'In-app Chat', 'External AI / MCP', 'REST API', 'Webhooks', 'Scheduled jobs'. Emphasize that all five reuse the one center. 2–3 accent colors, clean."
 
-I'd be lying if I said it was all smooth. Here's the honest cost so you go in with eyes open.
+## Trade-offs
 
-**You're coupled to the platform.** Row-Level Security, the vault, the cron, the deploy API — this doesn't pick up and move to some random server without real rework. That's a real trade. I made it on purpose. You should decide the same way.
+None of it is free. The honest costs:
 
-**Two runtimes.** The functions run on one system (Deno), the frontend on another (Node). A couple of times I had the same bit of logic written twice, once for each side, and had to keep them in sync. Annoying. Solvable with tests, but real.
+**Platform coupling.** RLS, the Vault, Postgres cron, the management API — none of it moves to a bare server without rework. A deliberate trade, worth making deliberately.
 
-**The platform has its own gotchas.** Supabase rewrites HTML pages to plain text on their default URLs — an anti-phishing thing — which cost me an afternoon of "why is my page showing me source code." Migration files need careful numbering or the whole deploy rejects. None of these are dealbreakers. They're the tax you pay for the platform doing so much for you.
+**Two runtimes.** Functions run on Deno, the frontend on Node. Some logic ends up mirrored in both — a parser, some date math — and has to stay in sync. Shared tests are the mitigation.
 
-**Deploys are split.** The frontend auto-ships when I push to main. The functions don't, by default — they need their own step. I ended up building a little escape hatch inside the app just to redeploy functions when I couldn't push.
+**Split deploys.** Frontend and functions ship on separate paths; functions go out through their own GitHub Actions step, with an in-app panel as a fallback for when I can't push.
 
-### And the open-source asterisk (I went and checked this myself)
+**Platform-specific gotchas.** A few that took real time to work out:
 
-One worth being straight about. Supabase is open source, and you can self-host the whole thing — Postgres, auth, storage, and yes, the edge-functions runtime and the secrets vault are all in the open-source stack. So you're not locked in a box. You can leave.
+- Default function URLs rewrite HTML responses to plain text (anti-phishing), so serving raw HTML needs a paid custom domain to render.
+- Migration files need unique, contiguous numeric prefixes or the deploy is rejected.
+- Changing a database function's return type requires dropping it first, and a migration that fails partway isn't recorded as applied — so a later object can go missing in production until you catch it.
 
-But "open source" and "turnkey" aren't the same word. On their **hosted** platform the managed secrets, the one-command function deploys, the cron plumbing — it all just works. **Self-host** it and you own that operational glue yourself. Doable. It's just *more you*.
+These are the cost of the platform doing this much. For this project, worth it.
 
-So the lock-in I mentioned up top is really a convenience-versus-control trade, not a "you can never leave" trade. That's an important difference. And honestly, if you're leaning on the hosted conveniences as hard as I am, it's worth checking the current self-hosting docs for exactly which of them carry over — that line moves as the product changes.
+## Open source and self-hosting
 
-## So — was it worth it?
+One clarification, because it changes how the coupling reads. Supabase is open source and self-hostable — Postgres, auth, storage, the edge runtime, and the Vault are all in the open-source stack, and the functions run on any Deno-compatible platform. So it isn't lock-in.
 
-Yeah. Not because "Supabase writes your app for you." It doesn't — I wrote a ton of feature logic. It's worth it because the boring, dangerous, undifferentiated 70% became someone else's problem, and I got to spend my time on the 30% that was actually the idea.
+But open source isn't turnkey. The hosted platform's managed secrets, one-command deploys, and cron are conveniences; self-hosting means running that operational layer yourself. It's a convenience-versus-control trade, not a locked door. Which conveniences carry over changes over time, so check current docs before depending on it.
 
-If you're staring at your next side project and dreading rebuilding auth and permissions again — this is the pitch. Solve that stuff once. Lean on the database to keep you safe. Keep your functions thin and your shared logic fat. Then go build the thing you actually wanted to build.
+## Was it worth it?
 
-That's the person closest to the idea getting to ship the idea, instead of drowning in plumbing. Which is the whole reason I keep chasing this stuff.
+Yes, with the caveat that the platform doesn't write the app. The feature logic is still mine, and there's plenty of it. What changed is that the undifferentiated 60–70% — routing, auth, authorization, realtime, storage, secrets, cron — became configuration and declarative rules instead of code I own and debug. The value isn't writing that faster; it's not writing it, and not being able to get it wrong. Mostly that's RLS.
 
-You don't need a big plan to try it. Pick one small thing you'd normally need a login and a database for. Build that one on Supabase. See how much of the boring part you don't have to write. Then decide.
+If you're deciding how to build the next multi-tenant thing, that's the case for it. The low-commitment way to test the claim: build one feature that needs auth and a database on Supabase, and see how much of the usual backend you never touch.

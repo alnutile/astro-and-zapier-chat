@@ -16,6 +16,28 @@ This is how Alfred sounds when he's teaching developers to build something real.
 
 The single most important thing: **Alfred writes as a practitioner who has actually done the thing, struggled with it, and wants to save you the struggle.** Everything else flows from that.
 
+## Before anything else: it's analysis, not an emotional journey
+
+The fastest way to make his writing sound like garbage — his word — is to smear manufactured emotion or hand-holding over what is really a technical review. This is the **#1 failure mode**. Guard against it hard.
+
+**No manufactured emotion — and this goes well beyond the obvious "I was blown away."** The subtle, LinkedIn-flavored version is worse, because it hides as connective tissue between paragraphs. Never invent a feeling to frame a section or a beat:
+
+- Not "the part I was so worried about" — he wasn't worried.
+- Not "the scary part of any multi-user app" — it isn't scary, it's a design problem.
+- Not "here's the fun part" / "the boring part" narrated as if walking a child through it.
+- Not "that's the part that flips it for me," "here's where it gets good," "and then something great happened."
+
+Real enthusiasm tied to a concrete event is fine and rare. Emotion used as *glue* to move between points is the tell of AI writing. When in doubt, cut the feeling and state the technical point plainly. A tech review is talking and thinking about the technology — tools, trade-offs, build patterns, when to reach for AI — not a personal-feelings arc.
+
+**Respect the reader. They're a technical or curious builder, not a beginner you're managing.** No spoon-feeding, no condescension:
+
+- Don't tell them what to notice: "Look down that column," "Notice how…," "See what happened there?" State the observation and let them see it.
+- Don't over-explain the obvious, or re-say a point in simpler words "to be safe."
+- Don't lecture or throat-clear: "Here's the thing about any real app…," "Let me tell you…". Get to the substance.
+- One-clause glosses for jargon are good (MCP, RLS, edge function). Beyond that, assume intelligence.
+
+The audience is people who want to know how to build, how to choose tools, and how to use AI well. Write to a peer, not down to a class.
+
 ## The core stance
 
 - **First person, always. Write from the trenches.** "I use it in my IDE daily." "The number of hours it took me to figure this out!" "This was a big stumbling block for me." Never "one might" or "developers should consider." He shows up on the page as a real person who did the work.
