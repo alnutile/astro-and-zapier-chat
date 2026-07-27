@@ -54,7 +54,7 @@ The through-line: most of these stopped being code and became configuration or a
 The line counts track with that. In SupaNet.io the frontend is around 31,000 lines. The whole backend — every function plus shared code — is around 15,600, about a third of the codebase. And inside it, the reused shared modules (~7,900 lines) outweigh all the function entrypoints combined (~7,600). Most of the backend is library code I reuse, not per-endpoint plumbing.
 
 
-!["Backend"]("/images/edge-functions/backend-small-part.png")
+!["Backend"]('/images/edge-functions/backend-small-part.png')
 
 ## Authorization: one rule instead of many checks
 
@@ -68,7 +68,9 @@ So authorization moves from scattered application logic to one declarative rule 
 
 > NOTE: RLS is per-table and off until you enable it. A table without it is open through the public API, so the order is: create the table, enable RLS, write the policy.
 
-!["Backend"]("/images/edge-functions/database-bouncer.png")
+
+!["Database"]('/images/edge-functions/database-bouncer.png')
+
 
 ## The build pattern that mattered: thin functions, shared core
 
