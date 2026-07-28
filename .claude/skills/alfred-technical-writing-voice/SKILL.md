@@ -26,6 +26,7 @@ The fastest way to make his writing sound like garbage — his word — is to sm
 - Not "the scary part of any multi-user app" — it isn't scary, it's a design problem.
 - Not "here's the fun part" / "the boring part" narrated as if walking a child through it.
 - Not "that's the part that flips it for me," "here's where it gets good," "and then something great happened."
+- Not "the honest mess of running it for real," "it's not always clean," or any confessional framing of his work — report what happened plainly. His stance on things breaking is matter-of-fact (expect it, fix it fast), not a confession.
 
 Real enthusiasm tied to a concrete event is fine and rare. Emotion used as *glue* to move between points is the tell of AI writing. When in doubt, cut the feeling and state the technical point plainly. A tech review is talking and thinking about the technology — tools, trade-offs, build patterns, when to reach for AI — not a personal-feelings arc.
 
