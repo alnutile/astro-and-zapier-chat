@@ -1,7 +1,7 @@
 ---
 title: "Green Means Ship: The CI/CD That Lets a Vibe-Coded App (and an AI) Deploy With Confidence"
 date: 2026-08-02
-excerpt: "I let an AI open pull requests against this repo. It works because the pipeline won't ship anything red — typecheck, lint, test, build all have to pass before anything merges, and merging is what deploys. Here's the whole setup, five small files you can read."
+excerpt: "One of my repos has an AI open its own pull requests. I'm fine with that, because none of them can merge until the checks are green — the same four checks I have to pass. Here's the whole pipeline, five small files you can read."
 image: "/images/green-means-ship-cicd-with-confidence/cover.png"
 tags: [ai, ci-cd, vibe-coding, security, railway, supabase, automation]
 draft: true
@@ -18,37 +18,35 @@ faq:
     answer: "The AI does not push to main. It works on a feature branch and opens a pull request, exactly like a person, and a human reviews it. It has to pass the same four checks anyone else does. Because bot-opened pull requests do not trigger the normal checks automatically, the workflow re-runs those same checks itself against the branch, so nothing skips the gate based on who wrote it."
 ---
 
-> **TLDR:** I let an AI open pull requests against one of my repos. It's not that I trust the AI — it's that the pipeline won't let anything red through. That's all CI/CD really is: the checks run on every change, and if they fail, nothing merges. Once they pass and you merge, the deploy happens on its own. This is a walk through the actual setup — five small files — from my [supbse-vibecoding-starter](https://github.com/alnutile/supbse-vibecoding-starter) template.
+> **TLDR:** One of my repos has an AI open its own pull requests. I'm fine with that, because none of them can merge until the checks pass — the same typecheck, lint, test, build I have to pass. Once they're green and it's merged, the deploy happens on its own. This is a walk through that pipeline: five small files you can read, from my [supbse-vibecoding-starter](https://github.com/alnutile/supbse-vibecoding-starter) template.
 
-👉 **The repo:** [alnutile/supbse-vibecoding-starter](https://github.com/alnutile/supbse-vibecoding-starter) — a GitHub template. Every project I spin up from it gets Supabase auth, RLS, realtime, and storage, plus this CI/CD wiring, out of the gate.
+👉 **The repo:** [alnutile/supbse-vibecoding-starter](https://github.com/alnutile/supbse-vibecoding-starter) — the starter I clone when I begin something new. It comes with Supabase auth, RLS, realtime, storage, and this CI/CD wiring already set up, so I'm not rebuilding the plumbing every time.
 
 ---
 
-I wrote [Vibe Coding With Confidence](/posts/vibe-coding-with-confidence/) a while back — getting a vibe-coded app secure, hosted, and online. This is the piece underneath all of that, the one doing the real work: the pipeline.
+I drag a card on a board, and a while later there's a pull request waiting for me. I didn't write it — Claude did. It made a branch, wrote the code, ran the build, and opened the PR, and now it's sitting there with its checks either green or red, same as any PR I'd open myself.
 
-AI writes more of my code every month. This repo has an AI open its own pull requests. So the slow part isn't typing the code anymore — it's trusting it. And you don't trust code by reading it harder. You trust it by making the check mechanical: something runs on every change, and nothing red gets through.
+And I'm fine with it. The AI hasn't earned some special trust from me — it just can't merge that PR until the checks pass, and the checks are a real list of things that either worked or they didn't. If Claude writes something broken, it gets stopped in the same place I would.
 
-That's CI/CD. Not a big platform, not a 40-step Jenkins file. Every step in the process has a gate, and the gate is code you can read. Let's break it down.
+I wrote [Vibe Coding With Confidence](/posts/vibe-coding-with-confidence/) a while back about getting a vibe-coded app secure, hosted, and online. This is the machinery running under all of that. AI writes more of my code every month, and the bottleneck moved. Writing the code is the fast part now; trusting it is what takes the time. Reading it more carefully doesn't get me there, so I made the trust mechanical instead — something a machine runs on every change, that refuses anything red.
 
-## The mental model: three lanes, one rule each
+That's really all CI/CD is. No big platform, no 40-step Jenkins file. Every step in the process has a gate, and the gate is code you can read. Let's break it down.
+
+## The three lanes
 
 Before any YAML, here's the whole shape:
 
 ```
 feature branch  ──PR──►  main  ──merge──►  production
-   "prove it"          "always            "boring &
-                       deployable"         automatic"
 ```
 
-- **Feature branch:** cheap, disposable, mess allowed. A pull request is a *question* — "is this safe?"
-- **`main`:** the answer is always "yes," because nothing red ever gets in. `main` is your known-good.
-- **Production:** a *consequence* of merging, not a separate manual event you go do later.
+A feature branch is cheap — make a mess on it, nobody cares. The PR off it asks one question: is this safe to ship? On `main`, the answer is always yes, because nothing red ever gets in, which is what keeps `main` a branch you could deploy at any second. Production happens when you merge; there's no separate step to go run.
 
-It's not any one tool doing this. It's that "is this safe?" stops being a judgment call and becomes a status check. Green or red.
+None of that comes from one clever tool. It comes from "is this safe?" going from a judgment call I'd make squinting at a diff to a status check anyone can glance at.
 
 ## The gate — `ci.yml`
 
-Here's the file that does the gatekeeping. It runs on **every pull request** and **every push to `main`**. Four steps.
+This is the file doing the gatekeeping. It runs on every pull request and every push to `main`, and it does four things.
 
 ```yaml
 name: CI
@@ -80,25 +78,25 @@ jobs:
           VITE_SUPABASE_ANON_KEY: sb_publishable_placeholder
 ```
 
-Typecheck, lint, test, build. And here's the part I care about: those are the same four commands as my local Definition of Done in `CLAUDE.md`:
+Typecheck, lint, test, build. Those four are the same commands as my local Definition of Done — the ones sitting in `CLAUDE.md` that I run before I call anything finished:
 
 ```
 npm run typecheck && npm run lint && npm test && npm run build
 ```
 
-So "works on my machine" and "passes CI" are the same list. The difference is CI can't skip a step on a day I'm tired and in a hurry. There's no second checklist to drift.
+So "works on my machine" and "passes CI" come down to the same command list. The only difference is CI runs it whether or not I remember to, on the night I'm tired and just want to merge and go to bed.
 
-> NOTE: The `env` block on the build is worth a second. The build only needs those Supabase vars to be *defined*, not real, so they're public placeholders. Real secrets never touch CI logs. More on that below.
+> NOTE: The `env` block on the build catches people out. The build needs those Supabase vars to exist, not to be real, so they're public placeholders. Real secrets never go near a CI log — there's a whole section on that below.
 
-## Small branches, fast merges
+## Small branches, and a switch that makes the check mandatory
 
-The gate only stays honest if the branches stay small. A branch that sits for three weeks is just risk with a due date — by the time you merge, the world moved and you're testing something that isn't true anymore.
+This only holds up if the branches stay small, which is easy to say and easy to let slide — especially with the AI opening several branches at once. (That habit is exactly what sets up the migration mess I'll get to in a bit.) Short branches, merged often, keep the checks honest.
 
-So: short branches, merge often, keep `main` releasable. And one setting turns "the check exists" into "the check is required" — **branch protection** on `main`. Require CI to pass before anyone can merge. Without it, CI is a suggestion. With it, red blocks the button.
+One setting makes the check non-optional: branch protection on `main`, set to require CI before a merge goes through. Leave it off and CI is a suggestion, and a suggestion is something a hurried human — or an eager agent — clicks right past.
 
 ## Merge = deploy — `railway.json`
 
-There's almost nothing to this one. Railway deploys from GitHub on every push to `main`. No deploy step in the pipeline at all — the host watches the branch.
+There's almost nothing in this one, which is the whole point. Railway deploys from GitHub on every push to `main`. No deploy step lives in the pipeline — the host is watching the branch itself.
 
 ```json
 {
@@ -108,22 +106,22 @@ There's almost nothing to this one. Railway deploys from GitHub on every push to
 }
 ```
 
-From my `DEPLOY.md`: *"Every push to `main` redeploys automatically."* HTTPS is on by default. So the whole deploy story is: merge, walk away, the site updates. That's the goal — I'm not the person standing over a deploy button at 11pm.
+My `DEPLOY.md` puts it in one line: *"Every push to `main` redeploys automatically."* HTTPS is on out of the box. So I merge, walk away, and the site updates. I'm not the person standing over a deploy button at 11pm anymore.
 
-It's never quite that clean the first time, though. Here's one that got me: a fully green build can still 503 or 403 on Railway until you let the host through. Astro's preview server (Vite, really) rejects an unknown host. One line fixes it:
+It's never quite that clean the very first time, though. Here's the one that got me: a completely green build still threw 503s and 403s on Railway. Nothing wrong with the code. Astro's preview server (Vite under the hood) rejects a host it doesn't recognize, and Railway's domain wasn't on the list. One line:
 
 ```ts
 // vite.config.ts
 preview: { allowedHosts: ['.up.railway.app'] }
 ```
 
-So CI/CD isn't only about tests passing. It's the boring host-config stuff too — the gap between "green build" and "actually loading." Paste the 503 into your AI session and it'll point you right here.
+That's the part of CI/CD nobody draws in the diagram — the boring host-config gotcha wedged between "build went green" and "the page actually loads." I pasted the 503 into Claude and it took me straight to that line, which is how most of these go for me now.
 
 ## Infra ships with the code — migrations and functions
 
-This is the part people skip. Your schema and your edge functions should ship in the *same* pull request as the code that needs them. Not "merge the code today, run the migration by hand tomorrow." Together.
+This is the part that most often gets skipped, and the one I care about most: your schema change and your edge functions belong in the same pull request as the code that needs them. Not "merge the code today, run the migration by hand tomorrow" — they go together or they don't go.
 
-**Migrations** — `supabase-migrations.yml` fires on push to `main` that touches `supabase/migrations/**`, and runs one command:
+`supabase-migrations.yml` handles the schema. It fires on a push to `main` that touches `supabase/migrations/**` and runs a single command:
 
 ```yaml
 on:
@@ -137,9 +135,9 @@ on:
         run: supabase db push --include-all
 ```
 
-Why `--include-all`? There's a good note in the file's own comment. With parallel feature branches — and the AI opens several — you get **interleaved migration timestamps.** A branch whose migration sorts *before* one that's already been applied fails with *"Found local migration files to be inserted before…"* unless you tell it to include everything. And `db push` is idempotent — it only applies versions the project hasn't recorded yet — so re-runs are safe.
+Why `--include-all`? The file's own comment explains it, and it's the mess I promised you earlier. When several feature branches are open at once — and the AI cheerfully opens several — their migrations pick up interleaved timestamps. A branch whose migration sorts *before* one that's already applied fails with `Found local migration files to be inserted before…` unless you tell the push to include everything. And `db push` is idempotent: it only applies versions the project hasn't recorded yet, so running it a second time is a no-op, not a catastrophe.
 
-**Functions + secrets** — `supabase-functions.yml` fires on push touching `supabase/functions/**`. It deploys the edge function *and* syncs the API key from a GitHub Actions secret onto the Supabase project:
+`supabase-functions.yml` handles the edge functions. On a push touching `supabase/functions/**`, it deploys the function and, in the same run, sets the API key on the Supabase project from a GitHub Actions secret:
 
 ```yaml
       - name: Sync ANTHROPIC_API_KEY function secret
@@ -153,27 +151,27 @@ Why `--include-all`? There's a good note in the file's own comment. With paralle
         run: supabase functions deploy run-eval --project-ref "$SUPABASE_PROJECT_REF"
 ```
 
-So the key never lives in the repo. It sits as a GitHub Actions secret, gets injected onto the project during the deploy, and that's it.
+The key never lands in the repo. It lives as a GitHub Actions secret, gets set on the project during the deploy, and that's the whole trip.
 
-## Security the pipeline enforces
+## The security the pipeline is quietly doing
 
-Worth pulling this one out, because the pipeline isn't just quality control — it's a security control too.
+That last bit earns its own section, because there's a security rule baked into the pipeline, not only a quality one.
 
-Same rule as [the vibe-coding post](/posts/vibe-coding-with-confidence/): anything prefixed `VITE_` is **public** — it ships to the browser, so treat it as visible to the world. That's why the CI build can use placeholder `VITE_` values; they were never secret. Real secrets — a `service_role` key, the `ANTHROPIC_API_KEY` — only ever exist as **Actions secrets**, injected for a few seconds at deploy time, never committed.
+Same rule as [the vibe-coding post](/posts/vibe-coding-with-confidence/): anything named `VITE_` is public. It gets shipped into the browser, so treat it as visible to the entire world. That's why CI can build with placeholder `VITE_` values — they were never secret to begin with. The real secrets, a `service_role` key or the `ANTHROPIC_API_KEY`, only ever exist as Actions secrets, handed to a deploy for the few seconds it needs them, and never committed.
 
-So the pipeline is where "don't commit secrets" stops being a note-to-self and becomes structural. The build proves you didn't need the real secret to build it. The deploy is the one place the real one shows up, and only for as long as it takes to use it.
+So "don't commit your secrets" isn't advice I have to keep remembering — the pipeline is built so I can't. The build proves the app compiles without the real key. The deploy is the only place that key ever appears, and only for as long as it takes to use it.
 
-## The payoff — an AI ships through the same gate
+## An AI ships through the same gate — `claude-feature.yml`
 
-`claude-feature.yml`. This is the one the rest was built for.
+Back to that PR Claude opened. This is the file behind it.
 
-I drag a card, the issue gets labeled `approved-for-work`, and this workflow runs Claude Code. It builds on a `feature/issue-N` branch and **opens a pull request.** It cannot push to `main`. Same lane as a human — prove it on a branch, open the question, a person reviews, the merge lane ships it. From the file's own header:
+I drag a card, the issue gets an `approved-for-work` label, and this workflow runs Claude Code. It builds on a `feature/issue-N` branch and opens a PR. It cannot push to `main` — same lane as me. Prove it on a branch, open the question, a human reviews, the merge lane ships it. The file says so right at the top:
 
 > *"the agent works on a branch and opens a PR — it cannot push to main … A human reviews and the board's merge lane ships it."*
 
-Two things in this file are worth a look.
+Two things in here I want to point at.
 
-**First — what does "green" even mean?** Not "the agent didn't crash." It means "a pull request exists." Those aren't the same thing, so the workflow checks the real one first:
+The first is a definition question: what counts as the run succeeding? An agent that runs clean but produces nothing hasn't done the job — what I actually want is a PR sitting there for me to review. So the check looks for the PR itself, first thing:
 
 ```yaml
       # Green must mean "a PR exists", not "the agent didn't crash". Check this FIRST…
@@ -186,9 +184,7 @@ Two things in this file are worth a look.
           fi
 ```
 
-An agent that runs to completion and produces *nothing* should be a failure, not a quiet success. So the check is for the outcome you actually wanted.
-
-**Second, the one I like most — run your gate even when the platform won't run it for you.** GitHub has an anti-recursion rule: pull requests opened by a bot don't trigger `pull_request` workflows. So the AI's PR wouldn't get the normal four checks on its own. This workflow runs them itself, against the branch:
+The second one I like more. GitHub has an anti-recursion rule: a pull request opened by a bot doesn't trigger `pull_request` workflows. It's a reasonable default — it stops automation from setting itself off in a loop. But it also means Claude's PR wouldn't get the four checks run against it. So the workflow runs them itself, against the branch it just pushed:
 
 ```yaml
       - name: Test the built branch
@@ -201,22 +197,22 @@ An agent that runs to completion and produces *nothing* should be a failure, not
           npm run build
 ```
 
-That's the whole idea: don't let code skip the gate because of who — or what — wrote it. GitHub gives the bot a pass; I take it back. Human or AI, same checks.
+The platform handed the bot a free pass, and the workflow hands it back. Human or AI, the code meets the same four checks. That's the rule I actually care about here — nothing skips the gate based on who, or what, wrote it.
 
-> NOTE: There's a sixth file I'll only mention — `update-readme.yml` regenerates the README on every merge and commits it back with `[skip ci]`. It's a small example of building an automated loop *without* an infinite one — four independent guards keep it from triggering itself. Good reading if you're wiring up a self-updating job.
+> NOTE: There's a sixth file I'll just point at, `update-readme.yml`. It regenerates the README on every merge and commits it back with `[skip ci]`. It's a tidy little study in building an automated loop that doesn't set itself off forever — four separate guards keep it from re-triggering. Worth a read if you're wiring up anything that commits back to its own repo.
 
-## Wrapping up
+## So, five files
 
-So that's the pipeline. Five files you can read on one screen:
+That's the pipeline, and it really does fit on one screen:
 
-- **`ci.yml`** — the gate. The same four commands as my local Definition of Done, just un-skippable.
-- **`railway.json`** — merge is the deploy. No button.
-- **`supabase-migrations.yml`** — schema ships with the code that needs it, idempotently.
-- **`supabase-functions.yml`** — functions and secrets as code; the key never lives in git.
-- **`claude-feature.yml`** — the AI ships through the exact same gate, and re-runs it when the platform won't.
+- `ci.yml` — the gate. My local Definition of Done, minus the option to skip it.
+- `railway.json` — merge is the deploy, no button.
+- `supabase-migrations.yml` — the schema ships with the code that needs it, and re-runs safely.
+- `supabase-functions.yml` — functions and secrets as code, the key never in git.
+- `claude-feature.yml` — the AI goes through the same gate, and re-runs it when GitHub won't.
 
-The reason I can let an AI open pull requests here isn't that the AI is smart. It's that it has to walk through the same green gate I do — and that gate is a handful of files I can read.
+Letting an AI open PRs in here has nothing to do with how smart the AI is. It has to walk through the same green gate I do, and that gate is five files I can sit and read.
 
-Want a place to start? Grab the [supbse-vibecoding-starter](https://github.com/alnutile/supbse-vibecoding-starter) template, spin up a project, and open `.github/workflows/ci.yml`. Break a check on purpose — one line — push it, and watch the merge go red. Red is the system working. Then fix it, watch it go green, merge, and see the site update on its own. That loop, on your own repo, is the best way to get why this matters.
+If you want to see it work, the quickest way is to break it on purpose. Grab the [supbse-vibecoding-starter](https://github.com/alnutile/supbse-vibecoding-starter) template, spin up a project, open `.github/workflows/ci.yml`, and drop a stray type error into the code. Push it, and the merge goes red. Fix it, and it goes green and deploys itself. Seeing it go red and then green on my own repo is what made it click for me.
 
 Green means ship.
