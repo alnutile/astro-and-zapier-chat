@@ -4,7 +4,6 @@ date: 2026-08-02
 excerpt: "You vibe-code a feature, it works, and a week later it's mysteriously broken again. And every time you want to go live it's the same tedious steps: run the database change by hand, copy the keys, click deploy, hope. CI/CD hands all of that to automation that refuses to ship anything broken. Here's how, using a real repo."
 image: "/images/green-means-ship-cicd-with-confidence/cover.png"
 tags: [ai, ci-cd, vibe-coding, security, railway, supabase, automation]
-draft: true
 faq:
   - question: "What is CI/CD in plain terms?"
     answer: "CI, continuous integration, means every time your code changes an automation runs your checks and tells you if something broke. CD, continuous delivery, means once those checks pass it deploys the change for you. Together they take the boring, error-prone parts of shipping and hand them to a script that refuses to ship anything broken."
