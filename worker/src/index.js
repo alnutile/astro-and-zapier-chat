@@ -1,14 +1,19 @@
 import { buildSystemPrompt } from './system-prompt.js';
 
-// Cloudflare Worker: the only thing that holds the OpenAI key. It enforces the
+// Cloudflare Worker: the only thing that holds the LLM API key. It enforces the
 // abuse protections (origin check, Turnstile, rate limits, hard daily cap),
-// fetches+caches the post index, builds the prompt, and calls OpenAI.
+// fetches+caches the post index, builds the prompt, and calls the LLM.
 //
-// Required secrets (wrangler secret put):  OPENAI_API_KEY, TURNSTILE_SECRET
+// The LLM endpoint is OpenAI-compatible. It defaults to OpenRouter
+// (https://openrouter.ai/api/v1) but works with any OpenAI-style
+// /chat/completions endpoint by setting LLM_BASE_URL.
+//
+// Required secrets (wrangler secret put):  OPENROUTER_API_KEY, TURNSTILE_SECRET
+//   (OPENAI_API_KEY is still honored as a fallback for the key.)
 // Required binding (wrangler.toml):        RATELIMIT (KV namespace)
 // Vars (wrangler.toml):                    ALLOWED_ORIGINS, INDEX_URL, SITE_URL,
-//                                          MODEL, MAX_TOKENS, PER_MIN, PER_HOUR,
-//                                          DAILY_CAP
+//                                          LLM_BASE_URL, MODEL, MAX_TOKENS,
+//                                          PER_MIN, PER_HOUR, DAILY_CAP
 
 const INDEX_CACHE_TTL = 3600; // seconds the Worker caches /chat-index.json
 const MAX_MESSAGE_CHARS = 2000;
@@ -86,10 +91,10 @@ async function handle(request, env, ctx, origin, cors) {
     const index = await getIndex(env, ctx);
     const system = buildSystemPrompt(index, env.SITE_URL || 'https://chat.dailyai.studio');
 
-    // --- Stream the reply from OpenAI ------------------------------------
+    // --- Stream the reply from the LLM -----------------------------------
     // Errors (non-2xx) still come back as JSON before any streaming begins,
     // so the widget can branch on res.ok.
-    return streamOpenAI(system, history, env, ctx, cors);
+    return streamChat(system, history, env, ctx, cors);
 }
 
 // ---------------------------------------------------------------------------
@@ -189,18 +194,26 @@ async function getIndex(env, ctx) {
   }
 }
 
-// Streams OpenAI's response as plain text. We read OpenAI's SSE, pull out each
-// delta, and write just the text through a TransformStream — so the widget can
-// read the body with a plain reader instead of parsing SSE itself.
-function streamOpenAI(system, history, env, ctx, cors) {
-  return fetch('https://api.openai.com/v1/chat/completions', {
+// Streams the LLM's response as plain text. The endpoint is OpenAI-compatible
+// (OpenRouter by default), so we read its SSE, pull out each delta, and write
+// just the text through a TransformStream — so the widget can read the body
+// with a plain reader instead of parsing SSE itself.
+function streamChat(system, history, env, ctx, cors) {
+  const baseUrl = (env.LLM_BASE_URL || 'https://openrouter.ai/api/v1').replace(/\/+$/, '');
+  const apiKey = env.OPENROUTER_API_KEY || env.OPENAI_API_KEY;
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${apiKey}`,
+    // OpenRouter uses these for attribution/rankings; other OpenAI-compatible
+    // endpoints ignore unknown headers, so they're harmless everywhere.
+    'HTTP-Referer': env.SITE_URL || 'https://chat.dailyai.studio',
+    'X-Title': 'DailyAi chatbot',
+  };
+  return fetch(`${baseUrl}/chat/completions`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${env.OPENAI_API_KEY}`,
-    },
+    headers,
     body: JSON.stringify({
-      model: env.MODEL || 'gpt-4o-mini',
+      model: env.MODEL || 'openai/gpt-4o-mini',
       max_tokens: Number(env.MAX_TOKENS || 500),
       temperature: 0.3,
       stream: true,

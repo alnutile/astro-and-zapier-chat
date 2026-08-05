@@ -13,8 +13,8 @@ cd evals
 node build-index.mjs            # writes index.fixture.json
 # node build-index.mjs http://localhost:4321/chat-index.json   # against local dev
 
-# run the evals
-export OPENAI_API_KEY=sk-...
+# run the evals (uses OpenRouter, the same provider the Worker ships)
+export OPENROUTER_API_KEY=sk-or-...
 npx promptfoo@latest eval
 
 # open the web UI to inspect pass/fail + model outputs
