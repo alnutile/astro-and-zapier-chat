@@ -1,7 +1,9 @@
 # Copy to `worker/.dev.vars` for local `wrangler dev`. Real .dev.vars is gitignored.
 # In production these are set with `wrangler secret put <NAME>` instead.
 
-OPENAI_API_KEY="sk-..."
+# OpenRouter API key (https://openrouter.ai/keys). The Worker also accepts
+# OPENAI_API_KEY as a fallback if you point LLM_BASE_URL back at OpenAI.
+OPENROUTER_API_KEY="sk-or-v1-..."
 
 # Turnstile secret key from the Cloudflare Turnstile dashboard.
 # For LOCAL testing you can use Cloudflare's always-passes test secret:

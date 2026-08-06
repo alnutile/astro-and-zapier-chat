@@ -1,13 +1,17 @@
 # Self-hosted chatbot
 
 Replaces the old Zapier chatbot embed. The site serves a build-time post index;
-a Cloudflare Worker holds the OpenAI key and enforces abuse protection.
+a Cloudflare Worker holds the LLM API key and enforces abuse protection.
+
+The LLM endpoint is OpenAI-compatible and defaults to **OpenRouter**
+(`openai/gpt-4o-mini`). It can point at any OpenAI-style `/chat/completions`
+endpoint by changing `LLM_BASE_URL` + `MODEL` in `wrangler.toml` — no code change.
 
 ## Architecture
 
 ```
-Browser  ──POST {messages, turnstileToken}──►  Cloudflare Worker  ──►  OpenAI gpt-4o-mini
-(ChatWidget.astro)                              (worker/)
+Browser  ──POST {messages, turnstileToken}──►  Cloudflare Worker  ──►  OpenRouter (openai/gpt-4o-mini)
+(ChatWidget.astro)                              (worker/)               (OpenAI-compatible endpoint)
                                                   │ Turnstile verify
                                                   │ origin allow-list
                                                   │ KV rate limits + daily cap
@@ -28,11 +32,11 @@ Browser  ──POST {messages, turnstileToken}──►  Cloudflare Worker  ─�
 | --- | --- |
 | Bot hammering the endpoint | Cloudflare **Turnstile** token required per message |
 | Endpoint used as a free OpenAI proxy from elsewhere | `Origin` allow-list (`*.dailyai.studio`) + CORS |
-| Cost runaway | Per-IP rate limits (10/min, 60/hr) **and** a global daily cap (1000/day) in KV, plus an OpenAI hard spend limit |
+| Cost runaway | Per-IP rate limits (10/min, 60/hr) **and** a global daily cap (1000/day) in KV, plus an OpenRouter credit/spend limit |
 | Expensive single requests | message length, history length, and `max_tokens` all capped |
 | "Ignore your instructions…" | system prompt scoped to the blog; injection-resistance covered by evals |
 
-The OpenAI dashboard hard spend limit is the real backstop — set it.
+The OpenRouter credit limit (and per-key spend limit) is the real backstop — set it.
 
 ## One-time setup
 
@@ -48,25 +52,26 @@ wrangler kv namespace create RATELIMIT
 #    - site key  → ChatWidget.astro  (TURNSTILE_SITE_KEY)
 #    - secret    → wrangler secret put TURNSTILE_SECRET
 
-# 3. OpenAI key
-wrangler secret put OPENAI_API_KEY
+# 3. OpenRouter key (https://openrouter.ai/keys)
+wrangler secret put OPENROUTER_API_KEY
 
 # 4. deploy
 wrangler deploy
 #    → paste the deployed URL into ChatWidget.astro (WORKER_URL)
 
-# 5. In the OpenAI dashboard: set a hard monthly spend limit + billing alert.
+# 5. In the OpenRouter dashboard: set a credit limit (and an optional per-key
+#    spend limit) so a runaway can't drain the account.
 ```
 
-Adjust `ALLOWED_ORIGINS`, `PER_MIN`, `PER_HOUR`, `DAILY_CAP`, `MODEL`,
-`MAX_TOKENS` in `wrangler.toml` as needed (no code change).
+Adjust `ALLOWED_ORIGINS`, `LLM_BASE_URL`, `PER_MIN`, `PER_HOUR`, `DAILY_CAP`,
+`MODEL`, `MAX_TOKENS` in `wrangler.toml` as needed (no code change).
 
 ## Local development
 
 ```bash
 # Worker
 cd worker
-cp .dev.vars.example .dev.vars   # fill OPENAI_API_KEY; Turnstile test secret works as-is
+cp .dev.vars.example .dev.vars   # fill OPENROUTER_API_KEY; Turnstile test secret works as-is
 wrangler dev                     # serves on http://localhost:8787
 
 # Site

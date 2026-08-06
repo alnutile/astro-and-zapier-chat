@@ -1,7 +1,8 @@
 # Evals for the DailyAi chatbot. Tests the SAME system prompt the Worker ships
-# (../worker/src/system-prompt.js) against the same model.
+# (../worker/src/system-prompt.js) against the same model, via OpenRouter (the
+# same provider the Worker uses in production).
 #
-# Run:   cd evals && OPENAI_API_KEY=sk-... npx promptfoo@latest eval
+# Run:   cd evals && OPENROUTER_API_KEY=sk-or-... npx promptfoo@latest eval
 # View:  npx promptfoo@latest view
 #
 # Tip: run `node build-index.mjs` first to pull the live post catalog into
@@ -14,14 +15,14 @@ prompts:
   - file://prompt.js
 
 providers:
-  - id: openai:gpt-4o-mini
+  - id: openrouter:openai/gpt-4o-mini
     config:
       temperature: 0.3
       max_tokens: 500
 
 defaultTest:
   options:
-    provider: openai:gpt-4o-mini
+    provider: openrouter:openai/gpt-4o-mini
 
 tests:
   - description: On-topic question should answer and link a post
