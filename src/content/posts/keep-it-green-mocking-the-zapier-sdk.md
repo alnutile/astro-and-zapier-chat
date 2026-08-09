@@ -31,7 +31,7 @@ Here's the exact spot it bites. In an earlier post I built a little agent that s
 import { createZapierSdk } from '@zapier/zapier-sdk';
 
 const zapier = createZapierSdk();
-const { data: connection } = await zapier.findFirstConnection({ appKey: 'slack', owner: 'me' });
+const { data: connection } = await zapier.findFirstConnection({ app: 'slack', owner: 'me' });
 const slack = zapier.apps.slack({ connectionId: connection.id });
 const { data: channels } = await slack.read.channels({});
 ```
@@ -66,6 +66,8 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 ```
 
+> NOTE: MSW isn't the only tool here, and it's worth knowing why I land on it. The classic Node pick is [nock](https://github.com/nock/nock), but it hooks Node's old `http` module and doesn't catch the native `fetch` that modern SDKs (the Zapier one included) run on. Node ships its own answer, undici's [`MockAgent`](https://undici.nodejs.org/#/docs/api/MockAgent), which does catch `fetch`, but you wire it up per-dispatcher. MSW patches `fetch` itself and matches on the URL, so it catches the call no matter how the SDK makes it. That's why it's the one I reach for when I don't want to think about the transport.
+
 Then the test runs your real code, and your real code calls the SDK, and the SDK's request never leaves the machine:
 
 ```ts
@@ -76,23 +78,23 @@ test('syncs new tasks, skips ones already saved', async () => {
 });
 ```
 
-Notice `syncTasks` didn't get wrapped or rewritten. It calls the SDK like it always did. MSW just sat underneath and caught the request.
+`syncTasks` didn't get wrapped or rewritten. It calls the SDK like it always did. MSW just sat underneath and caught the request.
 
 ## The line that makes this trustworthy
 
-Look at one setting up there: **`onUnhandledRequest: 'error'`**. That's the whole game.
+One setting up there does the real work: **`onUnhandledRequest: 'error'`**. That's the whole game.
 
 It means if your code makes a call to any URL you *didn't* mock, the test fails on the spot. So two good things happen at once. First, nothing sneaks out to the real network, ever. Second, you get a running list of every call your code actually makes, including the ones you forgot were in there.
 
-And here's the part that's perfect for vibe-coding: **you don't have to know Zapier's internal URL up front.** Run the test once, let it fail, and MSW prints the exact address the SDK tried to reach. You copy that into a handler and you're done. The tooling tells you what to mock. You didn't have to go read the SDK's source to find out how it talks to Google Tasks under the hood.
+And it lines up with how vibe-coding actually goes: **you don't have to know Zapier's internal URL up front.** Run the test once, let it fail, and MSW prints the exact address the SDK tried to reach. You copy that into a handler and you're done. The tooling tells you what to mock. You didn't have to go read the SDK's source to find out how it talks to Google Tasks under the hood.
 
 > NOTE: Make your canned data real-shaped by recording it once. Hit the real API by hand one time, save the JSON it returns as a fixture file, and feed that to MSW. Now your fake data isn't something you made up, it's the real shape, so your mapping code gets tested against reality.
 
 One more thing worth saying plainly: what you're testing here is *your* code, not Zapier's. You trust the SDK does its job. What you care about is your logic around it, the dedupe by `external_id`, the field mapping, what happens when it gets an empty list back. Keep a single real test that actually hits Zapier if you want, but gate it behind a flag and run it nightly, not on every change. That one's an early warning for "did Zapier change something," which is a different job from the fast checks that gate every merge.
 
-## The part I actually want you to take away
+## What you're really building
 
-Here's the thing I keep landing on lately, and it's bigger than testing.
+I keep landing on this one lately, and it's not really about testing at all.
 
 I could not tell you how the Zapier SDK talks to Google Tasks under the hood. The exact endpoints, the auth dance, none of it. And I didn't need to. The AI wrote the sync. MSW told me the URL when the test failed. I mocked it and moved on.
 
@@ -118,5 +120,6 @@ Green means ship.
 ## Want to go deeper?
 
 - **[MSW (Mock Service Worker)](https://mswjs.io/)**, the network-interception library, with docs for Node and the browser.
+- **[nock](https://github.com/nock/nock)** and **[undici's `MockAgent`](https://undici.nodejs.org/#/docs/api/MockAgent)**, the other two well-known ways to mock HTTP in Node, if you want to compare.
 - **[Zapier SDK](https://docs.zapier.com/sdk)**, connect your app to 9,000+ apps without building the OAuth plumbing yourself.
 - **[Part one: Green Means Ship](/posts/green-means-ship-cicd-with-confidence/)**, the pipeline this `test` check lives in.
