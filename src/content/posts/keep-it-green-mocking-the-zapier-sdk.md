@@ -36,9 +36,9 @@ const slack = zapier.apps.slack({ connectionId: connection.id });
 const { data: channels } = await slack.read.channels({});
 ```
 
-Now think about what happens if a test runs that for real. It needs a real Zapier key. It makes a real call, which counts against real limits. It's slow. And it goes red any time the network hiccups or Zapier is having a slow morning, none of which means *your* code is broken. A check that lies to you is worse than no check, because you stop trusting the red.
+Run that in a test, though, and it falls apart. It needs a real Zapier key. It makes a real call that counts against your limits. It's slow. And it goes red any time the network hiccups or Zapier is having a slow morning — none of which means *your* code is broken. A check that lies to you is worse than no check, because you stop trusting the red.
 
-So the question is simple, even if the answer isn't obvious the first time: **how do you test code that calls an API without calling the API?**
+So here's the question: **how do you test code that calls an API without calling the API?**
 
 ## Two ways, and I like the second
 
@@ -80,11 +80,11 @@ test('syncs new tasks, skips ones already saved', async () => {
 
 `syncTasks` didn't get wrapped or rewritten. It calls the SDK like it always did. MSW just sat underneath and caught the request.
 
-## The line that makes this trustworthy
+## The one line that keeps it honest
 
 One setting up there does the real work: **`onUnhandledRequest: 'error'`**. That's the whole game.
 
-It means if your code makes a call to any URL you *didn't* mock, the test fails on the spot. So two good things happen at once. First, nothing sneaks out to the real network, ever. Second, you get a running list of every call your code actually makes, including the ones you forgot were in there.
+It means if your code calls any URL you *didn't* mock, the test fails right there. So nothing ever sneaks out to the real network. And you get a running list of every call your code actually makes — including the ones you forgot were in there.
 
 And it lines up with how vibe-coding actually goes: **you don't have to know Zapier's internal URL up front.** Run the test once, let it fail, and MSW prints the exact address the SDK tried to reach. You copy that into a handler and you're done. The tooling tells you what to mock. You didn't have to go read the SDK's source to find out how it talks to Google Tasks under the hood.
 
@@ -111,9 +111,9 @@ And you only say it once. Drop it into your `CLAUDE.md`, the same file the pipel
   that so the shape matches reality.
 ```
 
-Now every feature you vibe-code that reaches out to the world gets tested this way, without you thinking about it. You set the guardrail once, and the `test` check enforces it forever. Even better, drop that same rule into a **reusable skill** and it follows you from project to project, so a brand-new repo starts out already knowing how you like your tests written.
+Now every feature you vibe-code that reaches out to the world gets tested this way, without you thinking about it. You set the guardrail once and the `test` check holds it. Better yet, drop that same rule into a **reusable skill** and it follows you from project to project, so a brand-new repo starts out already knowing how you like your tests written.
 
-That's how the check stays honest, and how it stays green: it's testing your code, offline, every single time, and it never depends on a key or the weather. The real thing you're building up isn't SDK trivia. It's the short list of reminders that make the AI do a good job, and this is one of the good ones.
+That's how the check stays honest and stays green: it tests your code, offline, every time, and never leans on a key or the weather.
 
 Green means ship.
 
