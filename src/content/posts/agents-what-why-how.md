@@ -1,10 +1,10 @@
 ---
 title: "Agents: What They Are, Why You Need Them, and How They Work"
-date: 2026-06-13
+date: 2026-08-16
 excerpt: "Everyone's talking about agents. Here's what actually changed: instead of writing a pile of tools for a long-running process, we now hand the agent a whole computer and let it use Bash and the old Unix tools to get the job done. Two real examples, and a lot less magic than you'd think."
 image: "/images/agents-what-why-how/cover.png"
 tags: [ai, agents, vibe-code]
-draft: true
+draft: false
 faq:
   - question: "What is an AI agent in this newer sense?"
     answer: "An agent used to be a long-running process that called tools you wrote by hand. In the newer sense, the agent is given an actual computer or sandbox where it can run commands itself, mostly through Bash, to do the work. You hand it a task and it figures out the steps on its own machine."
@@ -22,7 +22,7 @@ faq:
 
 > **TLDR:** Last year an "agent" was mostly a long-running Node or Python process: send an HTTP request, hand the JSON to an API, check whether it wanted to call one of the tools you wrote, run the tool, feed the result back, repeat. That works. But the new move is different. We hand the agent an actual computer, a sandbox, and it reaches for Bash and the old Unix tools to do whatever the moment needs. I'll walk two real examples: an agent that reads a video of me playing pickleball and tells me about my form, and an agent that takes a zip full of data and crunches it, no RAG pipeline in sight.
 
-We hear the word "agent" constantly. Last year people were calling it "the year of agents." So let me pull some of the magic out of it, because once you see how it works it stops being mysterious and starts being useful. I've spent a lot of years around Linux, servers, and ops, so watching this land is a lot of fun for me. Let me back up and show you what actually changed.
+We hear the word "agent" constantly. As someone who has worked Linux for 20+ years it is amazing to see that Agents are realy coming down to giving AI Bash!
 
 ## Last year, an agent was basically a long-running process
 
@@ -68,7 +68,8 @@ So what's "the in-between"? Here's what a managed setup hands you so you don't h
 
 If you tried to build all of that yourself, it's not impossible, it's just a lot of little details and a lot of unknown unknowns. And the nice part is you can deploy this to your own servers, so it's not all-or-nothing.
 
-> **[ SCREENSHOT ]** The agent dashboard: the list of agents, their prompt and version, and the sessions underneath each one. _(video ~9:40)_
+![The agent dashboard: the list of agents, their prompt and version, and the sessions underneath each one. ](/images/agents-what-why-how/dashboard.png)
+
 
 Alright, enough setup. Let me show you two things that would have been a real pain to build last year.
 
@@ -78,9 +79,6 @@ The goal here is simple. I upload a video of myself playing pickleball and the a
 
 Here I just say: take this file, go.
 
-The first thing that happened is the file was too big. And on its own, the agent said, in effect, "I'm just going to make a 25 second version of this so we can get going." It decided to knock the size down so it could start working. I didn't tell it to do that.
-
-> **[ SCREENSHOT ]** The agent noticing the upload is too large and trimming it down to a ~25 second clip on its own. _(video ~4:28)_
 
 Behind the basic little upload UI (and it is basic, it's only there to prove the point), when I send the file it goes over to the managed agent. Somewhere in the setup is a system prompt that says, in effect, "this is a pickleball video, do what the person is asking with it."
 
@@ -88,7 +86,7 @@ Behind the basic little upload UI (and it is basic, it's only there to prove the
 
 Then the agent gets its computer and goes to work. If you watch the session live, you see it running Bash: making a directory, running `ffprobe`, reading and cutting the file. These older commands, now driving some genuinely modern work on video.
 
-> **[ SCREENSHOT ]** The live session running Bash: `mkdir`, `ffprobe`, and friends chewing on the video file. _(video ~13:45)_
+![The live session running Bash: `mkdir`, `ffprobe`, and friends chewing on the video file](/images/agents-what-why-how/bash.png)
 
 A couple of real things happened while I recorded this, because I don't do live demos. One session had a stale answer sitting in memory, so I re-uploaded and kicked it again, and it was smart enough to notice it had already seen the same video. The memory store also started saving notes about me as a player, which is exactly what you'd want if this were a real coaching tool.
 
@@ -106,15 +104,16 @@ This time I handed it to the agent and let it go.
 
 Watch what it does. The tool is Bash, and it uses `find` to locate the file, echoes the result, and shoots the noise into `/dev/null` so it isn't drowning in output. Then it mounts the session that has the file, lists it, counts the lines, and reads the header. All the stuff I used to hand-code.
 
-> **[ SCREENSHOT ]** Bash using `find`, `echo`, and `/dev/null` to locate the uploaded file, then reading the header and the row count. _(video ~19:06)_
+![Bash using `find`, `echo`, and `/dev/null` to locate the uploaded file, then reading the header and the row count](/images/agents-what-why-how/example2.png)
+
 
 Then it decides it wants Python, sets a variable for the file path, and writes a Python command to parse the data. Now you've got a computer that has Python, which is the right thing for this, and it just uses it. It comes back with a clean, well-formed file of about 5000 rows, confirms the column it cares about, checks its own count ("there are exactly nine unique recipients"), and keeps going. It's building these little tools on the fly.
 
-> **[ SCREENSHOT ]** The agent writing and running Python against the CSV, then confirming its own counts. _(video ~22:30)_
+![The agent writing and running Python against the CSV, then confirming its own counts.](/images/agents-what-why-how/confirmed.png)
 
 For the record, this was Federal Election Commission contribution data. The agent pulled the top contributors straight out of the file, names you'd recognize. So you could take almost any file type, hand it over, and get a real answer back. Now picture that feeding your chat UI, or getting posted somewhere your users can see it.
 
-> **[ SCREENSHOT ]** The final result: top contributors pulled from the FEC data file. _(video ~25:20)_
+![The agent writing and running Python against the CSV, then confirming its own counts.](/images/agents-what-why-how/chart.png)
 
 ## It's non-deterministic. You can still trust it.
 
