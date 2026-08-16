@@ -131,4 +131,4 @@ You can still make it pretty deterministic with the right prompt, the right stru
 
 So that's the game now. You're basically running a computer with AI at the controls. It can use everything native to Linux, build quick tools in Python, research the web, and get the job done. I hope that pulls some of the mystery out of it while leaving the good part intact: a lot of the time you can just point it at the task and let it work.
 
-The repo is linked below if you want to poke at it, but the code matters less than the shift itself. Go try it.
+The repo is linked below if you want to poke at it, but the code matters less than the shift itself. Go try it. [https://github.com/alnutile/agents-what-why-when](https://github.com/alnutile/agents-what-why-when)
