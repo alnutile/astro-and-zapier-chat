@@ -4,6 +4,19 @@ date: 2026-09-03
 excerpt: "I used to build my back ends in n8n - APIs, background jobs, queue work, AI integration, all of it. Something happened in January 2026 and now I don't reach for it, or for no-code platforms, at all. Here's the walls I hit and what I build with instead."
 image: "/images/why-i-no-longer-build-with-n8n/cover.png"
 tags: [ai, no-code, automation, vibe-coding]
+faq:
+  - question: "Why stop building back ends in n8n?"
+    answer: "The walls show up once the work gets real: processing large files, processing large amounts of rows, scaling to heavy incoming traffic, long-running processes, and the fact that you cannot easily run more than one loop in a workflow without hitting memory and count issues. Add testing and deployment on top of that, and the workarounds start to outweigh what the platform saves you."
+  - question: "Is code still technical debt?"
+    answer: "No, and that is the shift. Automations can maintain it, run security audits on it, build features in the background, and do a level of QA that used to be hand-written. With proper CI/CD deploying to production, code stops being the liability it was and becomes the flexible option again."
+  - question: "What do you build with instead of n8n or no-code platforms?"
+    answer: "A template project on Supabase or something like Neon, with authentication, permissions, an event system, storage, and a database out of the box, deployed to Railway or Vercel. For file processing, a Python script triggered on an event rather than a workflow node. Claude, OpenRouter, Cursor, OpenAI and a harness do the building."
+  - question: "Can no-code databases like Airtable scale?"
+    answer: "Not to the point most real products need. Millions of records, complex JSON and data queries, indexing, vectorizing, hybrid search — those were the limits hit in practice. Postgres has no limitation other than budget, and it can be extended with something like DuckDB when needed."
+  - question: "Isn't n8n easier for people who don't build?"
+    answer: "It was never actually easy. Bad builders built big, complex, spaghetti workflows the same way bad code got written years ago. The best builders today know the business domain and enough about going from build to deploy that there is no loss in translation, and the thinking happens at the business-goal level rather than the code level."
+  - question: "Who should use Replit versus their own cloud setup?"
+    answer: "If you or your company struggle with building and infrastructure, Replit gives you vibe coding plus a CI/CD pipeline, database, and authentication already working. If your company already knows the infrastructure, CI/CD, and cloud security side, you would skip Replit and use your own established patterns, skills, and templates optimized for how you build."
 ---
 
 ## TLDR
