@@ -6,31 +6,31 @@ tags: [devops, terraform, docker, laravel, aws, digitalocean, infrastructure-as-
 draft: true
 ---
 
-> **TLDR:** I'm starting a series on how to self-host your own stack. By "stack" I mean the combination of resources that host your application — compute, database, queue, storage, DNS, maybe a load balancer later. Services like Railway and Supabase are amazing. They also add up. By the end of this first lesson we'll have one command that builds a classic stack you can deploy to: infrastructure as code, CI after tests, automatic deploy, zero downtime, no clickOps.
+> **TLDR:** I'm starting a series on how to self-host your own stack. By "stack" I mean the combination of resources that host your application — linux box, database, queue, storage, DNS, maybe a load balancer later. Services like Railway and Supabase are amazing. They also add up money wise and more importanlty knowing how to connect your intranet into managed agents and other systems is key. By the end of this first lesson we'll have one command that builds a classic stack you can deploy to: infrastructure as code, CI after tests, automatic deploy, zero downtime, no clickOps.
 
 This is post one in a series: how to self-host your own stack.
 
-And before I jump into Terraform and AWS — which I always want to do too fast — here's the why.
-
 ## Why learning to build your own stack matters
 
-I use services like Railway and Supabase. I might use a queue system. Cloudflare or something for DNS. Later on maybe a load balancer. Storage, authentication, websockets — a lot of that I put on Supabase.
+![Stack One](/images/why-learn-to-build-your-own-stack/stack-1.png)
 
-These are amazing services. They can also add up. Supabase isn't free after your first few stacks. We have tons of ideas. Or you're building an "internet" and you want multiple environments.
+I use services like Railway and Supabase and I might use a queue system like Redis etc. Later on maybe a load balancer. Storage, authentication, websockets — a lot of that I get out of Supabase but running your own Supabase can be a lot.
 
-So how do we use tools like Terraform (and later Kubernetes) to quickly stand up what I call different types of stacks — that combination of resources — with predictable pricing?
+These are amazing services. They can also add up. Supabase isn't free after your first few stacks. And when building the company intranet with multiple environments it will add up.
 
-This matters even more as we try to integrate all these other systems together. Good networking so things stay secure. Containers so you can keep them more up to date and scale. Cloud-managed agents that need to talk into your AWS system securely, and really target the right level. That stuff pays off when you actually understand the stack underneath.
+So how do we use tools like Terraform (and later Kubernetes) to quickly stand up what I call different types of stacks — that combination of resources — with predictable pricing? And then how do we get our code there easily.
+
+This matters even more as we try to integrate all these other systems together. For example Claude Managed Agents might need to access a file on your storage area, or a service. Containers are key too so you can keep them more up to date and scale. Even if you go back to Vercel + Supabase + GitHub Actions etc it is still great to know these things.
 
 ## What I mean by stack (and what this series is not)
 
-This isn't going to be about Stripe integration and things like that. I'd say these are more your internal / intranet applications that you're building for the office. We'll even cover things like security so only certain users can access the app.
+This isn't going to be about Stripe integration and things like that. This is more for intranet applications that you're building for internal business use.
 
 When we deploy these stacks, we start simple.
 
-The first one is a simple Terraform command that builds up our stack on DigitalOcean, on AWS, on Azure, on Google Cloud. What we end up with is a very predictable pricing stack.
+The first one is a simple Terraform command that builds up our stack on AWS (later Azure and Google Cloud). What we end up with is a very predictable pricing stack.
 
-You could go a couple of ways: dedicated databases, dedicated queue systems from the cloud. Or we can just use something like an EC2 — a Linux box basically. We'll try a whole bunch of them. Every cloud provider. Keep it simple, or complicate things in a good way.
+You could go a couple of ways: dedicated databases, dedicated queue systems from the cloud. Or we can just use something like an EC2 — a Linux box basically. We'll try a whole bunch of them. Every cloud provider. Later I will start to use Kubernetes to more easily manage the running services and scale as needed.
 
 By the time we're done with this first lesson, we're going to have one command, and we're going to build a system we can deploy to.
 
@@ -40,29 +40,43 @@ Classic path:
 - CI — continuously pushing code and integrating it after tests into our trunk
 - Automatically deploy to that system
 
-I have trainings on all of this. First we build the stack. Then we enjoy deploying to the stack by pushing the code there.
+I will have trainings videos on all of this. First we build the stack. Then we enjoy deploying to the stack by pushing the code there.
 
 We'll have zero downtime during the deployments. Migrations with basically no touch. No need to click. No clickOps. All infrastructure as code.
 
-## Why Docker (and why a rich example)
+## Why Docker
 
 We're going to use Docker. It's just amazing because we can run these locally, mess around locally, see our stuff working, and then deploy it. Even more importantly: we just won't care as much when our Linux box is out of date. We can update it without worrying about breaking our application or the queue system or whatever.
 
-This is going to be a rich stack with a rich example. Laravel, just because it has some of the aspects built into it. Redis for queueing. Horizon so we can do queue jobs, with examples. Automate the QA in testing. Postgres, of course, and migrations. Storage on the box — but preserved every time we deploy (volumes pointed at storage that stays on the server / attached disk).
+This is going to be a stack based on Laravel to start, Postres as the database, Redis for queueing, and storage will be a "volume" we can backup and share as needed. Horizon so we can do queue jobs for us. GitHub actions will do all the Continuas Integration and Deployment, migrations will be in code.
 
 Later on we'll get into Kubernetes. Right now I'm just trying to keep it simple. I want to grow through this together — and I mean grow, because we're going to be learning and changing and doing. AI ops is fun again, in my opinion.
 
-Yes, you'll need to know some basic Linux stuff. Don't worry about it. You always have AI to help out. It can be wrong. It's still amazing. You might get stuck on SSH. Ask AI. Or ask below — I'll try to help you.
+Yes, you'll need to know some basic Linux stuff. Don't worry about it. You always have AI to help out. It can be wrong. It's still amazing. You might get stuck on SSH. Ask AI. Or ask below - I'll try to help you.
 
 ## Where the code is
 
 The code's all on GitHub. When you pull it down you can run your Terraform in it to get going and set up the infrastructure requirements. Kind of like `npm init` — hey, give me what I need to run this.
 
-We'll focus a DigitalOcean system and an AWS system. AWS isn't my favorite, but it does really fine.
-
-Now that we've gone through the cloud movement and we're at the AI movement, it's really important to understand how to integrate these services, how to do good networking so it's secure, how to deal with containers.
+We'll focus first on an AWS system but again we will do Azure, GCP and maybe some others
 
 ## Build it (the short version for this draft)
+
+This repo will have the code. [https://github.com/alnutile/labs](https://github.com/alnutile/labs) you can:
+
+``
+git clone git@github.com:alnutile/labs.git 
+cd labs
+``
+
+To get going.
+
+You will need to install aws cli, terraform cli as well and set those up.
+
+This is so well known that you can use the terminal (yes use the terminal this will be good to get comfortable with) and start **codex** or **claude** and ask it to get these setup for you.
+
+Once you setup an AWS user you can use and configure aws cli to have the permissions needed **AdministratorAccess** to get that to have the rights we need to kick this off.
+
 
 AWS CLI connected. Terraform ready. `terraform plan`, then `terraform apply`.
 
