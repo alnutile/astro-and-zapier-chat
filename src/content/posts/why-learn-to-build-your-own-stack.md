@@ -4,6 +4,19 @@ date: 2026-09-16
 excerpt: "Managed services are great until the bill and the environments pile up. I'm starting a series on building your own stack — Terraform, Docker, CI, deploy — so you can stand up predictable, secure places to run the apps you're wiring together."
 tags: [devops, terraform, docker, laravel, aws, digitalocean, infrastructure-as-code, self-hosting]
 draft: true
+faq:
+  - question: "What do you mean by a stack in this series?"
+    answer: "The combination of resources that host your application — compute, database, queue, storage, DNS, and maybe a load balancer later. Not every SaaS bolt-on like Stripe. More the place your internal or office apps actually run."
+  - question: "Why build your own stack instead of using Railway or Supabase?"
+    answer: "Those services are amazing. They also add up once you have a lot of ideas, multiple environments, or you are building something like an internet of apps. Building your own stack with tools like Terraform gives you predictable pricing and a place you control when you start wiring other systems in."
+  - question: "Why does this matter for integrating other systems and AI agents?"
+    answer: "When cloud-managed agents or third-party services need to talk into your AWS or other cloud setup, you need secure networking and a clear target. Containers help you keep things updated and scale. That pays off when you understand the stack underneath instead of only clicking through managed dashboards."
+  - question: "What is the classic stack in this first lesson?"
+    answer: "A Linux box with Docker: Laravel for the app, Redis and Horizon for queues, Postgres with migrations, and storage on volumes so uploads survive deploys. Terraform stands it up. GitHub runs tests and deploys with zero downtime and no clickOps."
+  - question: "Are you using RDS, SQS, and S3 in this first lesson?"
+    answer: "No. This first lesson is just a Linux box — which is what a lot of managed services are underneath anyway. Dedicated cloud databases, queues, and object storage are options later. The next article covers hosting multiple apps on one box."
+  - question: "Do I need to be a Linux expert to follow along?"
+    answer: "You need some basic Linux, including things like SSH. Do not panic about it. AI can help, even when it is wrong, and you can ask questions on the post. The goal is to grow through this together, not to assume you already know every command."
 ---
 
 > **TLDR:** I'm starting a series on how to self-host your own stack. By "stack" I mean the combination of resources that host your application — linux box, database, queue, storage, DNS, maybe a load balancer later. Services like Railway and Supabase are amazing. They also add up money wise and more importanlty knowing how to connect your intranet into managed agents and other systems is key. By the end of this first lesson we'll have one command that builds a classic stack you can deploy to: infrastructure as code, CI after tests, automatic deploy, zero downtime, no clickOps.
