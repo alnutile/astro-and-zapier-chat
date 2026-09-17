@@ -3,7 +3,7 @@ title: "Why You Should Learn to Build Your Own Stack"
 date: 2026-09-16
 excerpt: "Managed services are great until the bill and the environments pile up. I'm starting a series on building your own stack — Terraform, Docker, CI, deploy — so you can stand up predictable, secure places to run the apps you're wiring together."
 tags: [devops, terraform, docker, laravel, aws, digitalocean, infrastructure-as-code, self-hosting]
-draft: true
+draft: false
 faq:
   - question: "What do you mean by a stack in this series?"
     answer: "The combination of resources that host your application — compute, database, queue, storage, DNS, and maybe a load balancer later. Not every SaaS bolt-on like Stripe. More the place your internal or office apps actually run."
@@ -26,6 +26,8 @@ This is post one in a series: how to self-host your own stack.
 ## Why learning to build your own stack matters
 
 ![Stack One](/images/why-learn-to-build-your-own-stack/stack-1.png)
+
+> NOTE: if you get stuck just chat with the code base. Open up Claude or Codex or whatever and just ask your question
 
 I use services like Railway and Supabase and I might use a queue system like Redis etc. Later on maybe a load balancer. Storage, authentication, websockets — a lot of that I get out of Supabase but running your own Supabase can be a lot.
 
@@ -67,7 +69,7 @@ Later on we'll get into Kubernetes. Right now I'm just trying to keep it simple.
 
 Yes, you'll need to know some basic Linux stuff. Don't worry about it. You always have AI to help out. It can be wrong. It's still amazing. You might get stuck on SSH. Ask AI. Or ask below - I'll try to help you.
 
-## Where the code is
+## Where is the code
 
 The code's all on GitHub. When you pull it down you can run your Terraform in it to get going and set up the infrastructure requirements. Kind of like `npm init` — hey, give me what I need to run this.
 
@@ -77,54 +79,218 @@ We'll focus first on an AWS system but again we will do Azure, GCP and maybe som
 
 This repo will have the code. [https://github.com/alnutile/labs](https://github.com/alnutile/labs) you can:
 
-``
-git clone git@github.com:alnutile/labs.git 
-cd labs
-``
+Then follow the `labs/classic-stack/README.md` 
 
-To get going.
+> Read the script files to just see how things come together
 
-You will need to install aws cli, terraform cli as well and set those up.
+This will get your docker running with the php and other elements needed for the initial web application.
 
-This is so well known that you can use the terminal (yes use the terminal this will be good to get comfortable with) and start **codex** or **claude** and ask it to get these setup for you.
+> Yes Laraval has Sail but I want to really show and see how this works so we can later move into Kubernetes etc.
+> Keep in mind this is about hosting your own stack, any type.
 
-Once you setup an AWS user you can use and configure aws cli to have the permissions needed **AdministratorAccess** to get that to have the rights we need to kick this off.
+The **labs/classic-stack/README.md** also notes 
+
+> Local PostgreSQL/Redis use named volumes with no published database ports. The source and local reports are in `app/`; production reports use a separate persistent volume. `app/.env` is ignored. To change the local web port, set `APP_PORT` and `APP_URL` there. `down -v` deletes the local database and queue volumes.
+
+This is pretty neat since docker can talk to other services running in it's own internal network.
+
+![Docker Network](/images/why-learn-to-build-your-own-stack/docker-network.png)
 
 
-AWS CLI connected. Terraform ready. `terraform plan`, then `terraform apply`.
 
-What we're building (I'll show the image in the video / next pass): an EC2 that has Docker installed, containers running, traffic redirected to the Laravel application. That app uses Docker's internal networking to talk to the queue and other things. For storage we'd probably use elastic / attached storage.
+## Building the Server
 
-I'm not using AWS CodePipeline. I found it very limiting. We could integrate with it. For now: GitHub runs the tests, and if they pass, it deploys.
+Ok now the README.md will cover this part and it starts off with:
 
-There's a separate Laravel app with authentication and login and basic stuff — or we move it into the folder with the classic stack so the code lives with the build. If I want to change the Terraform or add a service, I can do it there. Staging build too.
+> PRICING: 
 
-**AI notes I still need to settle while writing / filming:**
+> The first version costs roughly $22 per month before taxes and optional backups when left
+> running continuously in AWS us-west-2. That includes one small EC2 instance, a 30 GB
+> encrypted gp3 disk, and one public IPv4 address. PostgreSQL, Redis, Horizon, Caddy, and
+> Laravel all run as containers on that same machine, so they do not create separate
+> service charges.
+>
+> This is an estimate, not a fixed bill. Data transfer, snapshots, extra storage, CPU-
+> credit usage, Cloudflare features, and domain registration can add to it. Stopping or
+> destroying the instance reduces compute costs, but the disk, snapshots, and public IP may
+> still incur charges depending on what remains.
 
-- How clean is local `terraform apply` on the Mac?
-- During the GitHub build, are we synchronizing Terraform state so we know we have the resources needed to deploy?
-- I might need the domain early so I don't get CORS issues on file uploading.
+$22 USD might seem high but what will happen shortly is we can run as many applications we want on this. Or use a smaller instance etc. This is a fixed cost that will not go up until the machine is maxed out which you will see can hold more than you think. 
 
-When this pushes, it deploys to that existing system. No downtime. Docker container up, migrations, take the traffic.
+```bash
+export AWS_PROFILE=sundance        # replace with your profile
+aws sts get-caller-identity
+ssh-keygen -t ed25519 -f ~/.ssh/classic-stack-deploy -C classic-stack-deploy
+cd terraform
+cp terraform.tfvars.example terraform.tfvars
+```
 
-## Prove it after deploy
+Since at this point we want to make sure we can get into the server after.
 
-I've already made a username and password — that's not really that exciting. Log in. Upload a file. Where did that file go? Docker command line. It's part of a volume on the server so the next deploy won't wipe it. In this case that volume sits on attached storage the cloud gives you, so you can back it up that way (or other ways — it's not that hard).
+> If you get stuck in a terminal sceen try pressing "q"
 
-Queue: Redis running. Horizon is okay. There's better queue UIs, but it's good enough. Watching jobs pop.
+And when it asks for a passphrase just click "Return" since none is needed.
 
-Typically you need websockets with advanced applications — talk about that another time.
+You will need your public ip try this:
 
-Now you have a complete classic stack. The billing is whatever these resources cost, because we're not auto-scaling yet.
+> Run curl -4 https://api.ipify.org to find the public IPv4 address AWS will see. Add /32 because
+> only that single address should be allowed to SSH into the server. Don’t use your local Wi-Fi
+> address, and don’t open SSH to 0.0.0.0/0. If you’re using a VPN or your ISP changes your address,
+> run the command again and update Terraform.
 
-Important: this isn't using AWS RDS, or SQS, or S3. It's just using a Linux box — which in the end is what a lot of this stuff really is underneath. Or FreeBSD if they're crazy. We set up a simple box to do this. That box could host 10, 20, 30 applications. That's the next step. This one is just the one.
+To get your SSH key into your clipboard do:
 
-## Next article
+> cat ~/.ssh/classic-stack-deploy.pub | pbcopy
 
-How to do multiple applications on one box — port overlapping, incoming traffic, directing it. In this case I got to the system via IP address. We'll talk about domain names too, so you can have a better user experience.
 
-Video shortly. Stack Builder class repo is the companion for this series — I'll link it when that handoff lands.
+## Deploy from Github
 
----
 
-*Draft / outline mode. Structure and titles helped; wording kept close to the spoken transcript. Cover image and final polish still TBD.*
+Once the server is running, the deployment path becomes simple:
+
+```
+pull request
+    ↓
+tests against PostgreSQL and Redis
+    ↓
+Docker image build
+    ↓
+push to main
+    ↓
+temporary SSH access for the GitHub runner
+    ↓
+upload the release to EC2
+    ↓
+run migrations and health checks
+    ↓
+switch the running application
+```
+
+The GitHub Actions workflow lives at the repository root in .github/workflows/classic-
+stack.yml.
+
+Every pull request runs the application tests, Laravel Pint, a real Redis and Horizon queue
+check, and a production Docker image build. A push to main follows the same path. After the
+tests pass, the deployment job uploads the exact image that was tested.
+
+The workflow uses GitHub’s OIDC connection to AWS, so there is no long-lived AWS access key
+stored in GitHub. AWS trusts only this repository’s production environment. During
+deployment, the workflow discovers the runner’s current public IP and temporarily adds that
+single /32 address to a dedicated SSH security group. The rule is removed when the job
+finishes.
+
+The deployment connects using a dedicated deploy SSH key. It uploads an immutable release
+directory containing the Docker image and deployment files. On the server, the release
+script:
+
+1. Starts PostgreSQL and Redis.
+2. Runs Laravel migrations.
+3. Starts the new application container.
+4. Checks that the application can reach PostgreSQL and Redis.
+5. Starts the new Horizon and scheduler processes.
+6. Reloads Caddy with the new application upstream.
+7. Drains and stops the previous application container.
+
+> NOTE: as you follow the [README](https://github.com/alnutile/labs/blob/main/classic-stack/README.md) in the code base commands like
+> STACK_HOST=$(terraform -chdir=terraform output -raw elastic_ip)
+> is how you set a variable in the terminal. But if you change terminals that variable is gone.
+
+The result is a controlled deployment without a planned web outage. The previous release
+remains available for rollback, and the current and previous symlinks show which releases
+are active.
+
+This is near-zero-downtime deployment on one server. It is not high availability. A failed
+EC2 host, a full disk, an incompatible database migration, or a bad infrastructure change
+still affects the application. Database migrations must remain compatible with both the old
+and new application versions while traffic moves between them.
+
+After the initial setup, deploying an update is simply:
+
+```
+git add .
+git commit -m "Update the application"
+git push origin main
+```
+
+GitHub runs the tests first. Only a successful run is allowed to deploy.
+
+## CloudFlare
+
+The hostname for this stack is `classic-stack.dailyai.studio`. Rather than clicking a DNS
+record into existence, Terraform manages the record alongside the AWS infrastructure.
+
+The Cloudflare provider uses a narrowly scoped API token with Zone / DNS / Edit permission:
+
+```bash
+printf 'Cloudflare token: '
+read -rs CLOUDFLARE_API_TOKEN
+echo
+
+export TF_VAR_cloudflare_api_token="$CLOUDFLARE_API_TOKEN"
+
+terraform -chdir=terraform plan -out classic-stack-with-dns.tfplan
+terraform -chdir=terraform apply classic-stack-with-dns.tfplan
+
+unset TF_VAR_cloudflare_api_token CLOUDFLARE_API_TOKEN
+```
+
+The Terraform resource is deliberately DNS-only while the server is coming online:
+
+```
+resource "cloudflare_record" "classic_stack" {
+count = local.cloudflare_enabled ? 1 : 0
+
+zone_id = data.cloudflare_zone.classic_stack[0].id
+name    = var.cloudflare_record_name
+type    = "A"
+value   = aws_eip.classic_stack.public_ip
+ttl     = 1
+proxied = var.cloudflare_record_proxied
+}
+```
+
+DNS-only lets Caddy obtain the origin certificate directly. After HTTPS works, Cloudflare
+proxying can be enabled with cloudflare_record_proxied = true. When proxying, use Full
+(strict) SSL/TLS.
+
+If the record already exists, import it into Terraform state before applying the plan. That
+turns the existing dashboard record into an infrastructure-as-code resource instead of
+creating a duplicate.
+
+
+## Make a User and Check it out
+
+Registration is disabled in production, so create the first account over SSH:
+
+```bash
+ssh -i ~/.ssh/classic-stack-deploy \
+deploy@$(terraform -chdir=terraform output -raw elastic_ip)
+```
+
+Then run this on the server:
+
+```
+export APP_ROOT=/home/deploy/apps/classic-stack
+export RELEASE_ID=$(basename "$(readlink "$APP_ROOT/current")")
+
+
+cd "$APP_ROOT/current"
+
+docker compose \
+--env-file "$APP_ROOT/shared/env/production.env" \
+-p "release-$RELEASE_ID" \
+-f deploy/compose.release.yaml \
+exec --user www-data app \
+php artisan stack:user you@example.com --name="Your Name"
+```
+
+Laravel will prompt for a password without echoing it. Add that same email to
+HORIZON_ALLOWED_EMAILS if the user should access /horizon.
+
+![Final Results](/images/why-learn-to-build-your-own-stack/final.png)
+
+
+## Whats Next
+
+Now lets make this computer really pay for itself. In the next post will will host 10 applications and put a payload on them. Video coming soon!
+
