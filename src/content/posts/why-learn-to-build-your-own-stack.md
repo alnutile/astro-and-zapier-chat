@@ -4,6 +4,7 @@ date: 2026-09-16
 excerpt: "Managed services are great until the bill and the environments pile up. I'm starting a series on building your own stack — Terraform, Docker, CI, deploy — so you can stand up predictable, secure places to run the apps you're wiring together."
 tags: [devops, terraform, docker, laravel, aws, digitalocean, infrastructure-as-code, self-hosting]
 draft: false
+image: "/images/why-learn-to-build-your-own-stack/cover.png"
 faq:
   - question: "What do you mean by a stack in this series?"
     answer: "The combination of resources that host your application — compute, database, queue, storage, DNS, and maybe a load balancer later. Not every SaaS bolt-on like Stripe. More the place your internal or office apps actually run."
