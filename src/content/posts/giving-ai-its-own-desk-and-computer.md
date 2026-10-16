@@ -37,7 +37,7 @@ There are two areas where this interests me: personal use and business use.
 
 For me, it was the browser interaction.
 
-Claude Desktop failed numerous times trying to get things done in the browser. Astra crushed some of those same tasks, but sometimes it was in my way because I was using the computer too. On mobile, the experience was hit or miss.
+Claude Desktop failed numerous times trying to get things done in the browser. [Astra](https://openai.com/index/gpt-6-astra/) crushed some of those same tasks, but sometimes it was in my way because I was using the computer too. On mobile, the experience was hit or miss.
 
 To be fair, it is already amazing that these tools can do this work. But giving the AI its own computer removed another hurdle. It could work in its browser while I continued working in mine.
 
