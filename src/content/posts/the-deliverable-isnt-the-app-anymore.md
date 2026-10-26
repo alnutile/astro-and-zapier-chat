@@ -2,6 +2,7 @@
 title: "The Deliverable Isn't the App Anymore"
 date: 2026-10-25
 excerpt: "The app is only one piece of what a client needs now. The rest is the package around it: the repo as context hub, a shared room with an agent in it, evals from the start, CI/CD measured against the DORA metrics, and feature flags - and why a solo builder can offer the whole thing."
+image: "/images/the-deliverable-isnt-the-app-anymore/cover.svg"
 tags: [ai, agents, automation, evals, cicd, dora, feature-flags]
 faq:
   - question: "Isn't this just handing the client a chatbot?"
