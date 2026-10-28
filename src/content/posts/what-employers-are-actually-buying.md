@@ -5,16 +5,16 @@ excerpt: "I spent the last two to three months looking for work, and partway thr
 image: "/images/what-employers-are-actually-buying/cover.png"
 tags: [ai, agents, mcp, hiring, careers]
 faq:
-  - q: "What do employers hiring for AI agent roles actually ask for?"
-    a: "In a sample of 128 real job descriptions read in full, no framework was required on its own. Only 1 of 128 postings named a single framework without listing alternatives. Employers ask for agent building experience, usually naming a bundle like LangChain, LangGraph, LlamaIndex, or similar."
-  - q: "Which agent framework appears most often in job postings?"
-    a: "LangGraph appeared in 44 of 128 postings as required or preferred, just ahead of LangChain at 40 and MCP at 36. The three lead as a group, and most postings that name one name several, so the counts overlap and should not be added together."
-  - q: "What skills show up alongside frameworks in agent job postings?"
-    a: "Evals and observability appeared in 87 percent of the postings that named a framework, security and governance in 83 percent, and Python in 84 percent. Docker appeared in 43 percent and Kubernetes in 31 percent, while Terraform was only 7 percent, much lower than an earlier, smaller sample suggested."
-  - q: "Why not just count LinkedIn search results?"
-    a: "The totals are not a measurement. LinkedIn caps its displayed counts, the same posting is reposted across locations and recruiters, and keyword matching pulls in unrelated jobs. MCP, for example, also matched maintenance technician roles. Reading the descriptions themselves is slower and far more honest."
-  - q: "Does PHP or Laravel show up in AI agent job postings?"
-    a: "Almost never. PHP appeared once in 128 postings, inside a list of languages. My own read is that Laravel still works well as the product layer, with Python agents behind an MCP boundary, but the hiring market is not asking for it by name."
+  - question: "What do employers hiring for AI agent roles actually ask for?"
+    answer: "In a sample of 128 real job descriptions read in full, no framework was required on its own. Only 1 of 128 postings named a single framework without listing alternatives. Employers ask for agent building experience, usually naming a bundle like LangChain, LangGraph, LlamaIndex, or similar."
+  - question: "Which agent framework appears most often in job postings?"
+    answer: "LangGraph appeared in 44 of 128 postings as required or preferred, just ahead of LangChain at 40 and MCP at 36. The three lead as a group, and most postings that name one name several, so the counts overlap and should not be added together."
+  - question: "What skills show up alongside frameworks in agent job postings?"
+    answer: "Evals and observability appeared in 87 percent of the postings that named a framework, security and governance in 83 percent, and Python in 84 percent. Docker appeared in 43 percent and Kubernetes in 31 percent, while Terraform was only 7 percent, much lower than an earlier, smaller sample suggested."
+  - question: "Why not just count LinkedIn search results?"
+    answer: "The totals are not a measurement. LinkedIn caps its displayed counts, the same posting is reposted across locations and recruiters, and keyword matching pulls in unrelated jobs. MCP, for example, also matched maintenance technician roles. Reading the descriptions themselves is slower and far more honest."
+  - question: "Does PHP or Laravel show up in AI agent job postings?"
+    answer: "Almost never. PHP appeared once in 128 postings, inside a list of languages. My own read is that Laravel still works well as the product layer, with Python agents behind an MCP boundary, but the hiring market is not asking for it by name."
 ---
 
 TLDR: I spent two to three months looking for work, and instead of trusting the noise on social media I read 128 real job descriptions for AI agent roles, in full, twice over. Employers are not hiring for a specific framework. They are hiring for agent building experience, and they say so plainly, usually with a list like "LangChain, LangGraph, LlamaIndex, or similar." What they ask for around the framework matters more: evals, observability, security, and Python. The full report, with the tables and the method, is here: [What employers are actually buying](https://muse.ai/s/agent-frameworks-job-demand-vs-x-buzz-exs6bxexfxwpexlxo/iGeF0eA0KR4Wbwi0DApAJOvOwK1gE8QMEEP3F88ovDo).
