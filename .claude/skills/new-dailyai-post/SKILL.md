@@ -7,7 +7,7 @@ description: >
   post," "write up X for the blog," "new journal entry," or pasting content he
   wants posted. Handles the frontmatter schema, slug + image conventions, his
   writing voice, the don't-disparage-sponsors rule, a build check, and the
-  commit/deploy (which also refreshes the chatbot's knowledge base). Trigger this
+  commit/deploy. Trigger this
   even if he doesn't say "blog" — if he's clearly producing a post for this site,
   use it so nothing gets skipped.
 ---
@@ -76,7 +76,7 @@ kebab-case (e.g. `moving-my-chat-to-cloudflare.md` → `/posts/moving-my-chat-to
 ---
 title: "Title in Title Case"
 date: 2026-06-08            # today's date, YYYY-MM-DD
-excerpt: "One or two sentences that sell the post — this shows in the feed AND feeds the chatbot."
+excerpt: "One or two sentences that sell the post — this shows in the feed and in llms.txt."
 image: "/images/<slug>/cover.png"
 tags: [ai, automation, no-code]   # lowercase; reuse existing tags where possible
 ---
@@ -119,9 +119,7 @@ Alfred provides the hero image himself, but he likes a starting prompt. So:
 
 1. **Build first:** `npm run build`. This catches frontmatter/schema errors before
    they hit the live site. Confirm `/posts/<slug>/` appears in the output.
-2. **Commit + push to `main`.** This is a production deploy on Railway AND it
-   refreshes the chatbot — `/chat-index.json` rebuilds, so the bot knows the new
-   post on the next deploy automatically. No separate step.
+2. **Commit + push to `main`.** This is a production deploy on Railway.
    - End the commit message with the standard `Co-Authored-By` trailer.
 3. **Confirm live:** `curl -s -o /dev/null -w "%{http_code}" https://chat.dailyai.studio/posts/<slug>/`
    should return `200`.

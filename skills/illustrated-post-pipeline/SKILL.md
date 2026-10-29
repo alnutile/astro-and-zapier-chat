@@ -120,8 +120,7 @@ Follow the `new-dailyai-post` skill for the publishing mechanics. The essentials
    it), at minimum verify: frontmatter fields + date format, body opens with
    `## TLDR`, and every `/images/$SLUG/...` referenced in the body actually exists
    under `public/`. The real authoritative build runs on Railway at deploy.
-2. **Commit + push to `main`** — this is a production deploy on Railway and it
-   refreshes the chatbot's `/chat-index.json` automatically. End the commit with
+2. **Commit + push to `main`** — this is a production deploy on Railway. End the commit with
    the standard `Co-Authored-By` trailer.
 3. **Confirm live:**
    `curl -s -o /dev/null -w "%{http_code}" https://chat.dailyai.studio/posts/$SLUG/`
