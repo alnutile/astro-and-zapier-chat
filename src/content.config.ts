@@ -10,7 +10,7 @@ const postsCollection = defineCollection({
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
     // Set `draft: true` to keep a post out of the production build (site pages,
-    // RSS, tag pages, llms.txt, and the chatbot index). Drafts still render in
+    // RSS, tag pages, and llms.txt). Drafts still render in
     // `npm run dev` so you can preview them. See src/lib/posts.ts.
     draft: z.boolean().default(false),
     // Optional Q&A for tutorial/explainer posts. When present, the post renders

@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-This is the **owner's active, in-use blogging platform** at `chat.dailyai.studio` (deployed on Railway) — not a template to experiment with. There are ~158 published posts in [src/content/posts/](src/content/posts/) and new posts are added regularly. Treat changes as production-impacting: be conservative with anything that touches the frontmatter schema, post URL structure (`/posts/[slug]`, `/tags/[tag]`), or the Zapier sync contract.
+This is the **owner's active, in-use blogging platform** at `chat.dailyai.studio` (deployed on Railway) — not a template to experiment with. There are ~158 published posts in [src/content/posts/](src/content/posts/) and new posts are added regularly. Treat changes as production-impacting: be conservative with anything that touches the frontmatter schema or post URL structure (`/posts/[slug]`, `/tags/[tag]`).
 
-Built from the Brook Astro template. It is a **static site** (`output: 'static'`) that pairs with a **self-hosted chatbot**: a popup widget ([src/components/ui/ChatWidget.astro](src/components/ui/ChatWidget.astro)) embedded sitewide in [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro), talking to a **Cloudflare Worker** ([worker/](worker/)) that holds the LLM API key (OpenRouter, via an OpenAI-compatible endpoint) and enforces abuse protection (Turnstile, origin allow-list, KV rate limits + daily cap). The bot's knowledge base is a no-RAG build-time index of all posts served at [/chat-index.json](src/pages/chat-index.json.ts); answer quality is tuned with promptfoo evals in [evals/](evals/). See [docs/chatbot.md](docs/chatbot.md). (This replaced the previous Zapier chatbot + Zapier Table sync, which was retired for cost reasons.)
+Built from the Brook Astro template. It is a **static site** (`output: 'static'`). It used to ship a sitewide chatbot (first Zapier, then a self-hosted Cloudflare Worker); that was removed entirely - there is no chat widget, Worker, chat index, or evals anymore. Don't reintroduce one without the owner asking.
 
 Node >= 22.12.0 is required (see `engines` in [package.json](package.json)).
 
@@ -25,25 +25,14 @@ There is no test runner, linter, or formatter configured.
 
 - **Content collection** ([src/content.config.ts](src/content.config.ts)): a single `posts` collection globs `src/content/posts/**/*.{md,mdx}`. Frontmatter is Zod-validated: required `title`, `date` (Date), `excerpt`; optional `image`; `tags` defaults to `[]`. Adding a new frontmatter field requires updating the schema here — the build will fail otherwise.
 - **Routing**: `src/pages/posts/[slug].astro` calls `getStaticPaths()` over the collection, sorts by date desc, and pre-computes `prevPost`/`nextPost` props for each entry. `src/pages/tags/[tag].astro` generates one page per tag. `src/pages/rss.xml.js` emits the RSS feed.
-- **Layouts**: [BaseLayout.astro](src/layouts/BaseLayout.astro) owns `<head>` (SEO/OG/JSON-LD, Google Analytics `G-TRGMEDWTJM`, fonts, the Zapier chatbot script + embed), the site chrome (header/footer, dark-mode toggle, mobile menu), and Astro `<ClientRouter />` view transitions. [PostLayout.astro](src/layouts/PostLayout.astro) wraps it for article pages and computes reading time from the rendered slot HTML.
-- **View transitions**: Astro's `<ClientRouter />` is enabled, which means soft-nav between pages. Three things piggy-back on this and must stay in sync:
+- **Layouts**: [BaseLayout.astro](src/layouts/BaseLayout.astro) owns `<head>` (SEO/OG/JSON-LD, Google Analytics `G-TRGMEDWTJM`, fonts), the site chrome (header/footer, dark-mode toggle, mobile menu), and Astro `<ClientRouter />` view transitions. [PostLayout.astro](src/layouts/PostLayout.astro) wraps it for article pages and computes reading time from the rendered slot HTML.
+- **View transitions**: Astro's `<ClientRouter />` is enabled, which means soft-nav between pages. These piggy-back on this and must stay in sync:
   1. Google Analytics fires `gtag('config', ...)` on `astro:page-load` so soft-nav generates pageviews.
   2. Dark-mode reapplies on `astro:after-swap` (theme stored in `localStorage.theme`).
   3. Mobile menu + theme-toggle handlers re-bind on `astro:after-swap`.
-  4. The chat widget ([ChatWidget.astro](src/components/ui/ChatWidget.astro)) uses `transition:persist` to survive nav without re-mounting, and self-guards its init so it binds exactly once.
   When adding interactive scripts to BaseLayout, follow the same pattern or they will only work on the initial page load.
 - **Styling**: Tailwind CSS v4 via `@tailwindcss/vite` (not a `tailwind.config.*` file — config is in CSS via `@theme` in [src/styles/global.css](src/styles/global.css)). The README's mention of `tailwind.config.mjs` is from the upstream template and does not apply here.
 - **Images**: `astro:assets` with the `sharp` service is configured in [astro.config.mjs](astro.config.mjs) (webp, quality 80, responsive sizes 640–2000). Images referenced from markdown frontmatter or content live in `public/images/` and are referenced as `/images/foo.jpg`.
-
-## Content and the chatbot knowledge base
-
-`src/content/posts/*.md` is the source of truth for both the static site and the chatbot. The chatbot's knowledge base is the build-time index at [src/pages/chat-index.json.ts](src/pages/chat-index.json.ts) (title/excerpt/url/date/tags for every post), served as `/chat-index.json` and fetched+cached by the Cloudflare Worker. No RAG — see [docs/chatbot.md](docs/chatbot.md).
-
-Implications when editing posts:
-- New posts and edits flow into the chatbot automatically on the next Railway deploy (the index rebuilds with the site). There is no separate sync to keep in step.
-- The index inherits Astro's Zod validation, so anything that builds is valid for the bot. Renames just change the `url` — no orphaned rows to clean up.
-
-> The old Zapier Table sync (`astro-ai-chat - knowledge source`, documented in [docs/zap-knowledge-source-sync.md](docs/zap-knowledge-source-sync.md)) has been **retired** — it cost too much. That doc is kept for historical reference only; the Zap/Table are no longer live.
 
 ## Writing voice for posts
 
