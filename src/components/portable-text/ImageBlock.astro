@@ -12,21 +12,24 @@ type Node = {
   link?: string | { href?: string };
   _joinNext?: boolean;
   _joinPrev?: boolean;
+  _heading?: string;
 };
 const { node } = Astro.props as { node: Node };
 const url = node?.asset?.url;
 const isPlainUrl = !!url && !node.asset?._ref;
 const href = typeof node?.link === 'string' ? node.link : node?.link?.href;
+// Image-only markdown heading (e.g. `![](x.png)` then `---`) was an <hN> wrapper.
+const Wrap = node?._heading && /^h[1-6]$/.test(node._heading) ? node._heading : 'p';
 const EmDashImage = (emdashComponents as any).type?.image;
 ---
 {isPlainUrl ? (
-  <p class={[node._joinPrev && 'pt-join-prev', node._joinNext && 'pt-join-next'].filter(Boolean).join(' ') || undefined}>
+  <Wrap class={[node._joinPrev && 'pt-join-prev', node._joinNext && 'pt-join-next'].filter(Boolean).join(' ') || undefined}>
     {href ? (
       <a href={href}><img src={url} alt={node.alt ?? ''} /></a>
     ) : (
       <img src={url} alt={node.alt ?? ''} />
     )}
-  </p>
+  </Wrap>
 ) : EmDashImage ? (
   <EmDashImage {...Astro.props} />
 ) : null}

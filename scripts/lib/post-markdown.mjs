@@ -180,11 +180,20 @@ function blocks(nodes, ctx = {}) {
   const out = [];
   for (const n of nodes) {
     switch (n.type) {
-      case 'heading':
+      case 'heading': {
         // Via paragraph() so an image in a heading (e.g. `![](x.png)` followed
         // by `---`, which is a setext h2) is lifted out instead of dropped.
-        out.push(...paragraph(n.children, { style: `h${n.depth}` }));
+        const parts = paragraph(n.children, { style: `h${n.depth}` });
+        if (!parts.length) {
+          // Empty heading: the old site rendered an empty <hN>; keep its spacing.
+          parts.push({ _type: 'block', _key: key(), style: `h${n.depth}`, markDefs: [], children: [{ _type: 'span', _key: key(), text: '', marks: [] }] });
+        } else if (parts.every((b) => b._type === 'image')) {
+          // Image-only heading: rendered as <hN><img></hN> before.
+          parts.forEach((b) => { b._heading = `h${n.depth}`; });
+        }
+        out.push(...parts);
         break;
+      }
       case 'paragraph':
         out.push(...paragraph(n.children, ctx.blockquote ? { style: 'blockquote' } : {}));
         break;

@@ -54,8 +54,15 @@ workerd with the seed imported through the real setup wizard:
   below). Tag-by-tag HTML structure (headings with the same `id` anchors,
   links, lists, tables, code, images) matches except as listed below.
 - `/rss.xml`, `/llms.txt`, `/journal.md`, `/about.md` are byte-identical.
-- Full-page screenshots diffed pixel-for-pixel across all pages; see the PR
-  for the results.
+- Full-page screenshots (1280px wide) diffed pixel-for-pixel on all 221
+  pages: 206 identical. The rest: animated GIF frames and images that hadn't
+  lazy-loaded at capture time (same `<img>` markup, all return 200), the
+  quote fix and code-in-quote case below, and two hand-written `.astro` pages
+  (`/about`, `/styleguide`) where Astro 7's compiler trims a space (a 5px
+  link underline; a label/input gap on the internal styleguide).
+- `npm run post:publish` tested locally: creates a post with new and existing
+  tags in frontmatter order, updates on re-run, and leaves `draft: true` posts
+  hidden.
 
 Known, intentional differences:
 
@@ -64,9 +71,6 @@ Known, intentional differences:
 - A code block inside a blockquote (one spot in
   `green-means-ship-cicd-with-confidence`) renders as quote / code / quote,
   since Portable Text can't nest a code block in a quote.
-- Three headings that contained only an image (`![](x.png)` followed by
-  `---` makes a setext `<h2>`) now render the image without the `<h2>`
-  wrapper; two empty headings are dropped.
 - EmDash adds a `/sitemap.xml` of its own (the old site 404'd there).
   `robots.txt` still points crawlers at `/sitemap-index.xml`, which is
   unchanged.
