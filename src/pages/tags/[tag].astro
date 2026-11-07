@@ -3,26 +3,14 @@ import { getPublishedPosts } from '../../lib/posts';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostList from '../../components/PostList.astro';
 
-export async function getStaticPaths() {
-  const allPosts = await getPublishedPosts();
-  
-  // Get all unique tags
-  const uniqueTags = [...new Set(allPosts.map(post => post.data.tags).flat())];
-  
-  // Create a path for each tag
-  return uniqueTags.map(tag => {
-    const filteredPosts = allPosts.filter(post => 
-      post.data.tags && post.data.tags.includes(tag)
-    );
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
-  });
-}
-
+// Rendered on request from EmDash's `tag` taxonomy. Same URL as before:
+// /tags/<tag>.
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const posts = (await getPublishedPosts()).filter((post) => tag && post.data.tags.includes(tag));
+
+if (posts.length === 0) {
+  return Astro.rewrite('/404');
+}
 
 // Sort posts by date
 const sortedPosts = posts.sort((a, b) => 

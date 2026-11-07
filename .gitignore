@@ -31,3 +31,12 @@ knowledge-source-bootstrap.csv
 *.njsproj
 *.sln
 *.sw?
+
+# EmDash / Cloudflare
+.wrangler
+.dev.vars
+.dev.vars.*
+data.db
+data.db-*
+uploads
+.emdash/migrations.json

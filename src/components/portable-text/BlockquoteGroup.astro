@@ -1,0 +1,21 @@
+---
+// EmDash merges consecutive quote blocks into one <blockquote>. Imported
+// posts flag where each original markdown quote began (`_quoteStart`), so
+// split the run back into the separate quotes the old site showed, one <p>
+// per paragraph. Runs without flags (written in the admin) stay merged.
+import { PortableText } from 'astro-portabletext';
+import { emdashComponents } from 'emdash/ui';
+import Block from './Block.astro';
+
+type QuoteBlock = { _quoteStart?: boolean; style?: string; [k: string]: unknown };
+const { node } = Astro.props as { node: { blocks?: QuoteBlock[] } };
+const groups: QuoteBlock[][] = [];
+for (const b of node?.blocks ?? []) {
+  if (!groups.length || b._quoteStart) groups.push([]);
+  groups[groups.length - 1].push({ ...b, style: 'normal', _joinNext: false, _joinPrev: false });
+}
+const components = { block: Block, mark: (emdashComponents as any).mark };
+---
+{groups.map((g) => (
+  <blockquote><PortableText value={g as any} components={components} /></blockquote>
+))}

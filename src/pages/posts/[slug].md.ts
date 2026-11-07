@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getPublishedPosts } from '../../lib/posts';
+import { getPublishedPost } from '../../lib/posts';
 
 // /posts/<slug>.md — the clean-markdown twin of every /posts/<slug> page.
 //
@@ -9,20 +9,13 @@ import { getPublishedPosts } from '../../lib/posts';
 // with a `.md` suffix. Post pages advertise it via <link rel="alternate"
 // type="text/markdown"> in the <head> (see BaseLayout/PostLayout).
 //
-// Static site (`output: 'static'`), so there is no request-time content
-// negotiation — the `.md` sibling + the rel=alternate link are the discovery
-// path. The body is read straight from entry.body, so this never drifts from
-// the post source.
+// Served on request from EmDash. The body is the post's Portable Text
+// converted back to markdown, so it never drifts from what the page shows.
 
-// One static route per published post, mirroring posts/[slug].astro.
-export async function getStaticPaths() {
-  const posts = await getPublishedPosts();
-  return posts.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
-}
-
-export const GET: APIRoute = ({ props, site }) => {
+export const GET: APIRoute = async ({ params, site }) => {
   const base = (site?.toString() ?? 'https://chat.dailyai.studio').replace(/\/$/, '');
-  const { entry } = props as { entry: Awaited<ReturnType<typeof getPublishedPosts>>[number] };
+  const entry = params.slug ? await getPublishedPost(params.slug) : undefined;
+  if (!entry) return new Response('Not found', { status: 404 });
   const { title, date, excerpt, tags } = entry.data;
 
   const lines = [

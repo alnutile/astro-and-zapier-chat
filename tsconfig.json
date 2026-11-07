@@ -3,8 +3,10 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "baseUrl": ".",
+    "types": ["@cloudflare/workers-types"],
     "paths": {
       "@/*": ["src/*"]
     }
-  }
+  },
+  "include": ["src", ".astro/types.d.ts", "emdash-env.d.ts"]
 }

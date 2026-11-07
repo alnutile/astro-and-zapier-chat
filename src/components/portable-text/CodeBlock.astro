@@ -1,0 +1,9 @@
+---
+// Portable Text `code` block -> Shiki-highlighted <pre>, same output shape the
+// old markdown build produced, so the existing prose/code styles apply.
+import { highlight } from '../../lib/highlight';
+
+const { node } = Astro.props as { node: { code?: string; language?: string } };
+const html = node?.code ? await highlight(node.code, node.language) : '';
+---
+{html && <Fragment set:html={html} />}

@@ -1,45 +1,22 @@
 ---
-import { render } from 'astro:content';
-import { getPublishedPosts } from '../../lib/posts';
+import { decodeSlug } from 'emdash';
+import { getPublishedPosts, neighbours } from '../../lib/posts';
 import PostLayout from '../../layouts/PostLayout.astro';
+import PostBody from '../../components/PostBody.astro';
 
-// Generate static paths for all posts
-export async function getStaticPaths() {
-  const allPosts = await getPublishedPosts();
+// Rendered on request from EmDash, so a post published in the admin is live
+// immediately. Same URL as the old static route: /posts/<slug>.
+const slug = decodeSlug(Astro.params.slug);
+const posts = slug ? await getPublishedPosts() : [];
+const entry = posts.find((p) => p.id === slug);
 
-  // Sortiere Posts nach Datum (neueste zuerst)
-  const sortedPosts = allPosts.sort((a, b) =>
-    new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
-  );
-
-  return sortedPosts.map((entry, index) => {
-    // Bestimme vorherigen und nächsten Post
-    const prevPost = sortedPosts[index - 1]
-      ? {
-          url: `/posts/${sortedPosts[index - 1].id}`,
-          title: sortedPosts[index - 1].data.title
-        }
-      : null;
-
-    const nextPost = sortedPosts[index + 1]
-      ? {
-          url: `/posts/${sortedPosts[index + 1].id}`,
-          title: sortedPosts[index + 1].data.title
-        }
-      : null;
-
-    return {
-      params: { slug: entry.id },
-      props: { entry, prevPost, nextPost },
-    };
-  });
+if (!entry) {
+  return Astro.rewrite('/404');
 }
 
-// Get the post and navigation data for this page
-const { entry, prevPost, nextPost } = Astro.props;
-const { Content } = await render(entry);
+const { prevPost, nextPost } = neighbours(posts, entry.id);
 ---
 
 <PostLayout frontmatter={entry.data} prevPost={prevPost} nextPost={nextPost}>
-  <Content />
+  <PostBody value={entry.content} />
 </PostLayout>

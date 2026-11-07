@@ -1,13 +1,13 @@
 ---
 name: new-dailyai-post
 description: >
-  Create and publish a new post on the DailyAi blog (this Astro repo at
-  chat.dailyai.studio). Use this whenever Alfred wants to add, write, draft, or
+  Create and publish a new post on the DailyAi blog (this Astro + EmDash repo
+  at chat.dailyai.studio). Use this whenever Alfred wants to add, write, draft, or
   publish a post, article, or journal entry here — including "turn this into a
   post," "write up X for the blog," "new journal entry," or pasting content he
   wants posted. Handles the frontmatter schema, slug + image conventions, his
-  writing voice, the don't-disparage-sponsors rule, a build check, and the
-  commit/deploy. Trigger this
+  writing voice, the don't-disparage-sponsors rule, and publishing it into
+  EmDash. Trigger this
   even if he doesn't say "blog" — if he's clearly producing a post for this site,
   use it so nothing gets skipped.
 ---
@@ -67,7 +67,11 @@ template, swapping in the post's content (a 2–3 step flow usually works):
    *and* never "I'm just a beginner." Avoid guru/only-way framing on one side and
    false modesty on the other. (See the project memory `content-voice-sharing-not-expert`.)
 
-## Frontmatter (exact schema — the build is Zod-validated and will fail otherwise)
+## Frontmatter (exact schema — the publish script rejects a post missing the required fields)
+
+The site runs on EmDash now (see `docs/emdash-migration.md`): posts live in the
+EmDash database, not in the build. The markdown file is still how we draft, and
+`npm run post:publish` converts it and creates/updates the post in EmDash.
 
 Create `src/content/posts/<slug>.md`. The filename is the URL slug, so use clean
 kebab-case (e.g. `moving-my-chat-to-cloudflare.md` → `/posts/moving-my-chat-to-cloudflare/`).
@@ -117,11 +121,23 @@ Alfred provides the hero image himself, but he likes a starting prompt. So:
 
 ## Verify, then ship
 
-1. **Build first:** `npm run build`. This catches frontmatter/schema errors before
-   they hit the live site. Confirm `/posts/<slug>/` appears in the output.
-2. **Commit + push to `main`.** This is a production deploy on Railway.
-   - End the commit message with the standard `Co-Authored-By` trailer.
-3. **Confirm live:** `curl -s -o /dev/null -w "%{http_code}" https://chat.dailyai.studio/posts/<slug>/`
+1. **Images first.** Files in `public/images/<slug>/` only go live with a deploy,
+   so if the post uses new images: commit + push to `main` (Workers Builds
+   deploys it) or run `npm run deploy`, and confirm
+   `https://chat.dailyai.studio/images/<slug>/cover.png` returns `200` before
+   publishing. (A full `https://` image URL needs no deploy.)
+2. **Check it locally (optional but cheap):** `npm run dev`, then
+   `npm run post:publish -- src/content/posts/<slug>.md` publishes into the local
+   database; view `http://localhost:4321/posts/<slug>/`.
+3. **Publish live:** Alfred runs (he holds the token — never commit it or put it
+   in chat):
+   `EMDASH_TOKEN=... npm run post:publish -- src/content/posts/<slug>.md --url https://chat.dailyai.studio`
+   It creates the post (or updates it if the slug exists), sets the tags, and
+   publishes. `draft: true` leaves it as a draft for preview in `/_emdash/admin`.
+   No deploy is needed for the post itself; the page cache refreshes within seconds.
+4. **Commit the markdown file** too, so the archive in `src/content/posts/` stays
+   complete. End the commit message with the standard `Co-Authored-By` trailer.
+5. **Confirm live:** `curl -s -o /dev/null -w "%{http_code}" https://chat.dailyai.studio/posts/<slug>/`
    should return `200`.
 
 ## Quick checklist
@@ -130,6 +146,7 @@ Alfred provides the hero image himself, but he likes a starting prompt. So:
 - [ ] No disparaging of sponsor tools
 - [ ] `src/content/posts/<slug>.md` with valid frontmatter + TLDR opener
 - [ ] Asked Alfred for `cover.png`; confirmed it exists
-- [ ] `npm run build` passes
-- [ ] Committed + pushed to main
+- [ ] New images deployed (or full URLs used)
+- [ ] `npm run post:publish` run against the live site (by Alfred, with his token)
+- [ ] Markdown file committed
 - [ ] Verified `/posts/<slug>/` returns 200 live

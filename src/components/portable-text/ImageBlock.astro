@@ -1,0 +1,33 @@
+---
+// Portable Text `image` block. Migrated posts reference images by URL
+// (/images/... in public/, or remote CDNs), so render a plain <img> exactly
+// like the old markdown did (wrapped in a link when the markdown had one).
+// Images uploaded through the EmDash admin carry a media reference instead and
+// go through EmDash's own image renderer.
+import { emdashComponents } from 'emdash/ui';
+
+type Node = {
+  asset?: { _ref?: string; url?: string };
+  alt?: string;
+  link?: string | { href?: string };
+  _joinNext?: boolean;
+  _joinPrev?: boolean;
+};
+const { node } = Astro.props as { node: Node };
+const url = node?.asset?.url;
+const isPlainUrl = !!url && !node.asset?._ref;
+const href = typeof node?.link === 'string' ? node.link : node?.link?.href;
+const EmDashImage = (emdashComponents as any).type?.image;
+---
+{isPlainUrl ? (
+  <p class={[node._joinPrev && 'pt-join-prev', node._joinNext && 'pt-join-next'].filter(Boolean).join(' ') || undefined}>
+    {href ? (
+      <a href={href}><img src={url} alt={node.alt ?? ''} /></a>
+    ) : (
+      <img src={url} alt={node.alt ?? ''} />
+    )}
+  </p>
+) : EmDashImage ? (
+  <EmDashImage {...Astro.props} />
+) : null}
+
