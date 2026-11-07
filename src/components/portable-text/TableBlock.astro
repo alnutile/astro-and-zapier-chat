@@ -1,0 +1,38 @@
+---
+// Portable Text `table` block rendered as a plain GFM-style table, matching
+// the old markdown output (no <p> inside cells), so the theme's table styles
+// apply unchanged. Cell text keeps its marks (bold, code, links).
+import { PortableText } from 'astro-portabletext';
+import { emdashComponents } from 'emdash/ui';
+import InlineBlock from './InlineBlock.astro';
+
+type Cell = { content?: any[]; markDefs?: any[]; isHeader?: boolean; textAlign?: string };
+type Row = { cells?: Cell[] };
+const { node } = Astro.props as { node: { rows?: Row[]; hasHeaderRow?: boolean } };
+const rows = node?.rows ?? [];
+const [head, ...body] = node?.hasHeaderRow ? rows : [undefined, ...rows];
+const components = { block: InlineBlock, mark: (emdashComponents as any).mark };
+const cellValue = (c: Cell) => [
+  { _type: 'block', _key: 'c', style: 'normal', markDefs: c.markDefs ?? [], children: c.content ?? [] },
+];
+---
+<table>
+  {head && (
+    <thead>
+      <tr>
+        {(head.cells ?? []).map((c) => (
+          <th align={c.textAlign as any}><PortableText value={cellValue(c)} components={components} /></th>
+        ))}
+      </tr>
+    </thead>
+  )}
+  <tbody>
+    {body.map((r) => (
+      <tr>
+        {(r?.cells ?? []).map((c) => (
+          <td align={c.textAlign as any}><PortableText value={cellValue(c)} components={components} /></td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+</table>

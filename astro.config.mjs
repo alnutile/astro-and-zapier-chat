@@ -1,41 +1,69 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
+import cloudflare from '@astrojs/cloudflare';
+import { cacheCloudflare } from '@astrojs/cloudflare/cache';
 import tailwindcss from '@tailwindcss/vite';
+import { d1, r2 } from '@emdash-cms/cloudflare';
+import emdash from 'emdash/astro';
 
 // https://astro.build/config
+//
+// The site runs on Cloudflare Workers with EmDash as the CMS. Posts live in D1
+// (binding DB), uploaded media in R2 (binding MEDIA). Pages render on request,
+// so a post published in the EmDash admin (/_emdash/admin) is live immediately
+// with no rebuild. Static files in public/ (fonts, /images/...) are served as
+// Workers static assets, so existing image URLs keep working.
+//
+// Public pages are cached in the Workers Cache. EmDash purges the `posts` tag
+// whenever a post is published/unpublished/edited live, so changes show up
+// within seconds; maxAge only bounds staleness if a purge fails (Workers
+// Cache purges are rate-limited to 5/min). Invalidate the `all` tag to clear
+// everything at once.
+const POSTS = { maxAge: 3600, swr: 86400, tags: ['posts', 'all'] };
+
 export default defineConfig({
-  output: 'static', // Explicitly specify static output (which is also the default)
+  output: 'server',
   site: 'https://chat.dailyai.studio',
-  // Enable built-in image optimization with specific settings
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp',
-      config: {
-        // Use webp as preferred format for better compression and quality
-        format: 'webp',
-        // Higher quality setting (0-100)
-        quality: 80,
-        // Default sizes for responsive images
-        sizes: [640, 960, 1280, 1600, 2000],
-        // Process images into multiple sizes for responsiveness
-        resizeOptions: {
-          fit: 'cover',
-          position: 'center'
-        }
-      }
-    }
+  adapter: cloudflare({
+    // Covers in public/ and remote covers are served as-is (same as before:
+    // the old build never ran them through astro:assets either).
+    imageService: 'passthrough',
+  }),
+  cache: {
+    provider: cacheCloudflare(),
+  },
+  routeRules: {
+    '/': POSTS,
+    '/journal': POSTS,
+    '/journal.md': POSTS,
+    '/faq': POSTS,
+    '/about': POSTS,
+    '/about.md': POSTS,
+    '/styleguide': POSTS,
+    '/posts/[slug]': POSTS,
+    '/posts/[slug].md': POSTS,
+    '/tags/[tag]': POSTS,
+    '/rss.xml': POSTS,
+    '/llms.txt': POSTS,
+    '/llms-full.txt': POSTS,
+    '/sitemap-index.xml': POSTS,
+    '/sitemap-0.xml': POSTS,
   },
   vite: {
     // Using Tailwind CSS v4 with @tailwindcss/vite
     plugins: [tailwindcss()],
-    preview: {
-      // Allow Railway (and any *.up.railway.app preview domain) through Vite's host allow-list
-      allowedHosts: ['.dailyai.studio']
-    }
   },
   integrations: [
     mdx(),
-    sitemap()
-  ]
+    react(),
+    emdash({
+      database: d1({ binding: 'DB', session: 'auto', coalesce: true }),
+      storage: r2({ binding: 'MEDIA' }),
+      // Cached pages are shared with logged-in editors; the client toolbar
+      // still shows the edit pill on them (see EmDash route-caching docs).
+      toolbar: 'client',
+    }),
+  ],
+  devToolbar: { enabled: false },
 });

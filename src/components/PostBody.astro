@@ -1,0 +1,39 @@
+---
+// Renders a post's Portable Text body with the site's own block, code and
+// image renderers layered over EmDash's defaults, so the HTML matches what the
+// old markdown build produced and the existing prose styles apply unchanged.
+import GithubSlugger from 'github-slugger';
+import { PortableText } from 'emdash/ui';
+import Block from './portable-text/Block.astro';
+import BlockquoteGroup from './portable-text/BlockquoteGroup.astro';
+import BreakBlock from './portable-text/BreakBlock.astro';
+import CodeBlock from './portable-text/CodeBlock.astro';
+import ImageBlock from './portable-text/ImageBlock.astro';
+import ListItem from './portable-text/ListItem.astro';
+import TableBlock from './portable-text/TableBlock.astro';
+
+const { value } = Astro.props as { value: any[] };
+
+// Same heading ids Astro's markdown pipeline generated (github-slugger, one
+// slugger per document so duplicates get -1, -2 ...).
+const slugger = new GithubSlugger();
+const blocks = (value ?? []).map((b) =>
+  b?._type === 'block' && /^h[1-6]$/.test(b.style ?? '')
+    ? { ...b, _headingId: slugger.slug((b.children ?? []).map((c: any) => c.text ?? '').join('')) }
+    : b,
+);
+
+const components = {
+  block: Block,
+  listItem: { bullet: ListItem, number: ListItem },
+  type: { blockquoteGroup: BlockquoteGroup, break: BreakBlock, code: CodeBlock, image: ImageBlock, table: TableBlock },
+};
+---
+<PortableText value={blocks} components={components} />
+
+<style is:global>
+  /* Blocks that came from one markdown paragraph (text + image, image +
+     caption) sat in a single <p> on the old site: no gap between them. */
+  .prose p.pt-join-next { margin-bottom: 0; }
+  .prose p.pt-join-prev { margin-top: 0; }
+</style>

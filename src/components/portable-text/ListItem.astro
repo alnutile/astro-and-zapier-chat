@@ -1,0 +1,12 @@
+---
+// List item renderer. Items from "loose" markdown lists (blank lines between
+// items) carry `_loose` and get the <p> wrapper the old markdown build
+// produced, so list spacing in the theme is unchanged.
+const { node, index: _index, isInline: _isInline, ...attrs } = Astro.props as {
+  node: { _loose?: boolean };
+  index?: number;
+  isInline?: boolean;
+  [k: string]: unknown;
+};
+---
+{node?._loose ? <li {...attrs}><p><slot /></p></li> : <li {...attrs}><slot /></li>}

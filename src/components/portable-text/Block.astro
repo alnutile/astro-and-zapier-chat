@@ -1,0 +1,30 @@
+---
+// Text block renderer (paragraphs, headings, blockquotes), matching the HTML
+// the old markdown build produced:
+//   - headings carry the same `id` slugs (github-slugger, like Astro's
+//     markdown), so existing /posts/<slug>#section links keep working
+//   - a blockquote wraps its text in <p>, like markdown did
+// Ids are assigned in PostBody.astro and arrive on the node as `_headingId`.
+type Node = { style?: string; textAlign?: string; _headingId?: string; _empty?: boolean; _joinNext?: boolean; _joinPrev?: boolean };
+const { node, index: _index, isInline: _isInline, ...attrs } = Astro.props as {
+  node: Node;
+  index?: number;
+  isInline?: boolean;
+  [k: string]: unknown;
+};
+const style = node?.style ?? 'normal';
+const align = ['center', 'right', 'justify'].includes(node?.textAlign ?? '')
+  ? `has-text-align-${node.textAlign}`
+  : undefined;
+const Heading = /^h[1-6]$/.test(style) ? style : null;
+// A bare `>` line in the old markdown rendered as an empty <blockquote>
+// (flagged `_empty` at import).
+const isEmpty = node?._empty === true;
+---
+{Heading ? (
+  <Heading id={node._headingId} class={align} {...attrs}><slot /></Heading>
+) : style === 'blockquote' ? (
+  isEmpty ? <blockquote class={align} {...attrs} /> : <blockquote class={align} {...attrs}><p><slot /></p></blockquote>
+) : (
+  <p class={[align, node._joinPrev && 'pt-join-prev', node._joinNext && 'pt-join-next'].filter(Boolean).join(' ') || undefined} {...attrs}><slot /></p>
+)}
